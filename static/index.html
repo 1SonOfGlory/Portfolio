@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kasa AI | Autonomous Customer Experience</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Preload fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="glass-header">
+        <div class="brand">
+            <i class="fa-solid fa-cube text-neon-blue"></i> Kasa <span class="text-white">AI</span>
+        </div>
+        <nav class="hidden-mobile">
+            <a href="#problem" class="nav-link">The Problem</a>
+            <a href="#solution" class="nav-link">Our Solution</a>
+            <a href="#impact" class="nav-link">Impact</a>
+            <a href="#demo" class="nav-link">Live Demo</a>
+        </nav>
+        <div class="header-actions">
+            <button class="cta-button-small glow-on-hover">Book a Demo</button>
+        </div>
+    </header>
+
+    <!-- 1. Hero Section (The Hook) -->
+    <section class="hero-section">
+        <div class="hero-container">
+            <div class="hero-content fade-in-up">
+                <div class="hero-badge">Autonomous CX Agent v2.0</div>
+                <h1 class="hero-title">
+                    Give <span class="text-gradient-purple">Every Customer</span><br>
+                    the Attention They Deserve.<br>
+                    <span class="text-white" style="font-size: 0.8em; text-shadow: 0 0 10px rgba(255,255,255,0.5);">Even
+                        When They Are Offline.</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Kasa AI is a fully customizable AI agent fluent in your customers' <span
+                        class="text-white">language</span>. It handles complex queries 24/7 with natural, on-brand
+                    responses to ensure your customers receive immediate, accurate support the moment they reach out.
+                </p>
+                <div class="hero-buttons">
+                    <button class="cta-button-large glow-effect">Book a Demo</button>
+                    <button class="secondary-button-large">Explore the Architecture</button>
+                </div>
+            </div>
+            <div class="hero-image-wrapper float-animation">
+                <!-- Image Instruction: Subtle glow or floating animation -->
+                <img src="/static/images/happy_customer.jpg" alt="Seamless Support Experience"
+                    class="hero-img glass-card">
+                <div class="floating-card card-1 glass-card">
+                    <i class="fa-solid fa-check-circle text-neon-green"></i> <span>Reversal Complete</span>
+                </div>
+                <div class="floating-card card-2 glass-card">
+                    <i class="fa-solid fa-language text-neon-blue"></i> <span>Twi & English Supported</span>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fa-solid fa-chevron-down bounce"></i>
+        </div>
+    </section>
+
+    <!-- 2. The Problem Section (The Pain Point) -->
+    <section id="problem" class="problem-section">
+        <div class="section-header center-text fade-in-on-scroll">
+            <h2>Support Teams Are Drowning. Customers Are Leaving.</h2>
+            <p class="subtitle">Your agents are overwhelmed by repetitive queries, while high-value customers wait on
+                hold. The current model doesn't scale.</p>
+        </div>
+
+        <div class="bento-grid">
+            <!-- Box 1: Abandoned Transactions -->
+            <div class="bento-box box-1 glass-card fade-in-on-scroll delay-100">
+                <div class="bento-image-container">
+                    <img src="/static/images/frustrated.jpg" alt="Frustrated customer dealing with hold times"
+                        class="bento-img">
+                    <div class="overlay-gradient"></div>
+                </div>
+                <div class="bento-content">
+                    <h3><i class="fa-solid fa-clock-rotate-left text-neon-red"></i> 15+ Minute Wait Times</h3>
+                    <p>Abandoned calls from long wait times cost you millions annually.</p>
+                </div>
+            </div>
+
+            <!-- Box 2: Customer Frustration -->
+            <div class="bento-box box-2 glass-card fade-in-on-scroll delay-200">
+                <div class="bento-image-container">
+                    <!-- Placeholder using existing image until user uploads Image 2 -->
+                    <img src="/static/images/no_answer.jpg" alt="Angry customer with credit card" class="bento-img">
+                    <div class="overlay-gradient"></div>
+                </div>
+                <div class="bento-content">
+                    <h3><i class="fa-solid fa-face-angry text-neon-red"></i> High Churn Rate</h3>
+                    <p>Customers don’t just get frustrated; they switch providers.</p>
+                </div>
+            </div>
+
+            <!-- Box 3: Agent Burnout -->
+            <div class="bento-box box-3 glass-card fade-in-on-scroll delay-300">
+                <div class="bento-image-container">
+                    <!-- Placeholder using existing image -->
+                    <img src="/static/images/agent_burnout.jpg" alt="Exhausted call center agent" class="bento-img">
+                    <div class="overlay-gradient"></div>
+                </div>
+                <div class="bento-content">
+                    <h3><i class="fa-solid fa-battery-empty text-neon-red"></i> Agent Burnout</h3>
+                    <p>Routine tasks burn out great teams. Stop losing your best staff to repetitive questions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. The Solution Section (Introducing TensorCX) -->
+    <section id="solution" class="solution-section">
+        <div class="solution-container">
+            <div class="sticky-content fade-in-on-scroll">
+                <h2>Meet Kasa AI.<br>Your 24/7 Digital Service Agent.</h2>
+                <p class="large-text">Engineered to be a secure, intelligent extension of your workforce. It
+                    communicates flawlessly in local dialects and delivers premium customer care, completely independent
+                    of internet connectivity.</p>
+
+                <div class="feature-list">
+                    <div class="feature-item active" data-target="ussd">
+                        <div class="feature-icon-wrapper"><i class="fa-solid fa-tower-cell"></i></div>
+                        <div class="feature-text">
+                            <h4>Zero-Data / USSD Bridge</h4>
+                            <p>Zero data required. Connect with users completely offline. Resolve queries through
+                                standard telephony and USSD to guarantee no customer is left behind.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item" data-target="dialect">
+                        <div class="feature-icon-wrapper"><i class="fa-solid fa-language"></i></div>
+                        <div class="feature-text">
+                            <h4>Native-Dialect Voice AI</h4>
+                            <p>Fluent in English, Akan, Hausa and Pidgin.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item" data-target="action">
+                        <div class="feature-icon-wrapper"><i class="fa-solid fa-bolt"></i></div>
+                        <div class="feature-text">
+                            <h4>Instant Task Resolution</h4>
+                            <p>Goes beyond answering questions to instantly track deliveries, process plan upgrades, and
+                                seamlessly route complex issues to the right human department.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item" data-target="rag">
+                        <div class="feature-icon-wrapper"><i class="fa-solid fa-shield-halved"></i></div>
+                        <div class="feature-text">
+                            <h4>Enterprise RAG Guardrails</h4>
+                            <p>Zero hallucinations. Trained strictly on your company policy.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="visual-content fade-in-on-scroll delay-200">
+                <!-- Interactive Feature Visual -->
+                <div class="glass-phone-mockup">
+                    <div class="screen-content">
+                        <!-- Simulating USSD/Chat interface -->
+                        <div class="chat-bubble ai">Welcome to Access Bank. How can I help?</div>
+                        <div class="chat-bubble user">I need to reset my PIN.</div>
+                        <div class="chat-bubble ai">I can help with that. Please dial *901# or verify here.</div>
+                        <div class="connecting-line"></div>
+                        <div class="action-card">
+                            <i class="fa-solid fa-spinner fa-spin"></i> Processing Request...
+                        </div>
+                        <div class="success-message">
+                            <i class="fa-solid fa-check"></i> PIN Reset Successful
+                        </div>
+                    </div>
+                    <div class="glow-backdrop"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. The Human-AI Synergy Section (Impact) -->
+    <section id="impact" class="impact-section">
+        <!-- Block 1: The Supervisor -->
+        <div class="impact-block">
+            <div class="impact-image-wrapper fade-in-on-scroll">
+                <!-- Placeholder using existing image -->
+                <img src="/static/images/elevate_humans.jpg" alt="Supervisor analyzing data"
+                    class="impact-img rounded-glass">
+                <div class="stat-card stat-1 glass-card">
+                    <span class="stat-number">80%</span>
+                    <span class="stat-label">Routine Queries Automated</span>
+                </div>
+            </div>
+            <div class="impact-text fade-in-on-scroll delay-200">
+                <h3>Elevate Your Humans</h3>
+                <p>Kasa AI handles the repetitive 80% volume. This frees your supervisors to become high-level
+                    strategic problem solvers, analyzing customer sentiment data instead of resetting passwords.</p>
+            </div>
+        </div>
+
+        <!-- Block 2: The Happy Team -->
+        <div class="impact-block reverse">
+            <div class="impact-text fade-in-on-scroll">
+                <h3>A Happier, More Productive Workforce</h3>
+                <p>When you remove the burden of repetitive tier-1 support, agent satisfaction skyrockets. Equip your
+                    team with the AI partner they deserve.</p>
+            </div>
+            <div class="impact-image-wrapper fade-in-on-scroll delay-200">
+                <!-- Placeholder using existing image -->
+                <img src="/static/images/happy_workforce.jpg" alt="Happy productive team member"
+                    class="impact-img rounded-glass">
+            </div>
+        </div>
+    </section>
+
+    <!-- 4.5 Analytics Dashboard Section (Premium BI Layout) -->
+    <section id="dashboard" class="dashboard-section">
+        <div class="dashboard-header-premium fade-in-on-scroll">
+            <div class="dash-title-wrap">
+                <span class="premium-badge"><i class="fa-solid fa-chart-pie text-neon-blue"></i> Enterprise
+                    Overview</span>
+                <h2>The Kasa AI Impact</h2>
+            </div>
+            <p class="subtitle dashboard-subtitle">Real-time business intelligence comparing legacy operations against
+                automated AI routing.</p>
+        </div>
+
+        <div class="premium-dash-grid fade-in-on-scroll delay-100">
+            <!-- Left Column: The Comparison -->
+            <div class="dash-col dash-col-main">
+                <div class="dash-card-premium comparison-card">
+                    <div class="card-header-flex">
+                        <h3>Operational Efficiency</h3>
+                        <div class="toggle-switch">
+                            <span class="active">30 Days</span>
+                            <span>YTD</span>
+                        </div>
+                    </div>
+
+                    <div class="comparison-flex">
+                        <div class="comp-side old-way">
+                            <div class="side-label">Before Kasa AI</div>
+                            <div class="big-metric">
+                                <span class="val text-neon-red">14<span class="unit">m</span> 30<span
+                                        class="unit">s</span></span>
+                                <span class="desc">Avg. Queue Wait Time</span>
+                            </div>
+                            <div class="sub-metrics">
+                                <div class="sub-item">
+                                    <span class="label">Resolution Cost</span>
+                                    <span class="val">$4.50</span>
+                                </div>
+                                <div class="sub-item">
+                                    <span class="label">Daily Capacity</span>
+                                    <span class="val">~800</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="vs-divider">
+                            <div class="vs-circle">VS</div>
+                            <div class="line"></div>
+                        </div>
+
+                        <div class="comp-side new-way active-glow">
+                            <div class="side-label flex-label">
+                                With Kasa AI <span class="live-dot-pulse"></span>
+                            </div>
+                            <div class="big-metric">
+                                <span class="val text-neon-green">0<span class="unit">s</span></span>
+                                <span class="desc text-neon-green">Instant Resolution</span>
+                            </div>
+                            <div class="sub-metrics">
+                                <div class="sub-item">
+                                    <span class="label">Resolution Cost</span>
+                                    <span class="val text-neon-green">$0.12 <i
+                                            class="fa-solid fa-arrow-down-long"></i></span>
+                                </div>
+                                <div class="sub-item">
+                                    <span class="label">Daily Capacity</span>
+                                    <span class="val text-neon-blue">10k+ <i
+                                            class="fa-solid fa-arrow-up-long"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dash-card-premium chart-card">
+                    <div class="card-header-flex">
+                        <h3>Customer Sentiment (CSAT)</h3>
+                    </div>
+                    <div class="modern-chart-area">
+                        <div class="chart-y-axis">
+                            <span>100%</span>
+                            <span>75%</span>
+                            <span>50%</span>
+                        </div>
+                        <div class="chart-bars">
+                            <div class="c-bar old" style="height: 62%;">
+                                <div class="tooltip">62% (Pre-AI)</div>
+                            </div>
+                            <div class="c-bar new" style="height: 94%;">
+                                <div class="tooltip">94% (Kasa AI)</div>
+                                <div class="bar-glow"></div>
+                            </div>
+                        </div>
+                        <div class="chart-x-axis">
+                            <span>Legacy System</span>
+                            <span class="text-neon-green">Kasa AI Deployed</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Routing & Distribution -->
+            <div class="dash-col dash-col-side">
+                <div class="dash-card-premium routing-card">
+                    <div class="card-header-flex">
+                        <h3>Intelligent Routing</h3>
+                    </div>
+                    <div class="circular-chart-placeholder">
+                        <div class="circle-ring">
+                            <div class="inner-circle">
+                                <span class="percent">90%</span>
+                                <span class="lbl">Automated</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="route-legend">
+                        <div class="legend-item">
+                            <div class="dot bg-primary"></div>
+                            <div class="leg-text">
+                                <span>Tier 1: FAQs & Policy</span>
+                                <strong>65%</strong>
+                            </div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="dot bg-purple"></div>
+                            <div class="leg-text">
+                                <span>Tier 2: API Actions</span>
+                                <strong>25%</strong>
+                            </div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="dot bg-red"></div>
+                            <div class="leg-text text-muted-route">
+                                <span>Tier 3: Human Escalation</span>
+                                <strong>10%</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dash-card-premium impact-summary">
+                    <i class="fa-solid fa-quote-left quote-icon"></i>
+                    <p>Agents now handle <strong>only the 10%</strong> of high-value claims that require human empathy,
+                        reducing burnout and drastically increasing resolution speed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo / Capabilities Section -->
+    <section id="demo" class="demo-section">
+        <div class="demo-header center-text fade-in-on-scroll">
+            <h2>Experience Kasa AI</h2>
+            <p class="subtitle dashboard-subtitle" style="margin-top: 1rem;">A unified platform built to reach every
+                customer, whether they are on a high-speed smartphone or an offline feature phone.</p>
+        </div>
+
+        <div class="capabilities-grid fade-in-on-scroll delay-100">
+            <!-- Web Chat Capability -->
+            <div class="capability-card glass-panel highlight-border">
+                <div class="cap-image-wrapper">
+                    <!-- The user will drop web_chat_mockup.png here -->
+                    <img src="/static/images/web_chat_mockup.png" alt="Modern bilingual AI web chat interface mockup"
+                        class="cap-img"
+                        onerror="this.src='https://placehold.co/800x600/15171E/00A3FF?text=Smartphone+Web+Chat+Mockup\n(Please+drop+web_chat_mockup.png+here)'">
+                </div>
+                <div class="cap-content">
+                    <span class="premium-badge mb-3"
+                        style="display: inline-flex; width: max-content; margin-bottom: 1.5rem;">
+                        <i class="fa-solid fa-earth-africa"></i> Multilingual Web & Voice
+                    </span>
+                    <h3>Speak Every Language That Matters</h3>
+                    <p>Deploy a lightning-fast voice and text agent that truly understands your customers. Kasa AI
+                        flawlessly handles Twi, English, Pidgin, French, Ewe, Ga, and Hausa—automatically escalating
+                        angry customers to a human agent in real-time.</p>
+                </div>
+            </div>
+
+            <!-- USSD Capability -->
+            <div class="capability-card glass-panel highlight-border">
+                <div class="cap-image-wrapper">
+                    <!-- The user will drop ussd_phone_mockup.png here -->
+                    <img src="/static/images/ussd_phone_mockup.png"
+                        alt="Zero-data offline feature phone USSD AI interface mockup" class="cap-img"
+                        onerror="this.src='https://placehold.co/800x600/15171E/00C17C?text=Feature+Phone+USSD+Mockup\n(Please+drop+ussd_phone_mockup.png+here)'">
+                </div>
+                <div class="cap-content">
+                    <span class="premium-badge mb-3"
+                        style="display: inline-flex; width: max-content; margin-bottom: 1.5rem; color: var(--neon-green); border-color: rgba(0, 193, 124, 0.3); background: rgba(0, 193, 124, 0.1);"><i
+                            class="fa-solid fa-phone-volume"></i> 24/7 Toll-Free Access</span>
+                    <h3>Instant Support, Total Comfort</h3>
+                    <p>Don't leave 60% of the market behind. Give every customer VIP treatment with a simple toll-free
+                        call. They can resolve issues instantly at any time, without needing a smartphone or spending a
+                        single byte of internet data.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Footer & Final CTA -->
+    <footer class="main-footer">
+        <div class="final-cta center-text fade-in-on-scroll">
+            <h2>Ready to modernize your support infrastructure?</h2>
+            <p>Built by AI Research Engineers for the next generation of Enterprise.</p>
+            <button class="cta-button-large glow-effect">Start Your Pilot Program</button>
+        </div>
+
+        <div class="footer-links-container">
+            <div class="footer-brand">
+                <div class="brand"><i class="fa-solid fa-cube text-neon-purple"></i> Kasa <span>AI</span></div>
+                <p class="copyright">&copy; 2026 Kasa AI Labs. All rights reserved.</p>
+            </div>
+            <div class="footer-socials">
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#"><i class="fa-brands fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/static/app.js"></script>
+</body>
+
+</html>

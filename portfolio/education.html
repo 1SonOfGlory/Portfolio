@@ -1,0 +1,1608 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education | Jabess Omane</title>
+    <link rel="stylesheet" href="style.css?v=15">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* ====== Education Page Specific Styles ====== */
+        .edu-page-header {
+            text-align: center;
+            padding: 6rem 2rem 3rem;
+        }
+
+        .edu-page-header .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--color-purple);
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .edu-page-header .back-link:hover {
+            transform: translateX(-5px);
+        }
+
+        .edu-page-title {
+            font-family: var(--font-heading);
+            font-size: 4rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: #0A66C2;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Degree Section */
+        .degree-section {
+            max-width: 1100px;
+            margin: 0 auto 5rem;
+            padding: 0 2rem;
+        }
+
+        .degree-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+
+        .degree-hero-img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            object-position: center 20%;
+            border-radius: var(--radius-lg);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Hero Slideshow */
+        .degree-hero-slider {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .degree-hero-slider img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 20%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .degree-hero-slider img.active {
+            opacity: 1;
+        }
+
+        .degree-info {
+            padding: 2rem;
+        }
+
+        .degree-badge {
+            display: inline-block;
+            background: var(--color-purple);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
+        }
+
+        .degree-info h2 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            color: var(--text-heading);
+            margin-bottom: 0.5rem;
+        }
+
+        .degree-info h2 strong {
+            font-weight: 600;
+        }
+
+        .degree-info .degree-year {
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            color: var(--color-purple);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .degree-info p {
+            color: #000;
+            font-size: 1.15rem;
+            line-height: 1.7;
+            font-weight: 400;
+            font-family: var(--font-heading);
+            letter-spacing: -0.01em;
+        }
+
+        /* Mechatronics Breakdown */
+        .mechatronics-breakdown {
+            max-width: 1100px;
+            margin: 0 auto 5rem;
+            padding: 0 2rem;
+        }
+
+        .mechatronics-breakdown .section-label {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #0A66C2;
+            margin-bottom: 1rem;
+            margin-left: 5rem;
+        }
+
+        .mechatronics-breakdown h3 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-heading);
+            margin-bottom: 2rem;
+            margin-left: 5rem;
+        }
+
+        .discipline-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .discipline-card {
+            background: var(--liquid-glass-bg);
+            backdrop-filter: var(--liquid-glass-filter);
+            -webkit-backdrop-filter: var(--liquid-glass-filter);
+            border: var(--liquid-glass-border);
+            box-shadow: var(--liquid-glass-shadow);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .discipline-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .discipline-card .card-icon-edu {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--color-purple);
+        }
+
+        .discipline-card h4 {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            color: #0A66C2;
+            margin-bottom: 0.75rem;
+        }
+
+        .discipline-card p {
+            color: #000;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            font-weight: 400;
+            font-family: var(--font-heading);
+            letter-spacing: -0.01em;
+        }
+
+        /* Graduation Gallery */
+        .grad-gallery {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .grad-gallery img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+            transition: transform 0.3s ease;
+        }
+
+        .grad-gallery img:hover {
+            transform: scale(1.02);
+        }
+
+        /* Projects Section */
+        .edu-projects-section {
+            max-width: 1100px;
+            margin: 0 auto 6rem;
+            padding: 0 2rem;
+        }
+
+        .edu-projects-section .section-label {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #0A66C2;
+            margin-bottom: 1rem;
+            margin-left: 5rem;
+        }
+
+        .edu-projects-section h3 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-heading);
+            margin-bottom: 3rem;
+            margin-left: 5rem;
+        }
+
+        .edu-project-card {
+            background: var(--liquid-glass-bg);
+            backdrop-filter: var(--liquid-glass-filter);
+            -webkit-backdrop-filter: var(--liquid-glass-filter);
+            border: var(--liquid-glass-border);
+            box-shadow: var(--liquid-glass-shadow);
+            border-radius: var(--radius-lg);
+            padding: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .edu-project-card h4 {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            color: #0A66C2;
+            margin-bottom: 0.5rem;
+        }
+
+        .edu-project-card .project-subtitle {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: #0A66C2;
+            margin-bottom: 1.5rem;
+        }
+
+        .edu-project-card>p {
+            color: #000;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            font-weight: 400;
+            margin-bottom: 2.5rem;
+            max-width: 800px;
+            font-family: var(--font-heading);
+            letter-spacing: -0.01em;
+        }
+
+        /* Clean List for Essentials */
+        .clean-list {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 1rem;
+        }
+
+        .clean-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .clean-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--brand-blue);
+            font-weight: bold;
+        }
+
+        .edu-essentials {
+            background: rgba(10, 102, 194, 0.05);
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--brand-blue);
+        }        .project-phases {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .phase-card {
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .phase-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .phase-img-placeholder {
+            width: 100%;
+            height: 200px;
+            background: rgba(155, 140, 250, 0.08);
+            border: 2px dashed rgba(155, 140, 250, 0.3);
+            border-radius: var(--radius-sm);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            color: var(--color-purple);
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .phase-img-placeholder i {
+            font-size: 1.5rem;
+            opacity: 0.6;
+        }
+
+        .phase-img-placeholder:hover {
+            background: rgba(155, 140, 250, 0.12);
+            border-color: rgba(155, 140, 250, 0.5);
+        }
+
+        .phase-card .phase-label {
+            text-align: center;
+            margin-top: 0.75rem;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #0A66C2;
+        }
+
+        /* Phase Image Slider */
+        .phase-slider {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .phase-slider img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .phase-slider img.active {
+            opacity: 1;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .edu-page-title {
+                font-size: 2.5rem;
+            }
+
+            .degree-hero {
+                grid-template-columns: 1fr;
+            }
+
+            .degree-hero-slider {
+                height: 350px;
+            }
+
+            .phase-slider {
+                height: 160px;
+            }
+
+            .resources-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        /* ====== Resources Section ====== */
+        .resources-section {
+            max-width: 1100px;
+            margin: 0 auto 6rem;
+            padding: 0 2rem;
+        }
+
+        .resources-section .section-label {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #0A66C2;
+            margin-bottom: 1rem;
+            margin-left: 5rem;
+        }
+
+        .resources-section h3 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-heading);
+            margin-bottom: 3rem;
+            margin-left: 5rem;
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .resource-card {
+            background: var(--liquid-glass-bg);
+            backdrop-filter: var(--liquid-glass-filter);
+            -webkit-backdrop-filter: var(--liquid-glass-filter);
+            border: var(--liquid-glass-border);
+            box-shadow: var(--liquid-glass-shadow);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .resource-card h4 {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            color: #0A66C2;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        /* ====== Vault Item Component ====== */
+        .vault-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .vault-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vault-item:hover {
+            transform: translateX(6px) translateY(-2px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(10, 102, 194, 0.4);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1), inset 0 0 15px rgba(10, 102, 194, 0.05);
+        }
+
+        .vault-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
+        }
+
+        .vault-item:hover .vault-icon {
+            transform: scale(1.1);
+        }
+
+        .vault-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+            padding-right: 1rem;
+        }
+
+        .vault-title {
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            font-weight: 600;
+            line-height: 1.4;
+            color: var(--text-heading);
+            transition: color 0.3s ease;
+        }
+
+        .vault-item:hover .vault-title {
+            color: #0A66C2;
+        }
+
+        .vault-author {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: #0A66C2;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            opacity: 0.85;
+        }
+
+        .vault-link-icon {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            opacity: 0.3;
+            transition: all 0.3s ease;
+            transform: translateX(-10px);
+        }
+
+        .vault-item:hover .vault-link-icon {
+            opacity: 1;
+            color: #0A66C2;
+            transform: translateX(0);
+        }
+
+        /* Specialized Vault Icon Colors */
+        .vault-item.talk .vault-icon {
+            color: #e53e3e;
+            background: linear-gradient(135deg, rgba(229, 62, 62, 0.15) 0%, rgba(229, 62, 62, 0.05) 100%);
+            border: 0.5px solid rgba(229, 62, 62, 0.2);
+        }
+
+        .vault-item.paper .vault-icon {
+            color: #dd6b20;
+            background: linear-gradient(135deg, rgba(221, 107, 32, 0.15) 0%, rgba(221, 107, 32, 0.05) 100%);
+            border: 0.5px solid rgba(221, 107, 32, 0.2);
+        }
+
+        .vault-item.course .vault-icon {
+            color: #38a169;
+            background: linear-gradient(135deg, rgba(56, 161, 105, 0.15) 0%, rgba(56, 161, 105, 0.05) 100%);
+            border: 0.5px solid rgba(56, 161, 105, 0.2);
+        }
+
+        /* ====== Transcript Gatekeeper Section ====== */
+        .transcript-section {
+            max-width: 1100px;
+            margin: 0 auto 6rem;
+            padding: 0 2rem;
+        }
+
+        .transcript-section .section-label {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #0A66C2;
+            margin-bottom: 1rem;
+            margin-left: 5rem;
+        }
+
+        .transcript-section h3 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-heading);
+            margin-bottom: 3rem;
+            margin-left: 5rem;
+        }
+
+        /* --- Entrance animation keyframes --- */
+        @keyframes gateFadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes scanLine {
+            0%   { top: 15%; opacity: 0; }
+            10%  { opacity: 1; }
+            90%  { opacity: 1; }
+            100% { top: 80%; opacity: 0; }
+        }
+        @keyframes borderGlow {
+            0%, 100% { border-color: rgba(255, 255, 255, 0.18); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15); }
+            50%      { border-color: rgba(10, 102, 194, 0.25); box-shadow: 0 8px 40px 0 rgba(10, 102, 194, 0.12); }
+        }
+
+        .transcript-gate {
+            background: var(--liquid-glass-bg);
+            backdrop-filter: var(--liquid-glass-filter);
+            -webkit-backdrop-filter: var(--liquid-glass-filter);
+            border: var(--liquid-glass-border);
+            box-shadow: var(--liquid-glass-shadow);
+            border-radius: var(--radius-lg);
+            padding: 3.5rem 3rem;
+            text-align: center;
+            max-width: 560px;
+            margin: 0 auto;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            animation: gateFadeUp 0.8s ease-out both, borderGlow 6s ease-in-out 1.2s infinite;
+        }
+        .transcript-gate > * {
+            opacity: 0;
+            animation: gateFadeUp 0.6s ease-out forwards;
+        }
+        .transcript-gate > *:nth-child(1) { animation-delay: 0.2s; }
+        .transcript-gate > *:nth-child(2) { animation-delay: 0.35s; }
+        .transcript-gate > *:nth-child(3) { animation-delay: 0.5s; }
+        .transcript-gate > *:nth-child(4) { animation-delay: 0.65s; }
+        .transcript-gate > *:nth-child(5) { animation-delay: 0.8s; }
+
+        .transcript-gate.hidden {
+            opacity: 0;
+            transform: translateY(-20px);
+            pointer-events: none;
+            position: absolute;
+            width: 0; height: 0; overflow: hidden;
+            animation: none;
+        }
+        .transcript-gate.hidden > * { animation: none; }
+
+        /* --- Icon: minimal document outline with animated scan line --- */
+        .gate-icon {
+            width: 72px;
+            height: 88px;
+            margin: 0 auto 1.5rem;
+            position: relative;
+            border: 2px solid #0A66C2;
+            border-radius: 6px;
+            background: transparent;
+        }
+        .gate-icon::before {
+            content: '';
+            position: absolute; top: -2px; right: -2px;
+            width: 22px; height: 22px;
+            background: linear-gradient(135deg, transparent 50%, #0A66C2 50%);
+            border-radius: 0 6px 0 0;
+        }
+        .gate-icon::after {
+            content: '';
+            position: absolute; left: 15%; width: 70%; height: 2px;
+            background: linear-gradient(90deg, transparent, #0A66C2, transparent);
+            top: 15%;
+            animation: scanLine 3s ease-in-out 1s infinite;
+        }
+        .gate-icon-lines {
+            position: absolute; top: 30%; left: 18%; width: 64%; height: 45%;
+            display: flex; flex-direction: column; justify-content: space-between;
+        }
+        .gate-icon-lines span {
+            display: block; height: 2px;
+            background: rgba(10, 102, 194, 0.3); border-radius: 1px;
+        }
+        .gate-icon-lines span:nth-child(2) { width: 75%; }
+        .gate-icon-lines span:nth-child(4) { width: 60%; }
+        .gate-icon-lock {
+            position: absolute; bottom: -8px; right: -8px;
+            width: 26px; height: 26px;
+            background: #0A66C2; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.65rem; color: #fff;
+            box-shadow: 0 3px 10px rgba(10, 102, 194, 0.4);
+        }
+
+        .gate-title {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-heading);
+            margin-bottom: 0.75rem;
+        }
+        .gate-subtitle {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+        .gate-divider {
+            display: flex; align-items: center; gap: 1rem; margin: 0.25rem 0;
+        }
+        .gate-divider::before, .gate-divider::after {
+            content: ''; flex: 1; height: 1px; background: rgba(0,0,0,0.1);
+        }
+        .gate-divider span {
+            font-size: 0.75rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.12em; color: #999;
+        }
+        .gate-general-error {
+            font-size: 0.82rem; color: #e53e3e; text-align: center;
+            margin-bottom: 0.25rem; display: none;
+        }
+        .gate-general-error.visible { display: block; }
+
+        .gate-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            text-align: left;
+        }
+
+        .gate-field {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+
+        .gate-field label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #444;
+        }
+
+        .gate-input {
+            width: 100%;
+            padding: 0.85rem 1.1rem;
+            border: 1.5px solid rgba(0, 0, 0, 0.12);
+            border-radius: 12px;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            outline: none;
+        }
+
+        .gate-input:focus {
+            border-color: #0A66C2;
+            box-shadow: 0 0 0 3px rgba(10, 102, 194, 0.15);
+        }
+
+        .gate-input.error {
+            border-color: #e53e3e;
+            box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.12);
+        }
+
+        .gate-error-msg {
+            font-size: 0.78rem;
+            color: #e53e3e;
+            margin-top: 2px;
+            display: none;
+        }
+
+        .gate-error-msg.visible {
+            display: block;
+        }
+
+        .gate-btn {
+            width: 100%;
+            padding: 0.9rem;
+            margin-top: 0.5rem;
+            background: linear-gradient(135deg, #0A66C2 0%, #084e96 100%);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .gate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(10, 102, 194, 0.4);
+        }
+
+        .gate-btn:active {
+            transform: translateY(0);
+        }
+
+        .privacy-notice {
+            font-size: 0.75rem;
+            color: #888;
+            text-align: center;
+            margin-top: 1rem;
+            line-height: 1.5;
+        }
+
+        .privacy-notice i {
+            margin-right: 4px;
+            color: #0A66C2;
+        }
+
+        /* Revealed Transcript */
+        .transcript-revealed {
+            display: none;
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .transcript-revealed.visible {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .transcript-embed-wrapper {
+            background: var(--liquid-glass-bg);
+            backdrop-filter: var(--liquid-glass-filter);
+            -webkit-backdrop-filter: var(--liquid-glass-filter);
+            border: var(--liquid-glass-border);
+            box-shadow: var(--liquid-glass-shadow);
+            border-radius: var(--radius-md);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .transcript-embed-wrapper h4 {
+            font-family: var(--font-thin-sans);
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .transcript-embed-wrapper .access-msg {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        .transcript-embed-wrapper .access-msg i {
+            color: #38a169;
+            margin-right: 4px;
+        }
+
+        .transcript-iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+            border-radius: 12px;
+            background: #fff;
+        }
+
+        .transcript-download-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            padding: 0.7rem 1.5rem;
+            background: linear-gradient(135deg, #0A66C2 0%, #084e96 100%);
+            color: #fff;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .transcript-download-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(10, 102, 194, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .transcript-gate {
+                padding: 2.5rem 1.5rem;
+                max-width: 100%;
+            }
+
+            .transcript-iframe {
+                height: 400px;
+            }
+
+            .transcript-section .section-label,
+            .transcript-section h3 {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Site Background Image -->
+    <div class="fluid-bg"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">J.</a>
+            <div class="nav-links" id="nav-links">
+                <a href="index.html" class="nav-link">Portfolio</a>
+                <a href="education.html" class="nav-link" style="color: var(--color-purple);">Education</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+
+        <!-- Page Header -->
+        <div class="edu-page-header">
+            <a href="index.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Portfolio</a>
+            <h1 class="edu-page-title">Educational <span>Background</span></h1>
+        </div>
+
+        <!-- Degree Section -->
+        <section class="degree-section">
+            <div class="degree-hero">
+                <div class="degree-hero-slider" id="heroSlider">
+                    <img src="assets/images/grad1.jpg.jpeg" alt="Jabess Omane - BTech Graduation" class="active">
+                    <img src="assets/images/grad2.jpg.jpeg" alt="Graduation Ceremony">
+                    <img src="assets/images/grad3.jpg.jpeg" alt="Graduation Day">
+                </div>
+                <div class="degree-info">
+                    <span class="degree-badge"><i class="fa-solid fa-award"></i> First Class Honors</span>
+                    <h2>Bachelor of <strong>Technology</strong></h2>
+                    <h2>Mechatronics <strong>Engineering</strong></h2>
+                    <span class="degree-year">// Class of 2024</span>
+                    <p>
+                        A multidisciplinary engineering programme that fuses Electrical &amp; Electronics Engineering,
+                        Mechanical Engineering, and Computer Science into a single, integrated discipline. The programme
+                        trains engineers to design, build, and control intelligent electromechanical systems: from
+                        autonomous robots to smart manufacturing lines.
+                    </p>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Mechatronics Breakdown -->
+        <section class="mechatronics-breakdown">
+            <p class="section-label">// What is Mechatronics?</p>
+            <h3>The Intersection of Three Engineering Disciplines</h3>
+
+            <div class="discipline-grid">
+                <div class="discipline-card">
+                    <div class="phase-slider" id="elecSlider" style="height: 180px; margin-bottom: 1.5rem;">
+                        <img src="assets/images/elec1.jpg" alt="Electrical Engineering 1" class="active">
+                        <img src="assets/images/elec2.jpg" alt="Electrical Engineering 2">
+                    </div>
+                    <div class="card-icon-edu"><i class="fa-solid fa-bolt"></i></div>
+                    <h4>Electrical &amp; Electronics</h4>
+                    <p>Circuit design, power systems, microcontrollers, signal processing, and sensor integration. The
+                        nervous system of every intelligent machine.</p>
+                </div>
+                <div class="discipline-card">
+                    <div class="phase-slider" id="mechSlider" style="height: 180px; margin-bottom: 1.5rem;">
+                        <img src="assets/images/mech1.jpg" alt="Mechanical Engineering 1" class="active">
+                        <img src="assets/images/mech2.jpg" alt="Mechanical Engineering 2">
+                        <img src="assets/images/mech3.jpeg" alt="Mechanical Engineering 3">
+                    </div>
+                    <div class="card-icon-edu"><i class="fa-solid fa-gears"></i></div>
+                    <h4>Mechanical Engineering</h4>
+                    <p>Kinematics, dynamics, thermodynamics, CAD/CAM design, and manufacturing. The physical body and
+                        structural integrity of every system.</p>
+                </div>
+                <div class="discipline-card">
+                    <div class="phase-slider" id="compsSlider" style="height: 180px; margin-bottom: 1.5rem;">
+                        <img src="assets/images/comps1.jpg" alt="Computer Science 1" class="active">
+                        <img src="assets/images/comps2.jpg" alt="Computer Science 2">
+                    </div>
+                    <div class="card-icon-edu"><i class="fa-solid fa-code"></i></div>
+                    <h4>Computer Science</h4>
+                    <p>Programming, control systems, automation algorithms, embedded software, and real-time operating
+                        systems. The brain that brings hardware to life.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Academic Projects -->
+        <section class="edu-projects-section">
+            <p class="section-label">// Academic Projects</p>
+            <h3>Hands-On Engineering Work</h3>
+
+            <!-- Project 1: SCARA Arm -->
+            <div class="edu-project-card">
+                <h4>3-DOF SCARA ITX Robotic Arm</h4>
+                <p class="project-subtitle">Robotics · Computer Vision · Python/C++ · ARM Cortex-M · Embedded Systems ·
+                    CAD</p>
+                <p>
+                    A fully functional 3 Degree-of-Freedom Selective Compliance Articulated Robot Arm (SCARA)
+                    designed and built from the ground up. The project spanned the entire engineering pipeline:
+                    from the mathematical derivation of forward and inverse kinematics, through detailed CAD
+                    modelling, to embedded programming of servo motors and the final physical assembly.
+                    The robot's embedded logic was written in C++ and powered by an NXP FRDM-KL25Z ARM Cortex-M0+
+                    microcontroller, providing robust real-time control. Equipped with a camera module and an
+                    electromagnet
+                    at the base of the rack and pinion mechanism, the arm was engineered for intelligent,
+                    computer-vision
+                    guided pick-and-place operations. Utilizing OpenCV and custom Computer Vision algorithms written in
+                    Python, the system autonomously identifies specific colors and sorts metallic objects from a mixed
+                    environment, demonstrating practical expertise in applied AI/ML and core industrial automation
+                    principles.
+                </p>
+
+                <div class="project-phases">
+                    <div class="phase-card">
+                        <div class="phase-slider" id="calcSlider">
+                            <img src="assets/images/calc1.jpg" alt="Kinematics Calculations 1" class="active">
+                            <img src="assets/images/calc2.jpg" alt="Kinematics Calculations 2">
+                        </div>
+                        <p class="phase-label">01: Calculations</p>
+                    </div>
+                    <div class="phase-card">
+                        <div class="phase-slider" id="cadSlider">
+                            <img src="assets/images/CAD1.jpeg" alt="CAD Design 1" class="active">
+                            <img src="assets/images/CAD2.jpeg" alt="CAD Design 2">
+                            <img src="assets/images/CAD3.jpeg" alt="CAD Design 3">
+                        </div>
+                        <p class="phase-label">02: CAD Design</p>
+                    </div>
+                    <div class="phase-card">
+                        <div class="phase-slider" id="progSlider">
+                            <img src="assets/images/prog1.jpg" alt="Programming 1" class="active">
+                            <img src="assets/images/prog2.jpg" alt="Programming 2">
+                        </div>
+                        <p class="phase-label">03: Programming</p>
+                    </div>
+                    <div class="phase-card">
+                        <div class="phase-slider" id="buildSlider">
+                            <img src="assets/images/finalbuild1.jpeg" alt="Final Build 1" class="active">
+                            <img src="assets/images/finalbuild2.jpeg" alt="Final Build 2">
+                            <img src="assets/images/finalbuild3.jpeg" alt="Final Build 3">
+                            <img src="assets/images/finalbuild4.jpeg" alt="Final Build 4">
+                        </div>
+                        <p class="phase-label">04: Final Build</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2: IntelliTap -->
+            <div class="edu-project-card">
+                <h4>IntelliTap: Intelligent Contactless Tap Head</h4>
+                <p class="project-subtitle">COVID-19 Response · IoT · Proximity Sensing · Hygiene Engineering</p>
+                <p>
+                    In 2021, at the peak of COVID, we realized it made no sense to scrub your hands only to touch
+                    the same dirty tap everyone else uses to turn the water off. You basically re-contaminate
+                    yourself immediately.<br><br>
+                    We designed IntelliTap to solve this. It is a portable, touchless tap head that uses sensors
+                    to fix the problem.
+                </p>
+
+                <div class="edu-essentials mt-2 mb-2">
+                    <p><strong>The Essentials:</strong></p>
+                    <ul class="clean-list">
+                        <li><strong>Quick Setup:</strong> It clips onto any standard manual faucet.</li>
+                        <li><strong>Hands-Free:</strong> Ultrasonic sensors detect your hands and trigger a water valve.</li>
+                    </ul>
+                </div>
+
+                <p><strong>The Result:</strong> Wash your hands, walk away, and never touch the hardware.</p>
+
+                <div class="project-phases">
+                    <div class="phase-card">
+                        <div class="phase-img-placeholder">
+                            <i class="fa-solid fa-image"></i>
+                            <span>Add Image</span>
+                        </div>
+                        <p class="phase-label">01: Concept & CAD</p>
+                    </div>
+                    <div class="phase-card">
+                        <div class="phase-img-placeholder">
+                            <i class="fa-solid fa-image"></i>
+                            <span>Add Image</span>
+                        </div>
+                        <p class="phase-label">02: Electronics</p>
+                    </div>
+                    <div class="phase-card">
+                        <div class="phase-img-placeholder">
+                            <i class="fa-solid fa-image"></i>
+                            <span>Add Image</span>
+                        </div>
+                        <p class="phase-label">03: Prototyping</p>
+                    </div>
+                    <div class="phase-card">
+                        <div class="phase-img-placeholder">
+                            <i class="fa-solid fa-image"></i>
+                            <span>Add Image</span>
+                        </div>
+                        <p class="phase-label">04: Final Product</p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Resources Section -->
+        <section class="resources-section">
+            <p class="section-label">// The Library</p>
+            <h3>Knowledge Vault</h3>
+
+            <div class="resources-grid">
+                <!-- Talks Card -->
+                <div class="resource-card">
+                    <h4>Talks & Lectures</h4>
+                    <div class="vault-list">
+                        <a href="https://www.youtube.com/watch?v=B6lBtiQZSho" target="_blank" class="vault-item talk">
+                            <div class="vault-icon"><i class="fa-brands fa-youtube"></i></div>
+                            <div class="vault-info">
+                                <span class="vault-title">Why Specializing Early Doesn't Always Mean Career Success</span>
+                                <span class="vault-author">David Epstein</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square vault-link-icon"></i>
+                        </a>
+                        <a href="https://www.youtube.com/watch?v=EcMKLwVlpJk" target="_blank" class="vault-item talk">
+                            <div class="vault-icon"><i class="fa-brands fa-youtube"></i></div>
+                            <div class="vault-info">
+                                <span class="vault-title">Outliers: Why Some People Succeed and Some Don't</span>
+                                <span class="vault-author">Malcolm Gladwell</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square vault-link-icon"></i>
+                        </a>
+                        <a href="https://www.youtube.com/watch?v=UF8uR6Z6KLc" target="_blank" class="vault-item talk">
+                            <div class="vault-icon"><i class="fa-solid fa-microphone-lines"></i></div>
+                            <div class="vault-info">
+                                <span class="vault-title">Steve Jobs' 2005 Stanford Commencement Address</span>
+                                <span class="vault-author">Steve Jobs</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square vault-link-icon"></i>
+                        </a>
+                        <a href="https://www.youtube.com/watch?v=0FGlsuTnt_U" target="_blank" class="vault-item talk">
+                            <div class="vault-icon"><i class="fa-solid fa-microphone-lines"></i></div>
+                            <div class="vault-info">
+                                <span class="vault-title">Mark Rober's Address to MIT Class of 2023</span>
+                                <span class="vault-author">Mark Rober</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square vault-link-icon"></i>
+                        </a>
+                        <a href="https://www.youtube.com/watch?v=6PuAoPrh-jc" target="_blank" class="vault-item talk">
+                            <div class="vault-icon"><i class="fa-solid fa-microphone-lines"></i></div>
+                            <div class="vault-info">
+                                <span class="vault-title">Ashesi Commencement 2025 Address</span>
+                                <span class="vault-author">Reeta Roy</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square vault-link-icon"></i>
+                        </a>
+                        <a href="https://www.youtube.com/watch?v=W-ONEAcBeTk" target="_blank" class="vault-item talk">
+                            <div class="vault-icon"><i class="fa-brands fa-youtube"></i></div>
+                            <div class="vault-info">
+                                <span class="vault-title">Grit: The Power of Passion and Perseverance</span>
+                                <span class="vault-author">Angela Duckworth</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square vault-link-icon"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Books & Papers Card -->
+                <div class="resource-card">
+                    <h4>Books & Papers</h4>
+                    <div class="vault-list">
+                        <a href="https://books.google.com.gh/books/about/Fundamental_Research_Statistics_for_the.html?id=Fe8vAAAAMAAJ" target="_blank" class="vault-item paper">
+                            <div class="vault-icon"><i class="fa-solid fa-book"></i></div>
+                            <div class="vault-info">
+                                <span class="vault-title">Fundamental Research Statistics for the Behavioural Sciences</span>
+                                <span class="vault-author">Textbook</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square vault-link-icon"></i>
+                        </a>
+                        <a href="https://link.springer.com/book/10.1007/978-3-662-49349-6" target="_blank" class="vault-item paper">
+                            <div class="vault-icon"><i class="fa-solid fa-book"></i></div>
+                            <div class="vault-info">
+                                <span class="vault-title">Statistics for Non-Statisticians</span>
+                                <span class="vault-author">Textbook</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square vault-link-icon"></i>
+                        </a>
+                        <a href="https://arxiv.org/pdf/1903.10075" target="_blank" class="vault-item paper">
+                            <div class="vault-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                            <div class="vault-info">
+                                <span class="vault-title">Machine Learning Methods Economists Should Know</span>
+                                <span class="vault-author">Susan Athey</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square vault-link-icon"></i>
+                        </a>
+                        <a href="https://maxkasy.github.io/home/files/papers/fairness_equality_power.pdf" target="_blank" class="vault-item paper">
+                            <div class="vault-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                            <div class="vault-info">
+                                <span class="vault-title">Fairness, Equality, and Power in Algorithmic Decision-Making</span>
+                                <span class="vault-author">Maximilian Kasy & Rediet Abebe</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square vault-link-icon"></i>
+                        </a>
+                        <a href="https://dash.harvard.edu/server/api/core/bitstreams/db500414-5822-4228-bd0a-f559a30fcf3c/content" target="_blank" class="vault-item paper">
+                            <div class="vault-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                            <div class="vault-info">
+                                <span class="vault-title">Undergraduate Fundamentals of Machine Learning</span>
+                                <span class="vault-author">Academic Paper</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square vault-link-icon"></i>
+                        </a>
+                        <a href="https://fairmlbook.org/" target="_blank" class="vault-item paper">
+                            <div class="vault-icon"><i class="fa-solid fa-book-open"></i></div>
+                            <div class="vault-info">
+                                <span class="vault-title">Fairness and Machine Learning: Limitations and Opportunities</span>
+                                <span class="vault-author">Barocas, Hardt, Narayanan</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square vault-link-icon"></i>
+                        </a>
+                        <a href="https://arxiv.org/pdf/2005.06540" target="_blank" class="vault-item paper">
+                            <div class="vault-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                            <div class="vault-info">
+                                <span class="vault-title">Deep Learning for Political Science</span>
+                                <span class="vault-author">Kakia Chatsiou & Slava Jankin Mikhaylov</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square vault-link-icon"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tutorials & Courses Card -->
+                <div class="resource-card">
+                    <h4>Tutorials & Courses</h4>
+                    <div class="vault-list">
+                        <a href="https://developers.google.com/machine-learning/crash-course" target="_blank" class="vault-item course">
+                            <div class="vault-icon"><i class="fa-brands fa-google"></i></div>
+                            <div class="vault-info">
+                                <span class="vault-title">Google ML Crash Course</span>
+                                <span class="vault-author">Google Developers</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square vault-link-icon"></i>
+                        </a>
+                        <a href="https://www.skills.google/collections/deepmind" target="_blank" class="vault-item course">
+                            <div class="vault-icon"><i class="fa-solid fa-brain"></i></div>
+                            <div class="vault-info">
+                                <span class="vault-title">AI Research Foundation</span>
+                                <span class="vault-author">Google DeepMind</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square vault-link-icon"></i>
+                        </a>
+                        <a href="https://ml4publicpolicy.com/" target="_blank" class="vault-item course">
+                            <div class="vault-icon"><i class="fa-solid fa-landmark"></i></div>
+                            <div class="vault-info">
+                                <span class="vault-title">Machine Learning for Public Policy</span>
+                                <span class="vault-author">Dr. Michelle Gonzalez Amador</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square vault-link-icon"></i>
+                        </a>
+                        <a href="https://r4ds.hadley.nz/" target="_blank" class="vault-item course">
+                            <div class="vault-icon"><i class="fa-solid fa-chart-pie"></i></div>
+                            <div class="vault-info">
+                                <span class="vault-title">R for Data Science</span>
+                                <span class="vault-author">Interactive Course</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square vault-link-icon"></i>
+                        </a>
+                        <a href="https://openintro.org/" target="_blank" class="vault-item course">
+                            <div class="vault-icon"><i class="fa-solid fa-calculator"></i></div>
+                            <div class="vault-info">
+                                <span class="vault-title">Statistics & Mathematics</span>
+                                <span class="vault-author">OpenIntro</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square vault-link-icon"></i>
+                        </a>
+                        <a href="https://www.turing.ac.uk/courses" target="_blank" class="vault-item course">
+                            <div class="vault-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                            <div class="vault-info">
+                                <span class="vault-title">Data Science and AI</span>
+                                <span class="vault-author">The Alan Turing Institute</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square vault-link-icon"></i>
+                        </a>
+                        <a href="https://hades.mech.northwestern.edu/index.php/Modern_Robotics" target="_blank" class="vault-item course">
+                            <div class="vault-icon"><i class="fa-solid fa-robot"></i></div>
+                            <div class="vault-info">
+                                <span class="vault-title">Modern Robotics</span>
+                                <span class="vault-author">Northwestern University</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square vault-link-icon"></i>
+                        </a>
+                        <a href="https://rl.uni-freiburg.de/teaching/ss24/mobile-robotics" target="_blank" class="vault-item course">
+                            <div class="vault-icon"><i class="fa-solid fa-robot"></i></div>
+                            <div class="vault-info">
+                                <span class="vault-title">Mobile Robotics</span>
+                                <span class="vault-author">University of Freiburg</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square vault-link-icon"></i>
+                        </a>
+                        <a href="https://github.com/Nyandwi/machine_learning_complete/" target="_blank" class="vault-item course">
+                            <div class="vault-icon"><i class="fa-brands fa-github"></i></div>
+                            <div class="vault-info">
+                                <span class="vault-title">Machine Learning Complete</span>
+                                <span class="vault-author">Jean de Nyandwi</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square vault-link-icon"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Transcript Gatekeeper Section -->
+        <section class="transcript-section" id="transcriptSection">
+            <p class="section-label">// Academic Records</p>
+            <h3>Transcript Access</h3>
+
+            <!-- Locked State -->
+            <div class="transcript-gate" id="transcriptGate">
+                <div class="gate-icon">
+                    <div class="gate-icon-lines">
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+                    <div class="gate-icon-lock">
+                        <i class="fa-solid fa-lock"></i>
+                    </div>
+                </div>
+                <p class="gate-title">Protected Document</p>
+                <p class="gate-subtitle">
+                    This transcript is gated for privacy. Please verify your identity by providing
+                    your email address or LinkedIn profile.
+                </p>
+
+                <form class="gate-form" id="gatekeeperForm" novalidate>
+                    <p class="gate-general-error" id="generalError">Please provide at least one: a valid email or a LinkedIn profile URL.</p>
+                    <div class="gate-field">
+                        <label for="gateEmail">Email Address</label>
+                        <input type="email" id="gateEmail" class="gate-input" placeholder="you@example.com">
+                        <span class="gate-error-msg" id="emailError">Please enter a valid email address.</span>
+                    </div>
+                    <div class="gate-divider"><span>or</span></div>
+                    <div class="gate-field">
+                        <label for="gateLinkedin">LinkedIn Profile URL</label>
+                        <input type="url" id="gateLinkedin" class="gate-input"
+                            placeholder="https://linkedin.com/in/your-profile">
+                        <span class="gate-error-msg" id="linkedinError">Please enter a valid LinkedIn profile
+                            URL.</span>
+                    </div>
+                    <button type="submit" class="gate-btn">
+                        <i class="fa-solid fa-lock-open"></i>&nbsp; Verify &amp; Access Transcript
+                    </button>
+                </form>
+
+                <p class="privacy-notice">
+                    <i class="fa-solid fa-circle-info"></i>
+                    Your information is used solely to log access to this document. It will not be shared or sold.
+                </p>
+            </div>
+
+            <!-- Unlocked State -->
+            <div class="transcript-revealed" id="transcriptRevealed">
+                <div class="transcript-embed-wrapper">
+                    <h4>Academic Transcript</h4>
+                    <p class="access-msg"><i class="fa-solid fa-circle-check"></i> Access granted. Thank you for
+                        verifying.</p>
+                    <iframe class="transcript-iframe" src="" id="transcriptIframe" allowfullscreen>
+                    </iframe>
+                    <a href="https://drive.google.com/file/d/1qUQrn0gYa2tsRIlU2nF8lck3FBp1YDpd/view?usp=sharing"
+                        target="_blank" class="transcript-download-link">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Open in Google Drive
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-bottom">
+                <p>&copy; 2024 Jabess Omane. All Rights Reserved.</p>
+                <div class="social-links">
+                    <a href="https://x.com/JabessOmane" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="https://github.com/JabessOmane" target="_blank"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://linkedin.com/in/jabess-omane" target="_blank"><i
+                            class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- GSAP for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script>
+        // Global GSAP Reveals
+        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+            gsap.registerPlugin(ScrollTrigger);
+            const revealElements = gsap.utils.toArray('.degree-info, .discipline-card, .edu-project-card, .resource-card, .transcript-gate');
+            revealElements.forEach((el) => {
+                gsap.from(el, {
+                    scrollTrigger: {
+                        trigger: el,
+                        start: "top 85%",
+                        toggleActions: "play none none reverse"
+                    },
+                    y: 30,
+                    opacity: 0,
+                    duration: 0.8,
+                    ease: "power2.out"
+                });
+            });
+        }
+
+        // Generic slideshow function
+        function createSlider(containerId, intervalMs) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            const slides = container.querySelectorAll('img');
+            if (slides.length <= 1) return;
+            let current = 0;
+
+            setInterval(() => {
+                slides[current].classList.remove('active');
+                current = (current + 1) % slides.length;
+                slides[current].classList.add('active');
+            }, intervalMs);
+        }
+
+        // Hero graduation slideshow: 7 seconds
+        createSlider('heroSlider', 7000);
+
+        // SCARA phase slideshows: staggered intervals
+        createSlider('calcSlider', 4000);
+        createSlider('cadSlider', 5000);
+        createSlider('progSlider', 4500);
+        createSlider('buildSlider', 5500);
+
+        // Discipline slideshows
+        createSlider('elecSlider', 6000);
+        createSlider('mechSlider', 6500);
+        createSlider('compsSlider', 5500);
+
+        // ====== Transcript Gatekeeper ======
+        (function () {
+            const form = document.getElementById('gatekeeperForm');
+            const gate = document.getElementById('transcriptGate');
+            const revealed = document.getElementById('transcriptRevealed');
+            const emailInput = document.getElementById('gateEmail');
+            const linkedinInput = document.getElementById('gateLinkedin');
+            const emailError = document.getElementById('emailError');
+            const linkedinError = document.getElementById('linkedinError');
+            const generalError = document.getElementById('generalError');
+            const transcriptIframe = document.getElementById('transcriptIframe');
+
+            const TRANSCRIPT_EMBED_URL = 'https://drive.google.com/file/d/1qUQrn0gYa2tsRIlU2nF8lck3FBp1YDpd/preview';
+
+            function validateEmail(email) {
+                return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+            }
+            function validateLinkedIn(url) {
+                return url.toLowerCase().includes('linkedin.com');
+            }
+
+            function showError(input, errorEl) {
+                input.classList.add('error');
+                errorEl.classList.add('visible');
+            }
+            function clearError(input, errorEl) {
+                input.classList.remove('error');
+                errorEl.classList.remove('visible');
+            }
+
+            // Clear field-level errors on input
+            emailInput.addEventListener('input', () => { clearError(emailInput, emailError); generalError.classList.remove('visible'); });
+            linkedinInput.addEventListener('input', () => { clearError(linkedinInput, linkedinError); generalError.classList.remove('visible'); });
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const email = emailInput.value.trim();
+                const linkedin = linkedinInput.value.trim();
+                let hasValidField = false;
+                let hasFieldError = false;
+
+                // Clear previous states
+                clearError(emailInput, emailError);
+                clearError(linkedinInput, linkedinError);
+                generalError.classList.remove('visible');
+
+                // If email was provided, validate format
+                if (email) {
+                    if (validateEmail(email)) {
+                        hasValidField = true;
+                    } else {
+                        showError(emailInput, emailError);
+                        hasFieldError = true;
+                    }
+                }
+
+                // If LinkedIn was provided, validate format
+                if (linkedin) {
+                    if (validateLinkedIn(linkedin)) {
+                        hasValidField = true;
+                    } else {
+                        showError(linkedinInput, linkedinError);
+                        hasFieldError = true;
+                    }
+                }
+
+                // Neither field was filled
+                if (!email && !linkedin) {
+                    generalError.classList.add('visible');
+                    return;
+                }
+
+                // A field was filled but invalid
+                if (hasFieldError && !hasValidField) return;
+
+                // At least one valid field — proceed
+                if (!hasValidField) return;
+
+                // === Data Capture (Serverless Form Submission) ===
+                const submissionData = {
+                    email: email || "Not provided",
+                    linkedinUrl: linkedin || "Not provided",
+                    _subject: "New Transcript Viewer Alert",
+                    timestamp: new Date().toISOString()
+                };
+
+                // Show loading state on button
+                const btn = form.querySelector('.gate-btn');
+                const originalBtnText = btn.innerHTML;
+                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>&nbsp; Verifying...';
+                btn.disabled = true;
+
+                // Formspree endpoint for 'Portfolio' project
+                fetch('https://formspree.io/f/xvzwqpgp', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(submissionData)
+                })
+                .then(response => {
+                    if (response.ok) {
+                        console.log('[Gatekeeper] Details submitted. Access granted.');
+                        // Transition: hide gate, show transcript
+                        gate.classList.add('hidden');
+                        setTimeout(() => {
+                            transcriptIframe.src = TRANSCRIPT_EMBED_URL;
+                            revealed.classList.add('visible');
+                        }, 500);
+                    } else {
+                        response.json().then(data => {
+                            if (Object.hasOwn(data, 'errors')) {
+                                generalError.textContent = data.errors.map(error => error.message).join(", ");
+                            } else {
+                                generalError.textContent = "Oops! There was a problem submitting your request.";
+                            }
+                            generalError.classList.add('visible');
+                        });
+                        throw new Error('Form submission failed');
+                    }
+                })
+                .catch(error => {
+                    console.error('Submission Error:', error);
+                    if (!generalError.classList.contains('visible')) {
+                        generalError.textContent = "Network error. Please try again.";
+                        generalError.classList.add('visible');
+                    }
+                    // Reset button state
+                    btn.innerHTML = originalBtnText;
+                    btn.disabled = false;
+                });
+            });
+        })();
+    </script>
+</body>
+
+</html>
