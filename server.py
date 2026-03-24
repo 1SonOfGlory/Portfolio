@@ -33,8 +33,18 @@ agent = CustomerSupportAgent()
 
 # Directories
 AUDIO_DIR = "static_audio"
-UPLOAD_DIR = "uploads"
-os.makedirs(AUDIO_DIR, exist_ok=True)
+UPLOAD_DIR = "uploads"import os
+
+# --- VERCEL READ-ONLY FIX ---
+# Check if we are running on Vercel (which uses a read-only filesystem)
+if os.environ.get('VERCEL'):
+    AUDIO_DIR = '/tmp/static_audio'
+else:
+    # Keep it local for when you are developing on your PC
+    AUDIO_DIR = os.path.join(os.getcwd(), 'static_audio')
+
+# Create the directory safely
+os.makedirs(AUDIO_DIR, exist_ok=True)os.makedirs(AUDIO_DIR, exist_ok=True)
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 # Mount Static Files (Frontend)
