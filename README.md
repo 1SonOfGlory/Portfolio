@@ -1,68 +1,86 @@
-# Voice AI Customer Support Agent (Twi + English)
+# Agentic AI Portfolio: The Sovereign CX Agent
 
-This project implements a bilingual AI customer support agent capable of:
-1.  **Voice Interaction**: Handling phone calls via Twilio.
-2.  **Bilingual Support**: Speaking/Understanding English and Twi (Akan).
-3.  **RAG Knowledge Base**: Answering policy questions from documents.
-4.  **Logging**: Recording all interactions to a local database.
+![Status](https://img.shields.io/badge/Status-Beta-purple) ![Language](https://img.shields.io/badge/Language-Python-blue) ![AI](https://img.shields.io/badge/AI-OpenAI%20GPT--4o-green)
 
-## Prerequisites
+## Executive Summary
+**Bridging the Digital Divide with Intelligent Infrastructure.**
 
-1.  **Python 3.10+** (Recommended)
-2.  **OpenAI API Key** (for LLM and TTS)
-3.  **Twilio Account** (SID, Auth Token, Phone Number)
-4.  **ngrok** (for local testing with Twilio)
+As part of the **Griot Labs** mission, this Agentic AI Portfolio demonstrates a specialized, bilingual customer experience agent designed for the African context. While global models often overlook local dialects and offline accessibility, this system—developed under the **Digital Griot** alias—integrates high-end LLM reasoning with USSD-bridged accessibility. It solves the core problem of providing 24/7, high-quality, dialect-fluent support to customers who may lack consistent internet access or high-end smartphones.
 
-## Installation
+---
 
-1.  **Install Dependencies**:
-    ```bash
-    pip install -r requirements.txt
-    ```
+## 🚀 Core Features
 
-2.  **Configure Environment**:
-    -   Copy `.env.example` to `.env`:
-        ```bash
-        cp .env.example .env
-        ```
-    -   Edit `.env` and add your **OPENAI_API_KEY** and **Twilio Credentials**.
+-   **Bilingual Intelligence**: Native fluency in both **English** and **Twi (Akan)**. The agent automatically detects the user's language and responds with cultural and linguistic precision.
+-   **Multi-Modal Interface**: 
+    -   **Voice AI**: Integrated with OpenAI Whisper for transcription and OpenAI TTS for human-like vocal responses.
+    -   **USSD Bridge**: A simulated offline workflow ensuring support is accessible via standard telephony, requiring zero data.
+-   **Enterprise RAG Guardrails**: Implements **Retrieval-Augmented Generation (RAG)** to ensure responses are grounded strictly in company policy documents, eliminating hallucinations.
+-   **Autonomous Task Routing**: Capable of identifying complex or high-emotion queries (e.g., "angry" customers) and automatically initiating a semantic handoff to human supervisors.
+-   **Audit-Ready Logging**: Comprehensive SQLite-backed transaction and conversation logging for business intelligence and quality assurance.
 
-## Running the Verification Test
+---
 
-To verify the core logic (Text-only):
+## 🛠 Tech Stack
+
+-   **Core Engine**: Python 3.10+
+-   **LLM Orchestration**: OpenAI GPT-4o
+-   **Voice Processing**: OpenAI Whisper (Speech-to-Text) & OpenAI TTS (Text-to-Speech)
+-   **API Framework**: FastAPI
+-   **Environment Management**: `python-dotenv` for secure secret management.
+-   **Database**: SQLite for persistent session memory and logs.
+
+---
+
+## 📐 Technical Architecture
+
+The system operates on an **Agentic Feedback Loop**:
+
+1.  **Ingestion**: Audio or Text is received via FastAPI endpoints.
+2.  **Contextual Retrieval**: The `KnowledgeBase` is queried to find relevant policy snippets (RAG).
+3.  **Reasoning**: The `CustomerSupportAgent` processes the input, RAG context, and session history through GPT-4o.
+4.  **Action/Synthesis**: The agent decides whether to resolve the query, perform a simulated transaction (e.g., refund), or escalate.
+5.  **Output**: Responses are converted to speech or sent as text back to the client.
+
+---
+
+## ⚙️ Installation & Setup
+
+### 1. Clone the Laboratory
 ```bash
-python test_agent.py
+git clone https://github.com/1SonOfGlory/Portfolio.git
+cd Portfolio
 ```
-*Note: This requires a valid OpenAI API key in `.env`.*
 
-## Running the Voice Server
+### 2. Environment Configuration
+Create a `.env` file in the root directory and populate it with your credentials:
+```bash
+cp .env.example .env
+```
+Update `.env` with:
+- `OPENAI_API_KEY`: Your OpenAI Secret Key.
 
-1.  **Start the Server**:
-    ```bash
-    uvicorn server:app --reload
-    ```
-    The server will start at `http://127.0.0.1:8000`.
+### 3. Install Dependencies
+```bash
+pip install -r requirements.txt
+```
 
-2.  **Expose to Internet (for Twilio)**:
-    In a new terminal:
-    ```bash
-    ngrok http 8000
-    ```
-    Copy the `https://....ngrok-free.app` URL.
+### 4. Initialize the Brain
+```bash
+# Seed the knowledge base and initialize the logs
+python database.py
+python knowledge_base.py
+```
 
-3.  **Configure Twilio**:
-    -   Go to your Twilio Phone Number settings.
-    -   Under "Voice & Fax" -> "A Call Comes In", set Webhook to:
-        `https://YOUR-NGROK-URL.ngrok-free.app/voice`
-    -   Save inside Twilio.
+### 5. Launch the Agent
+```bash
+uvicorn server:app --reload
+```
+Navigate to `http://localhost:8000` to interact with the web interface.
 
-4.  **Test Call**:
-    -   Call your Twilio number.
-    -   Speak in English or simple Twi phrases.
+---
 
-## Features implemented
+## 🎯 The Vision
+This project is more than a chatbot; it is a prototype for **Sovereign AI Infrastructure**. By ensuring AI can speak the languages of our communities and operate without the "data tax," we are building toward a future where technology catalyzes inclusive macroeconomic growth.
 
--   `agent_brain.py`: Core logic using OpenAI GPT-4o.
--   `knowledge_base.py`: RAG system using ChromaDB.
--   `server.py`: FastAPI server handling Twilio webhooks and TTS audio generation.
--   `database.py`: SQLite logging of conversations.
+**Built by Jabess Omane | CTO @ Griot Labs**

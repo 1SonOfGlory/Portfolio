@@ -33,7 +33,7 @@ agent = CustomerSupportAgent()
 
 # Directories
 AUDIO_DIR = "static_audio"
-UPLOAD_DIR = "uploads"import os
+UPLOAD_DIR = "public/uploads"
 
 # --- VERCEL READ-ONLY FIX ---
 # Check if we are running on Vercel (which uses a read-only filesystem)
@@ -44,11 +44,11 @@ else:
     AUDIO_DIR = os.path.join(os.getcwd(), 'static_audio')
 
 # Create the directory safely
-os.makedirs(AUDIO_DIR, exist_ok=True)os.makedirs(AUDIO_DIR, exist_ok=True)
+os.makedirs(AUDIO_DIR, exist_ok=True)
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 # Mount Static Files (Frontend)
-app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("/static", StaticFiles(directory="public/static"), name="static")
 app.mount("/audio", StaticFiles(directory=AUDIO_DIR), name="audio")
 
 def generate_speech_file(text: str) -> str:
@@ -127,7 +127,7 @@ async def handle_audio_upload(file: UploadFile = File(...)):
 
 @app.get("/")
 def serve_home():
-    return FileResponse("static/index.html")
+    return FileResponse("public/static/index.html")
 
 if __name__ == "__main__":
     import uvicorn
