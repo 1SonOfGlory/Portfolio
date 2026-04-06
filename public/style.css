@@ -1897,3 +1897,20 @@ h4 {
         font-size: 1.5rem;
     }
 }
+
+/* Universal Typography Standard Enforcement for all descriptive paragraphs */
+.glass-box p,
+.impact-content p,
+.impact-block p,
+.vision-card p,
+.article-content p,
+.build-text-box p,
+.text-content p,
+.advisory-card p {
+    color: #1e293b;
+    font-size: 1.15rem;
+    line-height: 1.5;
+    font-weight: 500;
+    font-family: var(--font-heading);
+    letter-spacing: -0.05em;
+}
