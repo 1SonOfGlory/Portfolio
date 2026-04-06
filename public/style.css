@@ -1529,7 +1529,12 @@ h4 {
     }
 
     .bento-hero {
-        gap: 1rem;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .profile-card {
+        grid-column: span 1;
     }
 
     .featured-card {
@@ -1614,6 +1619,16 @@ h4 {
 
     .edu-sub-img {
         height: 120px;
+    }
+
+    .impact-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .build-row, .build-row.reverse {
+        flex-direction: column;
+        gap: 2rem;
     }
 }
 
