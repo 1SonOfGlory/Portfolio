@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EUEWS | Jabess Omane</title>
+    <link rel="stylesheet" href="style.css?v=15">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        .edu-page-header { text-align: center; padding: 6rem 2rem 3rem; }
+        .edu-page-header .back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--color-purple); font-weight: 600; font-size: 0.95rem; text-decoration: none; margin-bottom: 2rem; transition: transform 0.3s ease; }
+        .edu-page-header .back-link:hover { transform: translateX(-5px); }
+        .edu-page-title { font-family: var(--font-heading); font-size: 4rem; font-weight: 800; letter-spacing: -0.02em; color: #0A66C2; margin-bottom: 0.5rem; }
+        
+        .degree-section { max-width: 1100px; margin: 0 auto 5rem; padding: 0 2rem; }
+        .degree-hero { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; margin-bottom: 4rem; }
+        .degree-hero-img { width: 100%; object-fit: cover; border-radius: var(--radius-lg); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15); }
+        .degree-badge { display: inline-block; background: var(--color-purple); color: white; padding: 0.5rem 1.5rem; border-radius: 100px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.5rem; }
+        .degree-info h2 { font-family: var(--font-heading); font-size: 2.5rem; font-weight: 700; color: var(--text-heading); margin-bottom: 1.5rem; }
+        .degree-info p { color: #000; font-size: 1.15rem; line-height: 1.7; font-weight: 400; margin-bottom: 1rem; }
+        
+        .resources-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 2rem; }
+        .resource-card { background: var(--liquid-glass-bg); backdrop-filter: var(--liquid-glass-filter); -webkit-backdrop-filter: var(--liquid-glass-filter); border: var(--liquid-glass-border); box-shadow: var(--liquid-glass-shadow); border-radius: var(--radius-lg); padding: 2.5rem; transition: transform 0.3s ease; }
+        .resource-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2); }
+        .resource-card h4 { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; color: #0A66C2; margin-bottom: 1rem; }
+        .resource-card p { font-size: 1rem; line-height: 1.6; color: #000; }
+        
+        @media (max-width: 768px) {
+            .degree-hero { grid-template-columns: 1fr; }
+            .resources-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="fluid-bg"></div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-layer-group"></i> Jabess.dev
+            </a>
+            <div class="nav-links" id="nav-links">
+                <a href="index.html#portfolio" class="nav-link active">Back to Portfolio</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <header class="edu-page-header reveal">
+            <a href="index.html#portfolio" class="back-link">
+                <i class="fa-solid fa-arrow-left"></i> Back to Portfolio
+            </a>
+            <h1 class="edu-page-title">EUEWS Dashboard</h1>
+            <p style="font-size: 1.2rem; color: var(--text-light); max-width: 600px; margin: 0 auto; color: #333; font-weight: 500;">Election Unrest Early Warning System</p>
+        </header>
+
+        <section class="degree-section">
+            <div class="degree-hero reveal delay-100">
+                <div class="degree-info">
+                    <span class="degree-badge">Real-Time NLP Pipeline</span>
+                    <h2>How It Works</h2>
+                    <p><strong>Data Ingestion:</strong> The system continuously ingests a stream of tweets, public Facebook comments, and TikTok text via social media APIs. It filters content using targeted hashtags (e.g., #GhanaVotes, #ECGhana).</p>
+                    <p><strong>Linguistic Engine:</strong> Rather than relying on generic English sentiment models, the core AI is powered by a fine-tuned AfriBERTa model. It actively parses complex syntactic structures in <strong>Pidgin, Hausa, Ga, Ewe, and Akan</strong>. This allows the system to accurately assess intent in phrases like "We no go gree" rather than flagging them indirectly or missing nuance altogether.</p>
+                    <p><strong>Risk Scoring & Stir Analysis:</strong> Posts are categorized into Low (Opinion), Medium (Aggressive), and High (Incitement). The overall "Stir" is calculated via a hybrid score blending the AI's toxicity probability with the virality of the content (measuring retweets and rapid shares).</p>
+                </div>
+                <div>
+                    <img src="assets/images/euews_dashboard_ui.png" alt="EUEWS Dashboard Prototype" class="degree-hero-img">
+                </div>
+            </div>
+
+            <div class="reveal delay-200">
+                <h3 style="font-family: var(--font-heading); font-size: 2rem; font-weight: 700; color: var(--text-heading); margin-top: 4rem; margin-bottom: 2rem; text-align: center;">System Architecture & Applications</h3>
+                
+                <div class="resources-grid">
+                    <div class="resource-card hover-pop">
+                        <h4><i class="fa-solid fa-microchip" style="margin-right: 10px;"></i> How It Is Built</h4>
+                        <p>The backend operates on a <strong>Python FastAPI</strong> and <strong>Celery/Redis</strong> stack for asynchronous processing of massive social streams. The NLP model (AfriBERTa) is trained on manually annotated datasets to ensure high precision. Finally, a reasoning layer powered by a smaller LLM (e.g., Llama-3-8B) summarizes exactly <em>why</em> a cluster of posts is causing unrest.</p>
+                    </div>
+                    <div class="resource-card hover-pop">
+                        <h4><i class="fa-solid fa-map-location-dot" style="margin-right: 10px;"></i> Where It Can Be Used</h4>
+                        <p><strong>Electoral Commissions:</strong> To monitor and counter digital misinformation that delegitimizes the electoral process in real-time.<br><br><strong>Security Agencies:</strong> To deploy resources efficiently by identifying geographical heatmaps of rising tension before physical escalation occurs.</p>
+                    </div>
+                    <div class="resource-card hover-pop">
+                        <h4><i class="fa-solid fa-chart-line" style="margin-right: 10px;"></i> Advanced Visualization</h4>
+                        <p>The dashboard provides stakeholders with a <strong>"Timeline of Tension"</strong>, mapping out chronological risk spikes as Election Day approaches. Additionally, an interactive heat map highlights regional clusters of inflammatory vocabulary, translating raw NLP output into immediate, actionable intelligence.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-bottom">
+            <span>&copy; 2026 Jabess.dev. All rights reserved.</span>
+            <span>Founder & CTO @ Griot Labs</span>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="script.js?v=13"></script>
+</body>
+</html>
