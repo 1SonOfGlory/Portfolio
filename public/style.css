@@ -1020,15 +1020,14 @@ h4 {
 }
 
 .project-desc {
-    color: #000;
-    /* Solid black for readability */
+    color: #1e293b;
     margin-bottom: 2rem;
     max-width: 650px;
-    font-size: 1.1rem;
-    line-height: 1.7;
-    font-weight: 400;
+    font-size: 1.15rem;
+    line-height: 1.5;
+    font-weight: 500;
     font-family: var(--font-heading);
-    letter-spacing: -0.01em;
+    letter-spacing: -0.05em;
 }
 
 .btn-link {
@@ -1860,5 +1859,26 @@ h4 {
         border: 1px solid rgba(255, 255, 255, 0.15);
         box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
         padding: 2rem;
+    }
+}
+
+/* EUEWS & Custom Vision Pattern */
+.vision-text {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    line-height: 1.15;
+    color: #1e293b;
+    font-weight: 500;
+    letter-spacing: -0.05em;
+}
+
+@media (max-width: 1024px) {
+    .vision-text {
+        font-size: 1.8rem;
+    }
+}
+@media (max-width: 768px) {
+    .vision-text {
+        font-size: 1.5rem;
     }
 }

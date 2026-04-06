@@ -20,13 +20,28 @@
         .degree-hero-img { width: 100%; object-fit: cover; border-radius: var(--radius-lg); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15); }
         .degree-badge { display: inline-block; background: var(--color-purple); color: white; padding: 0.5rem 1.5rem; border-radius: 100px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.5rem; }
         .degree-info h2 { font-family: var(--font-heading); font-size: 2.5rem; font-weight: 700; color: var(--text-heading); margin-bottom: 1.5rem; }
-        .degree-info p { color: #000; font-size: 1.15rem; line-height: 1.7; font-weight: 400; margin-bottom: 1rem; }
+        .degree-info p { 
+            font-family: var(--font-heading);
+            font-size: 1.3rem; 
+            line-height: 1.4; 
+            color: #1e293b; 
+            font-weight: 500;
+            letter-spacing: -0.05em;
+            margin-bottom: 1rem; 
+        }
         
         .resources-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 2rem; }
         .resource-card { background: var(--liquid-glass-bg); backdrop-filter: var(--liquid-glass-filter); -webkit-backdrop-filter: var(--liquid-glass-filter); border: var(--liquid-glass-border); box-shadow: var(--liquid-glass-shadow); border-radius: var(--radius-lg); padding: 2.5rem; transition: transform 0.3s ease; }
         .resource-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2); }
         .resource-card h4 { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; color: #0A66C2; margin-bottom: 1rem; }
-        .resource-card p { font-size: 1rem; line-height: 1.6; color: #000; }
+        .resource-card p { 
+            font-family: var(--font-heading);
+            font-size: 1.15rem; 
+            line-height: 1.45; 
+            color: #1e293b;
+            font-weight: 500;
+            letter-spacing: -0.05em;
+        }
         
         @media (max-width: 768px) {
             .degree-hero { grid-template-columns: 1fr; }
