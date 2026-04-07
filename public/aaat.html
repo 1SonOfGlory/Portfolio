@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AAAT | Jabess Omane</title>
+    <link rel="stylesheet" href="style.css?v=15">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        .edu-page-header { text-align: center; padding: 6rem 2rem 3rem; }
+        .edu-page-header .back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--color-purple); font-weight: 600; font-size: 0.95rem; text-decoration: none; margin-bottom: 2rem; transition: transform 0.3s ease; }
+        .edu-page-header .back-link:hover { transform: translateX(-5px); }
+        .edu-page-title { font-family: var(--font-heading); font-size: 4rem; font-weight: 800; letter-spacing: -0.02em; color: #0A66C2; margin-bottom: 0.5rem; }
+        
+        .degree-section { max-width: 1100px; margin: 0 auto 5rem; padding: 0 2rem; }
+        .degree-hero { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; margin-bottom: 4rem; }
+        .degree-hero.full-width { grid-template-columns: 1fr; }
+        .degree-hero-img { width: 100%; object-fit: cover; border-radius: var(--radius-lg); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15); }
+        .degree-badge { display: inline-block; background: var(--color-purple); color: white; padding: 0.5rem 1.5rem; border-radius: 100px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.5rem; }
+        .degree-info h2 { font-family: var(--font-heading); font-size: 2.5rem; font-weight: 700; color: var(--text-heading); margin-bottom: 1.5rem; }
+        .degree-info p { 
+            font-family: var(--font-heading);
+            font-size: 1.3rem; 
+            line-height: 1.4; 
+            color: #1e293b; 
+            font-weight: 500;
+            letter-spacing: -0.05em;
+            margin-bottom: 1rem; 
+        }
+        
+        .resources-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 2rem; }
+        .resource-card { background: var(--liquid-glass-bg); backdrop-filter: var(--liquid-glass-filter); -webkit-backdrop-filter: var(--liquid-glass-filter); border: var(--liquid-glass-border); box-shadow: var(--liquid-glass-shadow); border-radius: var(--radius-lg); padding: 2.5rem; transition: transform 0.3s ease; }
+        .resource-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2); }
+        .resource-card h4 { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; color: #0A66C2; margin-bottom: 1rem; }
+        .resource-card p { 
+            font-family: var(--font-heading);
+            font-size: 1.15rem; 
+            line-height: 1.45; 
+            color: #1e293b;
+            font-weight: 500;
+            letter-spacing: -0.05em;
+        }
+
+        .business-case-card { margin-top: 4rem; background: rgba(10, 102, 194, 0.05); border: 1px solid rgba(10, 102, 194, 0.15); }
+        .business-case-card h4 { color: var(--color-purple); }
+        
+        @media (max-width: 768px) {
+            .edu-page-title { font-size: 2.2rem; }
+            .edu-page-header { padding: 4rem 1.5rem 2rem; }
+            .degree-hero { grid-template-columns: 1fr; gap: 2rem; }
+            .degree-hero-img { height: auto; max-height: 300px; }
+            .resources-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .degree-section { margin-bottom: 3rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="fluid-bg"></div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-layer-group"></i> Jabess.dev
+            </a>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <header class="edu-page-header reveal">
+            <a href="index.html#portfolio" class="back-link">
+                <i class="fa-solid fa-arrow-left"></i> Back to Portfolio
+            </a>
+            <h1 class="edu-page-title" style="font-size: 3.5rem;">African Algorithmic Accountability Toolkit (AAAT)</h1>
+            <p style="font-size: 1.2rem; color: var(--text-light); max-width: 800px; margin: 0 auto; color: #333; font-weight: 500;">An open-source governance resource for robust AI safety, explainability, and recourse in African environments.</p>
+        </header>
+
+        <section class="degree-section">
+            <div class="degree-hero full-width reveal delay-100">
+                <div class="degree-info">
+                    <span class="degree-badge">Research Framework & Policy</span>
+                    <h2>The Crisis of Silence in AI Safety</h2>
+                    <p>Explainability and interpretability are core pillars of AI safety — and among its most neglected. The global conversation on responsible AI has concentrated heavily on fairness and bias, rightfully so. But the absence of explainability and the absence of interpretability carry their own category of harm, and they are not the same problem.</p>
+                    <p><strong>Interpretability asks:</strong> can a human understand why a model behaves as it does?</p>
+                    <p><strong>Explainability asks:</strong> can the person affected by a decision understand why that decision was made about them?</p>
+                    <p>When a loan is denied, a visa is rejected, or a defendant is flagged as high-risk by an algorithm, the harm is not only in the outcome — it is in the silence that follows. No explanation. No path to appeal. No way to know what would have to change. This silence is a governance failure, and in African contexts, where recourse infrastructure is thin and affected communities often lack legal representation, it is a compounding injustice.</p>
+                </div>
+            </div>
+
+            <div class="reveal delay-200">
+                <h3 style="font-family: var(--font-heading); font-size: 2rem; font-weight: 700; color: var(--text-heading); margin-top: 2rem; margin-bottom: 2rem; text-align: center;">The AAAT Proposal</h3>
+                
+                <p style="font-family: var(--font-heading); font-size: 1.3rem; line-height: 1.6; color: #1e293b; font-weight: 500; letter-spacing: -0.05em; text-align: center; max-width: 900px; margin: 0 auto 3rem;">I propose the African Algorithmic Accountability Toolkit (AAAT) — an open-source governance resource addressing this gap directly. Drawing on my DecisionLens work, the ECOWAS data protection framework, and the AU's emerging AI strategy, the toolkit will deliver three critical components:</p>
+
+                <div class="resources-grid">
+                    <div class="resource-card hover-pop">
+                        <h4><i class="fa-solid fa-list-check" style="margin-right: 10px;"></i> Audit Protocol</h4>
+                        <p>A fairness and explainability audit protocol adapted specifically to African demographic contexts and data environments, moving away from purely Western auditing assumptions.</p>
+                    </div>
+                    <div class="resource-card hover-pop">
+                        <h4><i class="fa-solid fa-file-signature" style="margin-right: 10px;"></i> Plain-Language Recourse</h4>
+                        <p>A mandatory standard requiring that any AI decision affecting an individual be accompanied by a comprehensible explanation and a clear, actionable path to appeal.</p>
+                    </div>
+                    <div class="resource-card hover-pop">
+                        <h4><i class="fa-solid fa-globe-africa" style="margin-right: 10px;"></i> Intercultural Inventory</h4>
+                        <p>An intercultural values inventory mapping how West African communities conceptualize fairness, dignity, and accountability to localize governance frameworks correctly.</p>
+                    </div>
+                </div>
+
+                <div class="resource-card hover-pop business-case-card">
+                    <h4><i class="fa-solid fa-layer-group" style="margin-right: 10px;"></i> The Governance Layer</h4>
+                    <p>My broader body of work reinforces this fundamental agenda: <em>Kasa AI</em> demonstrates that AI can be made accessible to communities excluded by language and poor digital infrastructure; <em>Articulate AI</em> demonstrates that the tools for self-advocacy and communication can be democratized. <strong>The AAAT is the governance layer that ties these together</strong> — ensuring that where AI reaches communities that have been overlooked, it does so on terms they can understand, contest, and hold accountable.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-bottom">
+            <span>&copy; 2026 Jabess.dev. All rights reserved.</span>
+            <span>Founder & CTO @ Griot Labs</span>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="script.js?v=13"></script>
+</body>
+</html>
