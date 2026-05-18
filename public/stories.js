@@ -612,6 +612,8 @@ function initWriterCMS() {
   const activeFontName = document.getElementById("active-font-name");
 
   const insertImgBtn = document.getElementById("insert-img-btn");
+  const uploadImgBtn = document.getElementById("upload-img-btn");
+  const localImageUploader = document.getElementById("local-image-uploader");
 
   // CANCEL WRITING
   cancelBtn.addEventListener("click", () => {
@@ -653,6 +655,36 @@ function initWriterCMS() {
     
     syncEditorToPreview();
     saveDraftState();
+  });
+
+  // LOCAL DEVICE PHOTO UPLOADER (FileReader DataURL / Base64 pipeline)
+  uploadImgBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    localImageUploader.click();
+  });
+
+  localImageUploader.addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const dataUrl = event.target.result;
+      const caption = prompt("Enter a short descriptive caption for the uploaded photo:") || "Uploaded photo";
+
+      // Generate modern inline block image structure with Base64 data URL
+      const imgHtml = `<p><img src="${dataUrl}" alt="${caption}" style="width: 100%; border-radius: var(--radius-sm); margin: 1.5rem 0; box-shadow: 0 10px 30px rgba(0,0,0,0.05); display:block;"><span style="display:block; text-align:center; font-size:0.8rem; font-family:var(--font-sans); color:rgba(0,0,0,0.4); margin-top:-1rem; margin-bottom:1.5rem;">${caption}</span></p><p><br></p>`;
+
+      editorArea.focus();
+      document.execCommand("insertHTML", false, imgHtml);
+
+      syncEditorToPreview();
+      saveDraftState();
+    };
+
+    reader.readAsDataURL(file);
+    // Clear input value so selecting the same file again triggers change event
+    localImageUploader.value = "";
   });
 
   // TYPOGRAPHY FONT STYLE SELECTOR

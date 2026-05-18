@@ -222,7 +222,21 @@
               <button class="toolbar-btn" data-cmd="formatBlock" data-val="h2" title="Header H2"><i class="fa-solid fa-heading" style="font-size: 0.95rem;"></i><span style="font-size: 0.7rem; font-weight: 700; margin-left: 1px;">2</span></button>
               <button class="toolbar-btn" data-cmd="formatBlock" data-val="h3" title="Header H3"><i class="fa-solid fa-heading" style="font-size: 0.8rem;"></i><span style="font-size: 0.6rem; font-weight: 700; margin-left: 1px;">3</span></button>
               <button class="toolbar-btn" data-cmd="insertUnorderedList" title="Bullet List"><i class="fa-solid fa-list-ul"></i></button>
-              <button class="toolbar-btn" id="insert-img-btn" title="Embed Image"><i class="fa-solid fa-image"></i></button>
+              
+              <div class="toolbar-separator"></div>
+
+              <!-- Alignment Buttons -->
+              <button class="toolbar-btn" data-cmd="justifyLeft" title="Align Left"><i class="fa-solid fa-align-left"></i></button>
+              <button class="toolbar-btn" data-cmd="justifyCenter" title="Align Center"><i class="fa-solid fa-align-center"></i></button>
+              <button class="toolbar-btn" data-cmd="justifyRight" title="Align Right"><i class="fa-solid fa-align-right"></i></button>
+              <button class="toolbar-btn" data-cmd="justifyFull" title="Justify"><i class="fa-solid fa-align-justify"></i></button>
+
+              <div class="toolbar-separator"></div>
+
+              <!-- Embed & Upload Image Buttons -->
+              <button class="toolbar-btn" id="insert-img-btn" title="Embed Image URL"><i class="fa-solid fa-link"></i> <i class="fa-solid fa-image"></i></button>
+              <button class="toolbar-btn" id="upload-img-btn" title="Upload Photo from Device"><i class="fa-solid fa-arrow-up-from-bracket"></i> <i class="fa-solid fa-image"></i></button>
+              <input type="file" id="local-image-uploader" accept="image/*" style="display: none;">
               
               <div class="toolbar-separator"></div>
               
