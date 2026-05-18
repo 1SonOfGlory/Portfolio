@@ -1261,3 +1261,242 @@
     padding: 1.5rem;
   }
 }
+
+/* ---------------------------------------------------- */
+/* Stage 1: Premium Admin Management Styles             */
+/* ---------------------------------------------------- */
+
+/* Admin Lock Button */
+.admin-lock-btn {
+  background: transparent;
+  border: var(--border-editorial);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-main);
+  font-size: 0.95rem;
+  transition: var(--transition-smooth);
+}
+
+.admin-lock-btn:hover {
+  background: rgba(15, 23, 42, 0.04);
+  color: var(--accent-blue);
+  border-color: rgba(10, 102, 194, 0.3);
+  transform: scale(1.05);
+}
+
+.admin-lock-btn.unlocked {
+  background: rgba(10, 102, 194, 0.08);
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+  box-shadow: 0 4px 15px rgba(10, 102, 194, 0.1);
+}
+
+/* Card-level Floating Admin Controls */
+.card-admin-actions {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
+  display: flex;
+  gap: 0.5rem;
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: var(--transition-smooth);
+}
+
+.post-card:hover .card-admin-actions,
+.featured-story-card:hover .card-admin-actions {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card-admin-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.8rem;
+  color: var(--text-main);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  transition: var(--transition-smooth);
+}
+
+.card-admin-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+.card-admin-btn.edit:hover {
+  color: var(--accent-blue);
+  border-color: rgba(10, 102, 194, 0.3);
+  background: rgba(10, 102, 194, 0.04);
+}
+
+.card-admin-btn.delete:hover {
+  color: #ef4444;
+  border-color: rgba(239, 68, 68, 0.3);
+  background: rgba(239, 68, 68, 0.04);
+}
+
+/* Reader Admin Control Bar */
+.reader-admin-bar {
+  background: rgba(15, 23, 42, 0.02);
+  border: var(--border-editorial);
+  border-radius: var(--radius-md);
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
+  gap: 1.5rem;
+}
+
+.reader-admin-info {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent-blue);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.reader-admin-actions {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.reader-admin-btn {
+  background: #ffffff;
+  border: var(--border-editorial);
+  padding: 0.5rem 1.2rem;
+  border-radius: 99px;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-main);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: var(--transition-smooth);
+}
+
+.reader-admin-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+}
+
+.reader-admin-btn.edit:hover {
+  color: var(--accent-blue);
+  border-color: var(--accent-blue);
+  background: rgba(10, 102, 194, 0.02);
+}
+
+.reader-admin-btn.delete:hover {
+  color: #ef4444;
+  border-color: #ef4444;
+  background: rgba(239, 68, 68, 0.02);
+}
+
+/* Toast Notification Styles */
+.toast-notification {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: #0f172a;
+  color: #ffffff;
+  padding: 0.8rem 2rem;
+  border-radius: 99px;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  z-index: 10005;
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+}
+
+.toast-notification.active {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.toast-icon {
+  color: #10b981;
+}
+
+/* Passcode Gate Modal styling */
+.passcode-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.3);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 10003;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition-smooth);
+}
+
+.passcode-modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.passcode-modal {
+  background: #ffffff;
+  border: var(--border-editorial);
+  border-radius: var(--radius-lg);
+  width: 90vw;
+  max-width: 400px;
+  padding: 2.5rem;
+  box-shadow: 0 25px 60px rgba(15, 23, 42, 0.15);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  transform: scale(0.95);
+  transition: var(--transition-smooth);
+}
+
+.passcode-modal-overlay.active .passcode-modal {
+  transform: scale(1);
+}
+
+.passcode-title {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-heading);
+  text-align: center;
+}
+
+.passcode-error {
+  color: #ef4444;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-align: center;
+  display: none;
+  margin-top: -0.5rem;
+}

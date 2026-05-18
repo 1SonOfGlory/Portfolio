@@ -64,14 +64,19 @@
         <!-- Dynanically generated tag pills -->
       </div>
       
-      <div style="display: flex; align-items: center; gap: 1rem; width: 100%; max-width: 480px; justify-content: flex-end;">
+      <div style="display: flex; align-items: center; gap: 0.8rem; width: 100%; max-width: 520px; justify-content: flex-end;">
         <div class="search-wrapper">
           <i class="fa-solid fa-magnifying-glass search-icon"></i>
           <input type="text" class="search-input" id="search-box" placeholder="Search titles & content...">
         </div>
         
-        <!-- Discreet Premium CTA to open Writer Workspace -->
-        <button class="stories-btn" id="open-writer-btn">
+        <!-- Admin Access Lock Button Toggle -->
+        <button class="admin-lock-btn" id="admin-lock-toggle" title="Admin Control Gate">
+          <i class="fa-solid fa-lock"></i>
+        </button>
+
+        <!-- Discreet Premium CTA to open Writer Workspace (Hidden by default unless admin is active) -->
+        <button class="stories-btn" id="open-writer-btn" style="display: none;">
           <i class="fa-solid fa-pen-nib"></i> Write Story
         </button>
       </div>
@@ -280,6 +285,33 @@
         <button class="stories-btn" style="background: #15803d;" id="export-done-btn">Done, Back to Stories</button>
       </div>
     </div>
+  </div>
+
+  <!-- ADMIN PASSCODE GATE MODAL -->
+  <div class="passcode-modal-overlay" id="passcode-modal-overlay">
+    <div class="passcode-modal">
+      <button class="export-close-btn" id="passcode-close-btn"><i class="fa-solid fa-xmark"></i></button>
+      <h3 class="passcode-title"><i class="fa-solid fa-key" style="color: var(--accent-blue); margin-right: 8px;"></i> Admin Gate</h3>
+      <p class="export-description" style="text-align: center; margin-bottom: 0.5rem;">
+        Enter passcode to unlock admin tools for publishing, editing, and deleting essays.
+      </p>
+
+      <div class="form-field">
+        <input type="password" class="form-input" id="admin-passcode-input" placeholder="Enter Admin Passcode..." style="text-align: center; letter-spacing: 0.2em; font-weight: 700;">
+        <span class="passcode-error" id="passcode-error-msg">Incorrect passcode. Please try again.</span>
+      </div>
+
+      <div style="display: flex; gap: 0.8rem;">
+        <button class="stories-btn secondary" style="flex: 1; justify-content: center;" id="passcode-cancel-btn">Cancel</button>
+        <button class="stories-btn" style="flex: 1; justify-content: center;" id="passcode-submit-btn">Unlock</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div class="toast-notification" id="toast-notification">
+    <i class="fa-solid fa-circle-check toast-icon" id="toast-icon"></i>
+    <span id="toast-message">Action completed successfully!</span>
   </div>
 
 

@@ -9,6 +9,8 @@ let activeTag = "All";
 let searchQuery = "";
 let mergedPosts = [];
 let activeScrollListener = null;
+let isAdmin = localStorage.getItem("isAdmin") === "true";
+let editingSlug = null;
 
 // DOM Elements
 const hubView = document.getElementById("hub-view");
@@ -35,6 +37,9 @@ document.addEventListener("DOMContentLoaded", () => {
   
   // Set up Writer CMS Interactions
   initWriterCMS();
+
+  // Set up Admin Control Gate
+  initAdminGate();
 
   // Handle browser back/forward buttons
   window.addEventListener("popstate", () => {
@@ -63,7 +68,20 @@ function loadAndMergeStories() {
   const localSlugs = new Set(localStories.map(p => p.slug));
   const coreStories = POSTS.filter(p => !localSlugs.has(p.slug));
   
-  mergedPosts = [...localStories, ...coreStories];
+  let allMerged = [...localStories, ...coreStories];
+  
+  // Handle deleted static overrides
+  const deletedSlugsRaw = localStorage.getItem("deleted_slugs");
+  let deletedSlugs = [];
+  if (deletedSlugsRaw) {
+    try {
+      deletedSlugs = JSON.parse(deletedSlugsRaw);
+    } catch (e) {
+      deletedSlugs = [];
+    }
+  }
+  
+  mergedPosts = allMerged.filter(p => !deletedSlugs.includes(p.slug));
   
   // Sort by date descending
   mergedPosts.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
@@ -134,8 +152,13 @@ function handleRouting() {
     writerView.style.display = "block";
     document.title = "Write a Story | Jabess Omane";
     
-    // Load drafts if available
-    restoreDraftState();
+    // Check if we are in Edit Mode
+    const editSlug = params.get("edit");
+    if (editSlug) {
+      loadStoryIntoEditor(editSlug);
+    } else {
+      restoreDraftState();
+    }
     window.scrollTo({ top: 0, behavior: "smooth" });
   } 
   else if (postSlug) {
@@ -274,9 +297,18 @@ function renderHubGrid() {
     const tagBadges = featuredPost.tags.map(t => `<span class="card-tag">${t}</span>`).join("");
     const formattedDate = formatDate(featuredPost.publishedAt);
     
+    // Conditional Admin Floating Buttons
+    const adminButtons = isAdmin ? `
+      <div class="card-admin-actions" onclick="event.stopPropagation();">
+        <button class="card-admin-btn edit" onclick="editStory('${featuredPost.slug}');" title="Edit story"><i class="fa-solid fa-pen-to-square"></i></button>
+        <button class="card-admin-btn delete" onclick="deleteStory('${featuredPost.slug}');" title="Delete story"><i class="fa-solid fa-trash-can"></i></button>
+      </div>
+    ` : "";
+
     featuredContainer.innerHTML = `
       <article class="featured-story-card" onclick="navigateTo('?post=${featuredPost.slug}')">
         <div class="featured-img-container">
+          ${adminButtons}
           <span class="featured-badge">Featured Essay</span>
           <img src="${featuredPost.coverImage || 'assets/images/ai_safety_institutions.png'}" alt="${featuredPost.title}" class="featured-image">
         </div>
@@ -300,11 +332,20 @@ function renderHubGrid() {
       const tagBadges = post.tags.map(t => `<span class="card-tag">${t}</span>`).join("");
       const formattedDate = formatDate(post.publishedAt);
 
+      // Conditional Admin Floating Buttons
+      const adminButtons = isAdmin ? `
+        <div class="card-admin-actions" onclick="event.stopPropagation();">
+          <button class="card-admin-btn edit" onclick="editStory('${post.slug}');" title="Edit story"><i class="fa-solid fa-pen-to-square"></i></button>
+          <button class="card-admin-btn delete" onclick="deleteStory('${post.slug}');" title="Delete story"><i class="fa-solid fa-trash-can"></i></button>
+        </div>
+      ` : "";
+
       const card = document.createElement("article");
       card.className = "post-card";
       card.onclick = () => navigateTo(`?post=${post.slug}`);
       card.innerHTML = `
         <div class="card-img-container">
+          ${adminButtons}
           <img src="${post.coverImage || 'assets/images/ai_safety_institutions.png'}" alt="${post.title}" class="card-image">
         </div>
         <div class="card-body">
@@ -355,6 +396,25 @@ function renderArticle(post) {
     navigateTo("");
   };
 
+  // Dynamic admin controls insertion inside reader view
+  let adminBar = document.getElementById("reader-admin-control-bar");
+  if (adminBar) adminBar.remove();
+
+  if (isAdmin) {
+    adminBar = document.createElement("div");
+    adminBar.id = "reader-admin-control-bar";
+    adminBar.className = "reader-admin-bar";
+    adminBar.innerHTML = `
+      <span class="reader-admin-info"><i class="fa-solid fa-circle-user"></i> Administrative Controls</span>
+      <div class="reader-admin-actions">
+        <button class="reader-admin-btn edit" onclick="editStory('${post.slug}');"><i class="fa-solid fa-pen-to-square"></i> Edit Article</button>
+        <button class="reader-admin-btn delete" onclick="deleteStory('${post.slug}');"><i class="fa-solid fa-trash-can"></i> Delete Article</button>
+      </div>
+    `;
+    const hero = document.querySelector(".article-hero");
+    hero.parentNode.insertBefore(adminBar, hero);
+  }
+
   // Populate hero
   document.getElementById("reader-title").textContent = post.title;
   document.getElementById("reader-date").innerHTML = `<i class="fa-regular fa-calendar" style="margin-right: 6px;"></i> ${formatDate(post.publishedAt)}`;
@@ -372,6 +432,22 @@ function renderArticle(post) {
 
   // Scan content headings and inject anchor ids to build Table of Contents (ToC)
   setupHeadingsAndToC(bodyEl);
+
+  // Hook into Share Link Button inside Sidebar dynamically to copy absolute shareable URL
+  const shareLinkBtn = document.querySelector(".reader-sidebar a.social-icon[onclick]");
+  if (shareLinkBtn) {
+    shareLinkBtn.removeAttribute("onclick");
+    shareLinkBtn.onclick = (e) => {
+      e.preventDefault();
+      const shareUrl = window.location.origin + window.location.pathname + "?post=" + post.slug;
+      navigator.clipboard.writeText(shareUrl).then(() => {
+        showToast("<i class='fa-solid fa-copy toast-icon' style='color:#10b981;'></i> Share link copied to clipboard!");
+      }).catch(err => {
+        console.error("Link copy failed: ", err);
+        alert("Share Link: " + shareUrl);
+      });
+    };
+  }
 
   // Set up top reading progress bar calculation
   setupReadingProgressBar();
@@ -540,6 +616,7 @@ function initWriterCMS() {
   // CANCEL WRITING
   cancelBtn.addEventListener("click", () => {
     if (confirm("Are you sure you want to discard your draft? Any unsaved edits will be permanently lost.")) {
+      editingSlug = null;
       clearDraftState();
       navigateTo("");
     }
@@ -650,9 +727,7 @@ function initWriterCMS() {
     const generatedSlug = slugify(titleVal);
     const readingTimeStr = calculateReadingTime(editorArea.textContent);
     
-    // Verify slug uniqueness (avoid collision with hardcoded)
-    const exists = mergedPosts.some(p => p.slug === generatedSlug);
-    const finalSlug = exists ? `${generatedSlug}-${Date.now().toString().slice(-4)}` : generatedSlug;
+    const finalSlug = editingSlug || generatedSlug;
 
     // Create New Post Object
     const newPost = {
@@ -683,10 +758,19 @@ function initWriterCMS() {
       localStories.forEach(p => p.featured = false);
     }
 
-    localStories.unshift(newPost);
-    localStorage.setItem("published_stories", JSON.stringify(localStories));
+    const existingLocalIndex = localStories.findIndex(p => p.slug === finalSlug);
+    if (existingLocalIndex > -1) {
+      localStories[existingLocalIndex] = newPost;
+    } else {
+      localStories.unshift(newPost);
+    }
 
-    // Reload active stories in RAM
+    localStorage.setItem("published_stories", JSON.stringify(localStories));
+    
+    // Reset global editing state
+    editingSlug = null;
+
+    // Reload RAM entries
     loadAndMergeStories();
 
     // Trigger Developer Code Export Modal
@@ -726,6 +810,7 @@ function closeModal() {
   const params = new URLSearchParams(window.location.search);
   const newlyCreatedSlug = document.getElementById("export-modal-overlay").getAttribute("data-target-slug");
   
+  editingSlug = null;
   clearDraftState();
   
   if (newlyCreatedSlug) {
@@ -908,4 +993,193 @@ function calculateReadingTime(text) {
   const words = text.trim().split(/\s+/).filter(w => w !== "").length;
   const time = Math.max(1, Math.round(words / 200));
   return `${time} min read`;
+}
+
+/**
+ * ----------------------------------------------------
+ * Stage 3: PASSCODE GATE, CMS OVERRIDES & TOAST COPIERS
+ * ----------------------------------------------------
+ */
+
+function initAdminGate() {
+  const lockToggle = document.getElementById("admin-lock-toggle");
+  const passcodeModal = document.getElementById("passcode-modal-overlay");
+  const passcodeField = document.getElementById("admin-passcode-input");
+  const passcodeError = document.getElementById("passcode-error-msg");
+  const passcodeSubmit = document.getElementById("passcode-submit-btn");
+  const passcodeCancel = document.getElementById("passcode-cancel-btn");
+  const passcodeClose = document.getElementById("passcode-close-btn");
+
+  if (!lockToggle) return;
+
+  // Sync initial view states
+  updateAdminUI();
+
+  // Toggle lock icon clicked
+  lockToggle.addEventListener("click", () => {
+    if (isAdmin) {
+      if (confirm("Are you sure you want to sign out of Admin Mode?")) {
+        isAdmin = false;
+        localStorage.removeItem("isAdmin");
+        updateAdminUI();
+        showToast("<i class='fa-solid fa-lock toast-icon' style='color:#ef4444;'></i> Signed out of Admin Mode.");
+      }
+    } else {
+      passcodeModal.classList.add("active");
+      passcodeField.value = "";
+      passcodeError.style.display = "none";
+      setTimeout(() => passcodeField.focus(), 150);
+    }
+  });
+
+  // Modal Submit actions
+  passcodeSubmit.addEventListener("click", validatePasscode);
+  
+  passcodeField.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      validatePasscode();
+    }
+  });
+
+  // Cancel triggers
+  passcodeCancel.addEventListener("click", () => passcodeModal.classList.remove("active"));
+  passcodeClose.addEventListener("click", () => passcodeModal.classList.remove("active"));
+
+  function validatePasscode() {
+    const enteredCode = passcodeField.value.trim();
+    if (enteredCode === "1997") {
+      isAdmin = true;
+      localStorage.setItem("isAdmin", "true");
+      passcodeModal.classList.remove("active");
+      updateAdminUI();
+      showToast("<i class='fa-solid fa-lock-open toast-icon' style='color:#10b981;'></i> Admin Mode unlocked successfully!");
+    } else {
+      passcodeError.style.display = "block";
+      passcodeField.value = "";
+      passcodeField.focus();
+    }
+  }
+
+  function updateAdminUI() {
+    if (isAdmin) {
+      lockToggle.classList.add("unlocked");
+      lockToggle.innerHTML = `<i class="fa-solid fa-lock-open"></i>`;
+      openWriterBtn.style.display = "inline-flex";
+    } else {
+      lockToggle.classList.remove("unlocked");
+      lockToggle.innerHTML = `<i class="fa-solid fa-lock"></i>`;
+      openWriterBtn.style.display = "none";
+    }
+
+    // Refresh active layout listing or details
+    const params = new URLSearchParams(window.location.search);
+    const postSlug = params.get("post");
+
+    if (hubView.style.display !== "none") {
+      renderHub();
+    } else if (postSlug) {
+      const post = mergedPosts.find(p => p.slug === postSlug);
+      if (post) renderArticle(post);
+    }
+  }
+}
+
+/**
+ * Loads selected article parameters back into editor form for modification.
+ */
+function loadStoryIntoEditor(slug) {
+  const post = mergedPosts.find(p => p.slug === slug);
+  if (!post) {
+    navigateTo("?write=true");
+    return;
+  }
+
+  editingSlug = slug;
+  document.getElementById("edit-title").value = post.title;
+  document.getElementById("edit-excerpt").value = post.excerpt;
+  document.getElementById("edit-tags").value = post.tags.join(", ");
+  document.getElementById("edit-cover").value = post.coverImage || "";
+  document.getElementById("edit-featured").checked = !!post.featured;
+
+  const editor = document.getElementById("edit-content");
+  editor.className = "editor-textarea font-serif";
+  document.getElementById("active-font-name").textContent = "Editorial Serif";
+  editor.innerHTML = post.content;
+
+  syncEditorToPreview();
+}
+
+/**
+ * Deletes local drafts from localStorage, or appends static post slugs to deleted override list.
+ */
+function deleteStory(slug) {
+  const post = mergedPosts.find(p => p.slug === slug);
+  if (!post) return;
+
+  if (confirm(`Are you sure you want to delete the story "${post.title}"? This action is irreversible.`)) {
+    const localStoriesRaw = localStorage.getItem("published_stories");
+    let localStories = [];
+    if (localStoriesRaw) {
+      try {
+        localStories = JSON.parse(localStoriesRaw);
+      } catch (e) {
+        localStories = [];
+      }
+    }
+
+    const isLocal = localStories.some(p => p.slug === slug);
+
+    if (isLocal) {
+      const updated = localStories.filter(p => p.slug !== slug);
+      localStorage.setItem("published_stories", JSON.stringify(updated));
+    } else {
+      const deletedRaw = localStorage.getItem("deleted_slugs");
+      let deletedSlugs = [];
+      if (deletedRaw) {
+        try {
+          deletedSlugs = JSON.parse(deletedRaw);
+        } catch (e) {
+          deletedSlugs = [];
+        }
+      }
+      deletedSlugs.push(slug);
+      localStorage.setItem("deleted_slugs", JSON.stringify(deletedSlugs));
+    }
+
+    showToast("<i class='fa-solid fa-trash-can toast-icon' style='color:#ef4444;'></i> Story deleted successfully.");
+
+    // Reload RAM entries
+    loadAndMergeStories();
+
+    // Route transitions
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("post") === slug) {
+      navigateTo("");
+    } else {
+      renderHub();
+    }
+  }
+}
+
+/**
+ * Opens the Writer workspace with query selectors pre-populated.
+ */
+function editStory(slug) {
+  navigateTo(`?write=true&edit=${slug}`);
+}
+
+/**
+ * Renders non-disruptive toast alerts.
+ */
+function showToast(message) {
+  const toastEl = document.getElementById("toast-notification");
+  const toastMsgEl = document.getElementById("toast-message");
+  if (toastEl && toastMsgEl) {
+    toastMsgEl.innerHTML = message;
+    toastEl.classList.add("active");
+
+    setTimeout(() => {
+      toastEl.classList.remove("active");
+    }, 3500);
+  }
 }
