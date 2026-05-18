@@ -50,6 +50,7 @@ os.makedirs(UPLOAD_DIR, exist_ok=True)
 # Mount Static Files (Frontend)
 app.mount("/static", StaticFiles(directory="public/static"), name="static")
 app.mount("/audio", StaticFiles(directory=AUDIO_DIR), name="audio")
+app.mount("/", StaticFiles(directory="public", html=True), name="public")
 
 def generate_speech_file(text: str) -> str:
     """Generates an audio file from text using OpenAI TTS."""

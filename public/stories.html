@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stories | Jabess Omane</title>
+  
+  <!-- Dynamic Meta Tags Placeholder for SEO (will be populated dynamically by JS on article load) -->
+  <meta name="description" id="meta-description" content="Essays and research papers on AI safety, AI governance, and technology ethics by Jabess Omane.">
+  <meta property="og:title" id="og-title" content="Stories | Jabess Omane">
+  <meta property="og:description" id="og-description" content="Essays and research papers on AI safety, AI governance, and technology ethics.">
+  <meta property="og:type" content="article">
+  
+  <link rel="stylesheet" href="style.css?v=15">
+  <link rel="stylesheet" href="stories.css?v=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="stories-body">
+  
+  <!-- Navigation (Pristine, customized for cream editorial look in stories.css) -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <i class="fa-solid fa-layer-group"></i> Jabess.dev
+      </a>
+      <div class="menu-toggle" id="mobile-menu">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+      <div class="nav-links" id="nav-links">
+        <a href="index.html#about" class="nav-link">About Me</a>
+        <a href="index.html#portfolio" class="nav-link">Portfolio</a>
+        <a href="index.html#contact" class="nav-link">Contact</a>
+        <a href="stories.html" class="nav-link active">Stories</a>
+      </div>
+      <div class="nav-socials">
+        <a href="https://github.com/1SonOfGlory" target="_blank" class="social-icon"><i class="fa-brands fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/jabess-omane-75919b225" target="_blank" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="https://medium.com/@omanijabess47" target="_blank" class="social-icon"><i class="fa-brands fa-medium"></i></a>
+        <a href="https://www.instagram.com/1sonof_glory" target="_blank" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Sticky Mini Reading Progress Bar (Toggled in Article View) -->
+  <div class="sticky-progress-bar" id="reading-progress"></div>
+
+  <!-- MAIN STORIES HUB VIEW (List & Grid) -->
+  <main class="main-content view-section" id="hub-view">
+    <header class="stories-header">
+      <h1 class="stories-title">Stories</h1>
+      <p class="stories-subtitle">Essays on AI safety, governance, and society.</p>
+    </header>
+
+    <!-- Controls, Live Search, & Filters -->
+    <section class="stories-controls">
+      <div class="filter-pills" id="tags-filter-bar">
+        <!-- Dynanically generated tag pills -->
+      </div>
+      
+      <div style="display: flex; align-items: center; gap: 1rem; width: 100%; max-width: 480px; justify-content: flex-end;">
+        <div class="search-wrapper">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input type="text" class="search-input" id="search-box" placeholder="Search titles & content...">
+        </div>
+        
+        <!-- Discreet Premium CTA to open Writer Workspace -->
+        <button class="stories-btn" id="open-writer-btn">
+          <i class="fa-solid fa-pen-nib"></i> Write Story
+        </button>
+      </div>
+    </section>
+
+    <!-- Stories Listing Container -->
+    <section class="stories-container">
+      
+      <!-- Featured Story Card (Large first item) -->
+      <div class="featured-card-section" id="featured-story-container">
+        <!-- Dynamically generated featured card -->
+      </div>
+
+      <!-- Divider line -->
+      <div class="transition-bridge sub-bridge" style="margin-bottom: 3rem;">
+        <h2 class="bridge-title sub-bridge-title modern-heading" style="font-size: 1.6rem; color: var(--text-heading);">Other Articles</h2>
+        <div class="bridge-line" style="background: rgba(15, 23, 42, 0.08);"></div>
+      </div>
+
+      <!-- Other Stories Grid -->
+      <div class="posts-grid" id="posts-grid-container">
+        <!-- Dynamically generated posts -->
+      </div>
+    </section>
+  </main>
+
+
+  <!-- SINGLE ARTICLE READER VIEW -->
+  <main class="main-content view-section" id="reader-view" style="display: none;">
+    <div class="reader-container">
+      <a href="#" class="reader-back-btn" id="close-reader-btn">
+        <i class="fa-solid fa-arrow-left"></i> Back to Stories
+      </a>
+
+      <!-- Article Header -->
+      <header class="article-hero">
+        <div class="card-tags" style="justify-content: center;" id="reader-tags">
+          <!-- Tags go here -->
+        </div>
+        <h1 class="article-hero-title" id="reader-title">Article Title</h1>
+        
+        <div class="article-hero-meta">
+          <span id="reader-date"><i class="fa-regular fa-calendar" style="margin-right: 6px;"></i> Date</span>
+          <span id="reader-reading-time"><i class="fa-regular fa-clock" style="margin-right: 6px;"></i> Time</span>
+        </div>
+
+        <div class="article-hero-img-container">
+          <img src="" alt="Cover Image" class="article-hero-img" id="reader-cover-image">
+        </div>
+      </header>
+
+      <!-- Workspace layout: Sidebar (ToC) + Right Body -->
+      <section class="article-workspace">
+        <aside class="reader-sidebar">
+          
+          <div class="sidebar-widget">
+            <h4 class="widget-title">Table of Contents</h4>
+            <nav>
+              <ul class="toc-list" id="reader-toc-list">
+                <!-- Dynamically generated based on headers -->
+              </ul>
+            </nav>
+          </div>
+
+          <div class="sidebar-widget">
+            <h4 class="widget-title">Share Article</h4>
+            <div style="display: flex; gap: 0.8rem;">
+              <a href="#" class="social-icon" style="width: 36px; height: 36px;" onclick="alert('Link copied to clipboard!'); return false;"><i class="fa-solid fa-link"></i></a>
+              <a href="https://twitter.com" target="_blank" class="social-icon" style="width: 36px; height: 36px;"><i class="fa-brands fa-x-twitter"></i></a>
+              <a href="https://linkedin.com" target="_blank" class="social-icon" style="width: 36px; height: 36px;"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Right Side Article Content -->
+        <article class="article-body" id="reader-content-body">
+          <!-- Dynamically generated HTML content goes here -->
+        </article>
+      </section>
+
+      <!-- Bottom Navigation Footer (Prev/Next) -->
+      <footer class="article-navigation" id="reader-navigation">
+        <!-- Dynamically rendered prev/next cards -->
+      </footer>
+    </div>
+  </main>
+
+
+  <!-- DYNAMIC WRITER / EDITORIAL CMS WORKSPACE VIEW -->
+  <main class="main-content view-section" id="writer-view" style="display: none;">
+    <div class="writer-workspace-container">
+      
+      <!-- Workspace Header -->
+      <header class="writer-header-bar">
+        <span class="writer-title-label"><i class="fa-solid fa-pen-nib" style="color: var(--accent-blue);"></i> Writer Workspace</span>
+        <div class="writer-actions">
+          <button class="stories-btn secondary" id="writer-cancel-btn">Discard Draft</button>
+          <button class="stories-btn" id="writer-publish-btn"><i class="fa-solid fa-circle-check"></i> Publish Story</button>
+        </div>
+      </header>
+
+      <!-- Grid: Form + Live Preview -->
+      <section class="writer-panels">
+        
+        <!-- Interactive Form -->
+        <div class="writer-form">
+          <h3 style="font-family: var(--font-heading); font-size: 1.4rem; font-weight: 800; border-bottom: var(--border-editorial); padding-bottom: 0.8rem; margin-bottom: 0.5rem; color: var(--text-heading);">Draft Article Content</h3>
+          
+          <div class="form-field">
+            <label class="form-label" for="edit-title">Article Title</label>
+            <input type="text" class="form-input" id="edit-title" placeholder="e.g., The Future of Machine Dignity" required>
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="edit-excerpt">Short Excerpt (2-3 Lines)</label>
+            <input type="text" class="form-input" id="edit-excerpt" placeholder="Provide a brief introductory summary of the essay..." required>
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="edit-tags">Tags (Comma Separated)</label>
+            <input type="text" class="form-input" id="edit-tags" placeholder="e.g., AI Safety, Governance, Ethics" required>
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="edit-cover">Cover Image URL</label>
+            <input type="text" class="form-input" id="edit-cover" placeholder="e.g., assets/images/ai_safety_institutions.png (or any web image)">
+          </div>
+
+          <div class="form-checkbox-row" id="edit-featured-row">
+            <input type="checkbox" class="form-checkbox" id="edit-featured">
+            <label class="form-label" style="margin-bottom: 0; cursor: pointer;" for="edit-featured">Promote as Featured Post (Show prominently at the top)</label>
+          </div>
+
+          <!-- WYSIWYG Rich Editor Container -->
+          <div class="form-field" style="margin-top: 1rem;">
+            <label class="form-label">Article Body & Writing Workspace</label>
+            
+            <!-- Sleek Rich Editing Toolbar -->
+            <div class="wysiwyg-toolbar" id="editor-toolbar">
+              <button class="toolbar-btn" data-cmd="bold" title="Bold"><i class="fa-solid fa-bold"></i></button>
+              <button class="toolbar-btn" data-cmd="italic" title="Italics"><i class="fa-solid fa-italic"></i></button>
+              <button class="toolbar-btn" data-cmd="formatBlock" data-val="blockquote" title="Blockquote"><i class="fa-solid fa-quote-left"></i></button>
+              <button class="toolbar-btn" data-cmd="formatBlock" data-val="h2" title="Header H2"><i class="fa-solid fa-heading" style="font-size: 0.95rem;"></i><span style="font-size: 0.7rem; font-weight: 700; margin-left: 1px;">2</span></button>
+              <button class="toolbar-btn" data-cmd="formatBlock" data-val="h3" title="Header H3"><i class="fa-solid fa-heading" style="font-size: 0.8rem;"></i><span style="font-size: 0.6rem; font-weight: 700; margin-left: 1px;">3</span></button>
+              <button class="toolbar-btn" data-cmd="insertUnorderedList" title="Bullet List"><i class="fa-solid fa-list-ul"></i></button>
+              <button class="toolbar-btn" id="insert-img-btn" title="Embed Image"><i class="fa-solid fa-image"></i></button>
+              
+              <div class="toolbar-separator"></div>
+              
+              <!-- Font Selection Toggler -->
+              <div class="font-selector-wrapper">
+                <button class="font-select-trigger" id="font-family-toggle" title="Change Writing Typography">
+                  <i class="fa-solid fa-font"></i> <span id="active-font-name">Editorial Serif</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- WYSIWYG Editable Document Area -->
+            <div class="editor-textarea font-serif" id="edit-content" contenteditable="true" placeholder="Start typing your long-form essay here...">
+              <p>Start typing your long-form essay here...</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sticky Live Preview Panel -->
+        <div class="preview-panel">
+          <div class="preview-badge-row">
+            <span class="preview-badge"><i class="fa-solid fa-eye"></i> Live Reader Preview</span>
+            <span class="card-tag" style="background: rgba(10, 102, 194, 0.05); color: #0A66C2; border: none; font-size: 0.7rem;" id="preview-readtime">1 min read</span>
+          </div>
+
+          <h1 class="article-hero-title" style="font-size: 1.8rem; text-align: left; margin: 0.5rem 0;" id="preview-title">Draft Article Title</h1>
+          
+          <div class="preview-content">
+            <!-- Dynamically synced structured text -->
+            <article class="article-body" id="preview-body">
+              <p>Live article preview will render here as you type...</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+
+  <!-- DEVELOPER EXPORT MODAL -->
+  <div class="export-modal-overlay" id="export-modal-overlay">
+    <div class="export-modal">
+      <button class="export-close-btn" id="export-close-btn"><i class="fa-solid fa-xmark"></i></button>
+      <h3 class="export-title"><i class="fa-solid fa-file-code" style="color: #15803d; margin-right: 8px;"></i> Story Published Locally!</h3>
+      <p class="export-description">
+        Your essay has been instantly published to this browser's <strong>localStorage</strong> and is now fully active in your local Stories section feed. 
+        <br><br>
+        To make this post **permanent and visible to the public** on your website, copy the generated code block below and append it directly into your <a href="posts.js" style="color: var(--accent-blue); font-weight: 600;">posts.js</a> file!
+      </p>
+
+      <!-- Code Box -->
+      <div class="code-block-container">
+        <button class="copy-btn" id="copy-code-btn"><i class="fa-regular fa-copy"></i> Copy Code</button>
+        <pre class="code-block-pre"><code id="export-code-block">
+          // Generated JS Post Object
+        </code></pre>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end;">
+        <button class="stories-btn" style="background: #15803d;" id="export-done-btn">Done, Back to Stories</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Simple Editorial Footer -->
+  <footer class="site-footer" style="background: var(--bg-editorial); border-top: var(--border-editorial); margin-top: 0;">
+    <div class="footer-bottom" style="color: rgba(15, 23, 42, 0.6); max-width: 1200px; margin: 0 auto; padding: 2rem;">
+      <span>&copy; 2026 Jabess.dev. All rights reserved.</span>
+      <span>Founder & CTO @ Griot Labs</span>
+    </div>
+  </footer>
+
+  <!-- Site logic -->
+  <script src="posts.js"></script>
+  <script src="stories.js"></script>
+  
+  <!-- Navbar toggle control for project navbar compliance -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const menuToggle = document.getElementById("mobile-menu");
+      const navLinks = document.getElementById("nav-links");
+      if (menuToggle && navLinks) {
+        menuToggle.addEventListener("click", () => {
+          navLinks.classList.toggle("active");
+        });
+        const links = navLinks.querySelectorAll(".nav-link");
+        links.forEach(link => {
+          link.addEventListener("click", () => navLinks.classList.remove("active"));
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>
