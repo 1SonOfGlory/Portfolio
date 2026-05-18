@@ -615,6 +615,11 @@ function initWriterCMS() {
   const uploadImgBtn = document.getElementById("upload-img-btn");
   const localImageUploader = document.getElementById("local-image-uploader");
 
+  const uploadCoverBtn = document.getElementById("upload-cover-btn");
+  const coverImageUploader = document.getElementById("cover-image-uploader");
+  const coverPreviewBox = document.getElementById("cover-preview-box");
+  const coverPreviewImg = document.getElementById("cover-preview-img");
+
   // CANCEL WRITING
   cancelBtn.addEventListener("click", () => {
     if (confirm("Are you sure you want to discard your draft? Any unsaved edits will be permanently lost.")) {
@@ -645,10 +650,15 @@ function initWriterCMS() {
     e.preventDefault();
     const url = prompt("Enter the absolute Image URL (e.g., assets/images/kasa_ai_robot.jpg or a HTTPS web link):");
     if (!url) return;
-    const desc = prompt("Enter a short descriptive caption for the image:") || "Editorial image embed";
+    const desc = prompt("Enter a short descriptive caption for the image (optional):");
     
-    // Create modern inline block image structure
-    const imgHtml = `<p><img src="${url}" alt="${desc}" style="width: 100%; border-radius: var(--radius-sm); margin: 1.5rem 0; box-shadow: 0 10px 30px rgba(0,0,0,0.05); display:block;"><span style="display:block; text-align:center; font-size:0.8rem; font-family:var(--font-sans); color:rgba(0,0,0,0.4); margin-top:-1rem; margin-bottom:1.5rem;">${desc}</span></p><p><br></p>`;
+    // Caption is optional - only append if provided!
+    let imgHtml = "";
+    if (desc && desc.trim() !== "") {
+      imgHtml = `<p><img src="${url}" alt="${desc}" style="width: 100%; border-radius: var(--radius-sm); margin: 1.5rem 0; box-shadow: 0 10px 30px rgba(0,0,0,0.05); display:block;"><span style="display:block; text-align:center; font-size:0.8rem; font-family:var(--font-sans); color:rgba(0,0,0,0.4); margin-top:-1rem; margin-bottom:1.5rem;">${desc}</span></p><p><br></p>`;
+    } else {
+      imgHtml = `<p><img src="${url}" alt="Editorial image" style="width: 100%; border-radius: var(--radius-sm); margin: 1.5rem 0; box-shadow: 0 10px 30px rgba(0,0,0,0.05); display:block;"></p><p><br></p>`;
+    }
     
     document.execCommand("insertHTML", false, imgHtml);
     editorArea.focus();
@@ -670,10 +680,15 @@ function initWriterCMS() {
     const reader = new FileReader();
     reader.onload = (event) => {
       const dataUrl = event.target.result;
-      const caption = prompt("Enter a short descriptive caption for the uploaded photo:") || "Uploaded photo";
+      const desc = prompt("Enter a short descriptive caption for the uploaded photo (optional):");
 
-      // Generate modern inline block image structure with Base64 data URL
-      const imgHtml = `<p><img src="${dataUrl}" alt="${caption}" style="width: 100%; border-radius: var(--radius-sm); margin: 1.5rem 0; box-shadow: 0 10px 30px rgba(0,0,0,0.05); display:block;"><span style="display:block; text-align:center; font-size:0.8rem; font-family:var(--font-sans); color:rgba(0,0,0,0.4); margin-top:-1rem; margin-bottom:1.5rem;">${caption}</span></p><p><br></p>`;
+      // Caption is optional - only append if provided!
+      let imgHtml = "";
+      if (desc && desc.trim() !== "") {
+        imgHtml = `<p><img src="${dataUrl}" alt="${desc}" style="width: 100%; border-radius: var(--radius-sm); margin: 1.5rem 0; box-shadow: 0 10px 30px rgba(0,0,0,0.05); display:block;"><span style="display:block; text-align:center; font-size:0.8rem; font-family:var(--font-sans); color:rgba(0,0,0,0.4); margin-top:-1rem; margin-bottom:1.5rem;">${desc}</span></p><p><br></p>`;
+      } else {
+        imgHtml = `<p><img src="${dataUrl}" alt="Uploaded photo" style="width: 100%; border-radius: var(--radius-sm); margin: 1.5rem 0; box-shadow: 0 10px 30px rgba(0,0,0,0.05); display:block;"></p><p><br></p>`;
+      }
 
       editorArea.focus();
       document.execCommand("insertHTML", false, imgHtml);
@@ -685,6 +700,43 @@ function initWriterCMS() {
     reader.readAsDataURL(file);
     // Clear input value so selecting the same file again triggers change event
     localImageUploader.value = "";
+  });
+
+  // DUAL COVER IMAGE UPLOADER HANDLERS
+  uploadCoverBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    coverImageUploader.click();
+  });
+
+  coverImageUploader.addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const dataUrl = event.target.result;
+      coverInput.value = dataUrl;
+      coverPreviewImg.src = dataUrl;
+      coverPreviewBox.style.display = "flex";
+      
+      syncEditorToPreview();
+      saveDraftState();
+    };
+
+    reader.readAsDataURL(file);
+    // Clear value so re-selecting triggers change event
+    coverImageUploader.value = "";
+  });
+
+  coverInput.addEventListener("input", () => {
+    const val = coverInput.value.trim();
+    if (val) {
+      coverPreviewImg.src = val;
+      coverPreviewBox.style.display = "flex";
+    } else {
+      coverPreviewBox.style.display = "none";
+      coverPreviewImg.src = "";
+    }
   });
 
   // TYPOGRAPHY FONT STYLE SELECTOR
@@ -940,7 +992,20 @@ function restoreDraftState() {
     document.getElementById("edit-title").value = draft.title || "";
     document.getElementById("edit-excerpt").value = draft.excerpt || "";
     document.getElementById("edit-tags").value = draft.tags || "";
-    document.getElementById("edit-cover").value = draft.cover || "";
+    
+    const coverVal = draft.cover || "";
+    document.getElementById("edit-cover").value = coverVal;
+    
+    const previewBox = document.getElementById("cover-preview-box");
+    const previewImg = document.getElementById("cover-preview-img");
+    if (coverVal) {
+      previewImg.src = coverVal;
+      previewBox.style.display = "flex";
+    } else {
+      previewBox.style.display = "none";
+      previewImg.src = "";
+    }
+
     document.getElementById("edit-featured").checked = !!draft.featured;
     
     const editor = document.getElementById("edit-content");
@@ -970,6 +1035,9 @@ function clearDraftState() {
   document.getElementById("edit-tags").value = "";
   document.getElementById("edit-cover").value = "";
   document.getElementById("edit-featured").checked = false;
+  
+  document.getElementById("cover-preview-box").style.display = "none";
+  document.getElementById("cover-preview-img").src = "";
   
   const editor = document.getElementById("edit-content");
   editor.className = "editor-textarea font-serif";
@@ -1130,7 +1198,20 @@ function loadStoryIntoEditor(slug) {
   document.getElementById("edit-title").value = post.title;
   document.getElementById("edit-excerpt").value = post.excerpt;
   document.getElementById("edit-tags").value = post.tags.join(", ");
-  document.getElementById("edit-cover").value = post.coverImage || "";
+  
+  const coverVal = post.coverImage || "";
+  document.getElementById("edit-cover").value = coverVal;
+  
+  const previewBox = document.getElementById("cover-preview-box");
+  const previewImg = document.getElementById("cover-preview-img");
+  if (coverVal) {
+    previewImg.src = coverVal;
+    previewBox.style.display = "flex";
+  } else {
+    previewBox.style.display = "none";
+    previewImg.src = "";
+  }
+
   document.getElementById("edit-featured").checked = !!post.featured;
 
   const editor = document.getElementById("edit-content");

@@ -201,8 +201,20 @@
           </div>
 
           <div class="form-field">
-            <label class="form-label" for="edit-cover">Cover Image URL</label>
-            <input type="text" class="form-input" id="edit-cover" placeholder="e.g., assets/images/ai_safety_institutions.png (or any web image)">
+            <label class="form-label" for="edit-cover">Cover Image</label>
+            <div style="display: flex; gap: 0.8rem; align-items: center; margin-bottom: 0.5rem;">
+              <button class="stories-btn secondary" id="upload-cover-btn" type="button" style="padding: 0.5rem 1rem; font-size: 0.82rem; height: 36px; border-radius: var(--radius-sm); border: var(--border-editorial); background: transparent; cursor: pointer; display: flex; align-items: center; gap: 0.4rem; font-family: var(--font-sans); font-weight: 500;">
+                <i class="fa-solid fa-cloud-arrow-up"></i> Upload from Device
+              </button>
+              <input type="file" id="cover-image-uploader" accept="image/*" style="display: none;">
+              
+              <!-- Cover image thumbnail preview box -->
+              <div id="cover-preview-box" style="width: 55px; height: 36px; border-radius: var(--radius-sm); background: rgba(0,0,0,0.05); border: var(--border-editorial); display: none; overflow: hidden; align-items: center; justify-content: center;">
+                <img id="cover-preview-img" src="" style="width: 100%; height: 100%; object-fit: cover;">
+              </div>
+            </div>
+            
+            <input type="text" class="form-input" id="edit-cover" placeholder="Or paste web image URL here...">
           </div>
 
           <div class="form-checkbox-row" id="edit-featured-row">
