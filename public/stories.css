@@ -1500,3 +1500,132 @@
   display: none;
   margin-top: -0.5rem;
 }
+
+/* Medium-Style Editorial Layout Styles */
+.article-hero-massive-img-container {
+  width: 100%;
+  height: 75vh;
+  min-height: 500px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.article-hero-massive-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.article-hero-massive-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.8) 100%);
+  z-index: 2;
+}
+
+.article-hero-massive-content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 800px;
+  padding: 0 2rem;
+  color: white;
+  margin-top: auto;
+  margin-bottom: 4rem;
+}
+
+.article-hero-massive-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  color: white;
+  text-wrap: balance;
+}
+
+.reader-editorial-container {
+  max-width: 740px;
+  margin: -4rem auto 6rem;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 10;
+  background: var(--bg-editorial);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  padding-top: 4rem;
+}
+
+.premium-body p {
+  font-size: 1.25rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  color: #334155;
+}
+
+.premium-body h2 {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-heading);
+}
+
+.premium-body img {
+  border-radius: var(--radius-md);
+  margin: 3rem 0;
+  width: 100%;
+  box-shadow: var(--shadow-hover);
+}
+
+.premium-body .drop-cap::first-letter {
+  font-size: 4.5rem;
+  float: left;
+  line-height: 0.8;
+  padding-right: 0.5rem;
+  padding-top: 0.3rem;
+  color: var(--accent-blue);
+  font-family: var(--font-heading);
+  font-weight: 800;
+}
+
+/* Comment Section */
+.comment-card {
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.comment-name {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  color: var(--text-heading);
+}
+
+.comment-date {
+  font-size: 0.8rem;
+  color: rgba(15, 23, 42, 0.5);
+  font-family: var(--font-sans);
+}
+
+.comment-body {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #334155;
+}

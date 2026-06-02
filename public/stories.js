@@ -320,7 +320,7 @@ function renderHubGrid() {
           <div class="card-tags">${tagBadges}</div>
           <h2 class="featured-story-title">${featuredPost.title}</h2>
           <p class="featured-excerpt">${featuredPost.excerpt}</p>
-          <a href="?post=${featuredPost.slug}" class="read-article-link">Read article <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="#" onclick="event.preventDefault(); navigateTo('?post=${featuredPost.slug}');" class="read-article-link">Read article <i class="fa-solid fa-arrow-right"></i></a>
         </div>
       </article>
     `;
@@ -356,7 +356,7 @@ function renderHubGrid() {
           <div class="card-tags">${tagBadges}</div>
           <h3 class="post-title">${post.title}</h3>
           <p class="post-excerpt">${post.excerpt}</p>
-          <a href="?post=${post.slug}" class="read-article-link" style="margin-top: auto;">Read article <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="#" onclick="event.preventDefault(); navigateTo('?post=${post.slug}');" class="read-article-link" style="margin-top: auto;">Read article <i class="fa-solid fa-arrow-right"></i></a>
         </div>
       `;
       postsGridContainer.appendChild(card);
@@ -404,15 +404,22 @@ function renderArticle(post) {
     adminBar = document.createElement("div");
     adminBar.id = "reader-admin-control-bar";
     adminBar.className = "reader-admin-bar";
+    adminBar.style.position = "absolute";
+    adminBar.style.top = "20px";
+    adminBar.style.right = "20px";
+    adminBar.style.zIndex = "100";
+    adminBar.style.background = "rgba(0,0,0,0.6)";
+    adminBar.style.padding = "0.5rem 1rem";
+    adminBar.style.borderRadius = "99px";
+    adminBar.style.backdropFilter = "blur(10px)";
     adminBar.innerHTML = `
-      <span class="reader-admin-info"><i class="fa-solid fa-circle-user"></i> Administrative Controls</span>
-      <div class="reader-admin-actions">
-        <button class="reader-admin-btn edit" onclick="editStory('${post.slug}');"><i class="fa-solid fa-pen-to-square"></i> Edit Article</button>
-        <button class="reader-admin-btn delete" onclick="deleteStory('${post.slug}');"><i class="fa-solid fa-trash-can"></i> Delete Article</button>
+      <div class="reader-admin-actions" style="margin: 0;">
+        <button class="reader-admin-btn edit" onclick="editStory('${post.slug}');" style="color: white; border: none; background: transparent;"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
+        <button class="reader-admin-btn delete" onclick="deleteStory('${post.slug}');" style="color: #ef4444; border: none; background: transparent;"><i class="fa-solid fa-trash-can"></i> Delete</button>
       </div>
     `;
-    const hero = document.querySelector(".article-hero");
-    hero.parentNode.insertBefore(adminBar, hero);
+    const heroBg = document.getElementById("reader-hero-bg");
+    heroBg.appendChild(adminBar);
   }
 
   // Populate hero
@@ -424,11 +431,80 @@ function renderArticle(post) {
 
   // Populate tags
   const readerTagsEl = document.getElementById("reader-tags");
-  readerTagsEl.innerHTML = post.tags.map(t => `<span class="card-tag">${t}</span>`).join("");
+  readerTagsEl.innerHTML = post.tags.map(t => `<span class="card-tag" style="background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.4); backdrop-filter: blur(4px);">${t}</span>`).join("");
 
   // Populate HTML content body
   const bodyEl = document.getElementById("reader-content-body");
   bodyEl.innerHTML = post.content;
+  
+  // Set first paragraph class to drop-cap dynamically if it's long enough
+  const firstP = bodyEl.querySelector("p");
+  if (firstP && firstP.textContent.length > 5) {
+    firstP.classList.add("drop-cap");
+  }
+
+  // Handle Comments System
+  renderComments(post.slug);
+  
+  const submitCommentBtn = document.getElementById("submit-comment-btn");
+  submitCommentBtn.onclick = () => {
+    const name = document.getElementById("comment-name").value.trim();
+    const email = document.getElementById("comment-email").value.trim();
+    const text = document.getElementById("comment-text").value.trim();
+    
+    if (!name || !text) {
+      alert("Please provide at least your name and a comment.");
+      return;
+    }
+    
+    saveComment(post.slug, name, email, text);
+    document.getElementById("comment-name").value = "";
+    document.getElementById("comment-email").value = "";
+    document.getElementById("comment-text").value = "";
+    renderComments(post.slug);
+    
+    showToast("<i class='fa-solid fa-comment toast-icon' style='color:#10b981;'></i> Comment published!");
+  };
+
+  // GSAP Premium Animations
+  setTimeout(() => {
+    if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
+      gsap.registerPlugin(ScrollTrigger);
+      
+      // Parallax Hero Image
+      gsap.to("#reader-cover-image", {
+        yPercent: 30,
+        ease: "none",
+        scrollTrigger: {
+          trigger: "#reader-hero-bg",
+          start: "top top",
+          end: "bottom top",
+          scrub: true
+        }
+      });
+      
+      // Fade in article content gracefully
+      gsap.fromTo(".reader-editorial-container", 
+        { y: 60, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1, ease: "power3.out" }
+      );
+      
+      // Fade in paragraphs on scroll
+      gsap.utils.toArray(".premium-body p, .premium-body h2, .premium-body img").forEach(element => {
+        gsap.fromTo(element, 
+          { y: 30, opacity: 0 },
+          { 
+            y: 0, opacity: 1, duration: 0.8, ease: "power2.out",
+            scrollTrigger: {
+              trigger: element,
+              start: "top 85%",
+              toggleActions: "play none none reverse"
+            }
+          }
+        );
+      });
+    }
+  }, 100);
 
   // Scan content headings and inject anchor ids to build Table of Contents (ToC)
   setupHeadingsAndToC(bodyEl);
@@ -853,12 +929,16 @@ function initWriterCMS() {
     
     // Reset global editing state
     editingSlug = null;
+    clearDraftState();
 
     // Reload RAM entries
     loadAndMergeStories();
 
-    // Trigger Developer Code Export Modal
-    triggerCodeExporter(newPost);
+    // Route directly to the newly published story and show success toast
+    navigateTo(`?post=${finalSlug}`);
+    setTimeout(() => {
+      showToast("<i class='fa-solid fa-check-circle toast-icon' style='color:#10b981;'></i> Story published successfully!");
+    }, 500);
   });
 
   // MODAL BUTTON ACTIONS
@@ -1295,4 +1375,61 @@ function showToast(message) {
       toastEl.classList.remove("active");
     }, 3500);
   }
+}
+
+/**
+ * ----------------------------------------------------
+ * Stage 4: COMMENTS SYSTEM 
+ * ----------------------------------------------------
+ */
+
+function saveComment(slug, name, email, text) {
+  const raw = localStorage.getItem("article_comments");
+  let comments = {};
+  if (raw) {
+    try { comments = JSON.parse(raw); } catch (e) {}
+  }
+  
+  if (!comments[slug]) {
+    comments[slug] = [];
+  }
+  
+  comments[slug].unshift({
+    name,
+    email,
+    text,
+    date: new Date().toISOString()
+  });
+  
+  localStorage.setItem("article_comments", JSON.stringify(comments));
+}
+
+function renderComments(slug) {
+  const feed = document.getElementById("comments-feed");
+  const countSpan = document.getElementById("comment-count");
+  if (!feed || !countSpan) return;
+  
+  const raw = localStorage.getItem("article_comments");
+  let comments = {};
+  if (raw) {
+    try { comments = JSON.parse(raw); } catch (e) {}
+  }
+  
+  const articleComments = comments[slug] || [];
+  countSpan.textContent = articleComments.length;
+  
+  if (articleComments.length === 0) {
+    feed.innerHTML = `<p style="color: rgba(15,23,42,0.5); font-style: italic;">No responses yet. Be the first to share your thoughts.</p>`;
+    return;
+  }
+  
+  feed.innerHTML = articleComments.map(c => `
+    <div class="comment-card">
+      <div class="comment-header">
+        <span class="comment-name"><i class="fa-solid fa-circle-user" style="color: var(--accent-blue); margin-right: 6px;"></i> ${c.name}</span>
+        <span class="comment-date">${formatDate(c.date.split("T")[0])}</span>
+      </div>
+      <p class="comment-body">${c.text.replace(/\n/g, '<br>')}</p>
+    </div>
+  `).join("");
 }

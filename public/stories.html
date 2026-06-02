@@ -104,61 +104,79 @@
   </main>
 
 
-  <!-- SINGLE ARTICLE READER VIEW -->
+  <!-- SINGLE ARTICLE READER VIEW (Medium Style Redesign) -->
   <main class="main-content view-section" id="reader-view" style="display: none;">
-    <div class="reader-container">
-      <a href="#" class="reader-back-btn" id="close-reader-btn">
-        <i class="fa-solid fa-arrow-left"></i> Back to Stories
-      </a>
-
-      <!-- Article Header -->
-      <header class="article-hero">
-        <div class="card-tags" style="justify-content: center;" id="reader-tags">
+    
+    <!-- Massive Full-width Hero Image -->
+    <div class="article-hero-massive-img-container" id="reader-hero-bg">
+      <img src="" alt="Cover Image" class="article-hero-massive-img" id="reader-cover-image">
+      <div class="article-hero-massive-overlay"></div>
+      
+      <div class="article-hero-massive-content">
+        <a href="#" class="reader-back-btn" id="close-reader-btn" style="color: white; border-color: rgba(255,255,255,0.3);">
+          <i class="fa-solid fa-arrow-left"></i> Back to Stories
+        </a>
+        <div class="card-tags" style="justify-content: flex-start; margin-top: 2rem;" id="reader-tags">
           <!-- Tags go here -->
         </div>
-        <h1 class="article-hero-title" id="reader-title">Article Title</h1>
+        <h1 class="article-hero-massive-title" id="reader-title">Article Title</h1>
         
-        <div class="article-hero-meta">
-          <span id="reader-date"><i class="fa-regular fa-calendar" style="margin-right: 6px;"></i> Date</span>
-          <span id="reader-reading-time"><i class="fa-regular fa-clock" style="margin-right: 6px;"></i> Time</span>
-        </div>
-
-        <div class="article-hero-img-container">
-          <img src="" alt="Cover Image" class="article-hero-img" id="reader-cover-image">
-        </div>
-      </header>
-
-      <!-- Workspace layout: Sidebar (ToC) + Right Body -->
-      <section class="article-workspace">
-        <aside class="reader-sidebar">
-          
-          <div class="sidebar-widget">
-            <h4 class="widget-title">Table of Contents</h4>
-            <nav>
-              <ul class="toc-list" id="reader-toc-list">
-                <!-- Dynamically generated based on headers -->
-              </ul>
-            </nav>
-          </div>
-
-          <div class="sidebar-widget">
-            <h4 class="widget-title">Share Article</h4>
-            <div style="display: flex; gap: 0.8rem;">
-              <a href="#" class="social-icon" style="width: 36px; height: 36px;" onclick="alert('Link copied to clipboard!'); return false;"><i class="fa-solid fa-link"></i></a>
-              <a href="https://twitter.com" target="_blank" class="social-icon" style="width: 36px; height: 36px;"><i class="fa-brands fa-x-twitter"></i></a>
-              <a href="https://linkedin.com" target="_blank" class="social-icon" style="width: 36px; height: 36px;"><i class="fa-brands fa-linkedin-in"></i></a>
+        <div class="article-hero-massive-meta">
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <img src="assets/images/jabess_headshot.jpg" alt="Jabess Omane" style="width: 48px; height: 48px; border-radius: 50%; border: 2px solid white; object-fit: cover;">
+            <div style="display: flex; flex-direction: column;">
+              <span style="font-weight: 600; font-family: var(--font-sans); font-size: 1.1rem;">Jabess Omane</span>
+              <div style="display: flex; gap: 1rem; opacity: 0.8; font-size: 0.9rem;">
+                <span id="reader-date"><i class="fa-regular fa-calendar"></i> Date</span>
+                <span id="reader-reading-time"><i class="fa-regular fa-clock"></i> Time</span>
+              </div>
             </div>
           </div>
-        </aside>
+        </div>
+      </div>
+    </div>
 
-        <!-- Right Side Article Content -->
-        <article class="article-body" id="reader-content-body">
-          <!-- Dynamically generated HTML content goes here -->
-        </article>
+    <!-- Centered Editorial Content -->
+    <div class="reader-editorial-container">
+      
+      <!-- Right Side Article Content -->
+      <article class="article-body premium-body" id="reader-content-body">
+        <!-- Dynamically generated HTML content goes here -->
+      </article>
+
+      <!-- Share & Navigation Footer -->
+      <div class="article-editorial-footer">
+        <div class="share-row">
+          <h4 style="font-family: var(--font-sans); margin-right: 1rem; color: var(--text-heading);">Share this piece:</h4>
+          <a href="#" class="social-icon" style="width: 44px; height: 44px; border-radius: 50%;" onclick="event.preventDefault(); navigator.clipboard.writeText(window.location.href); alert('Link copied to clipboard!');"><i class="fa-solid fa-link"></i></a>
+          <a href="#" class="social-icon" style="width: 44px; height: 44px; border-radius: 50%;"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" class="social-icon" style="width: 44px; height: 44px; border-radius: 50%;"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <!-- NEW COMMENT SECTION -->
+      <section class="comments-section" id="comments-section" style="margin-top: 4rem; padding-top: 3rem; border-top: 1px solid rgba(0,0,0,0.1);">
+        <h3 class="comments-title" style="font-family: var(--font-heading); font-size: 2rem; margin-bottom: 2rem; color: var(--text-heading);">Responses (<span id="comment-count">0</span>)</h3>
+        
+        <div class="comment-form-container" style="background: white; padding: 2rem; border-radius: var(--radius-md); box-shadow: var(--shadow-editorial); margin-bottom: 3rem;">
+          <h4 style="margin-top: 0; font-family: var(--font-sans); margin-bottom: 1.5rem; color: var(--accent-blue);">Leave a response</h4>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+            <input type="text" id="comment-name" class="form-input" placeholder="Your Name (Required)" required style="background: var(--bg-editorial);">
+            <input type="email" id="comment-email" class="form-input" placeholder="Your Email (Optional)" style="background: var(--bg-editorial);">
+          </div>
+          <textarea id="comment-text" class="form-input" placeholder="What are your thoughts?" rows="4" required style="background: var(--bg-editorial); margin-bottom: 1rem; resize: vertical;"></textarea>
+          <div style="display: flex; justify-content: flex-end;">
+            <button id="submit-comment-btn" class="stories-btn" style="border-radius: 99px; padding: 0.6rem 2rem;">Publish</button>
+          </div>
+        </div>
+        
+        <div class="comments-feed" id="comments-feed" style="display: flex; flex-direction: column; gap: 2rem;">
+          <!-- Comments render here -->
+        </div>
       </section>
 
       <!-- Bottom Navigation Footer (Prev/Next) -->
-      <footer class="article-navigation" id="reader-navigation">
+      <footer class="article-navigation" id="reader-navigation" style="margin-top: 4rem;">
         <!-- Dynamically rendered prev/next cards -->
       </footer>
     </div>
@@ -369,6 +387,10 @@
       }
     });
   </script>
+  
+  <!-- Add GSAP for wild animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </body>
 
 </html>
