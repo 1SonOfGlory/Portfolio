@@ -17,7 +17,7 @@ const hubView = document.getElementById("hub-view");
 const readerView = document.getElementById("reader-view");
 const writerView = document.getElementById("writer-view");
 
-const searchBox = document.getElementById("search-box");
+const searchBox = document.getElementById("story-finder-input");
 const tagsFilterBar = document.getElementById("tags-filter-bar");
 const featuredContainer = document.getElementById("featured-story-container");
 const postsGridContainer = document.getElementById("posts-grid-container");
@@ -202,11 +202,19 @@ function handleRouting() {
  */
 
 function initHubControls() {
+  // Force clear the search box on load in case of aggressive browser memory
+  if (searchBox) {
+    searchBox.value = "";
+    searchQuery = "";
+  }
+
   // Search box live input filter
-  searchBox.addEventListener("input", (e) => {
-    searchQuery = e.target.value.toLowerCase().trim();
-    renderHubGrid();
-  });
+  if (searchBox) {
+    searchBox.addEventListener("input", (e) => {
+      searchQuery = e.target.value.toLowerCase().trim();
+      renderHubGrid();
+    });
+  }
 }
 
 function renderHub() {
