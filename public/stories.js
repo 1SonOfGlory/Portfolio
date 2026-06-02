@@ -651,6 +651,30 @@ function initWriterCMS() {
     });
   });
 
+  // FONT SIZE SELECTOR
+  const fontSizeSelect = document.getElementById("font-size-select");
+  if (fontSizeSelect) {
+    fontSizeSelect.addEventListener("change", (e) => {
+      document.execCommand("fontSize", false, e.target.value);
+      editorArea.focus();
+      syncEditorToPreview();
+      saveDraftState();
+    });
+  }
+
+  // TRACE AI: BEHAVIORAL AUDIT TRACKING
+  let traceSession = {
+    startTime: Date.now(),
+    keystrokes: 0,
+    backspaces: 0,
+    pastes: []
+  };
+
+  editorArea.addEventListener("keydown", (e) => {
+    if (e.key === "Backspace") traceSession.backspaces++;
+    else if (e.key.length === 1) traceSession.keystrokes++;
+  });
+
   // INSERT IMAGE URL POPUP
   insertImgBtn.addEventListener("click", (e) => {
     e.preventDefault();
@@ -787,6 +811,12 @@ function initWriterCMS() {
     // Simple text paste sanitation to keep layout pristine
     e.preventDefault();
     const text = (e.originalEvent || e).clipboardData.getData('text/plain');
+    
+    // Trace AI Tracking
+    if (text.length > 5) {
+      traceSession.pastes.push(text.trim());
+    }
+    
     document.execCommand("insertHTML", false, text.replace(/\n/g, '<br>'));
     
     syncEditorToPreview();
@@ -819,6 +849,75 @@ function initWriterCMS() {
     
     const finalSlug = editingSlug || generatedSlug;
 
+    // Trace AI Audit Generation
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = contentVal;
+    
+    let pastedChars = 0;
+    
+    const walker = document.createTreeWalker(tempDiv, NodeFilter.SHOW_TEXT, null, false);
+    const textNodes = [];
+    while (walker.nextNode()) textNodes.push(walker.currentNode);
+    
+    traceSession.pastes.forEach(pasteStr => {
+      if (!pasteStr || pasteStr.trim().length < 5) return;
+      pastedChars += pasteStr.length;
+      
+      textNodes.forEach(node => {
+        if (node.nodeValue.includes(pasteStr)) {
+          const parts = node.nodeValue.split(pasteStr);
+          const fragment = document.createDocumentFragment();
+          parts.forEach((part, i) => {
+            fragment.appendChild(document.createTextNode(part));
+            if (i < parts.length - 1) {
+              const span = document.createElement('span');
+              span.style.cssText = "background: #fecaca; color: #991b1b; padding: 2px 4px; border-radius: 3px;";
+              span.textContent = pasteStr;
+              fragment.appendChild(span);
+            }
+          });
+          node.parentNode.replaceChild(fragment, node);
+        }
+      });
+    });
+    
+    const totalCharsText = tempDiv.textContent.length || 1;
+    const aiPercentage = Math.min(100, Math.round((pastedChars / totalCharsText) * 100));
+    
+    tempDiv.querySelectorAll('blockquote, a').forEach(el => {
+      el.style.cssText += "color: #2563eb; border-left-color: #2563eb; background: #eff6ff;";
+    });
+
+    const traceAuditHtml = `
+      <div style="margin-top: 4rem; text-align: center;">
+        <button onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'block' ? 'none' : 'block';" class="stories-btn secondary" style="font-family: var(--font-mono); font-size: 0.8rem; background: #f8fafc; color: #475569; border: 1px solid #cbd5e1;">
+          <i class="fa-solid fa-microscope"></i> Inspect Authenticity
+        </button>
+        <div class="trace-audit-container" style="display: none; text-align: left; margin-top: 1.5rem; padding: 2rem; background: #fafafa; border-radius: 8px; border: 1px solid #e2e8f0;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+            <h3 style="margin: 0; font-family: var(--font-heading); color: #0f172a;"><i class="fa-solid fa-shield-halved" style="color: #3b82f6;"></i> Trace AI Audit</h3>
+            <span style="background: ${aiPercentage > 50 ? '#fee2e2' : '#dcfce7'}; color: ${aiPercentage > 50 ? '#991b1b' : '#166534'}; padding: 4px 10px; border-radius: 20px; font-weight: 600; font-size: 0.85rem;">
+              ${aiPercentage}% AI/Copied
+            </span>
+          </div>
+          <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1.5rem;">
+            This report visualizes the writing behavior of the author. <span style="background: #fecaca; color: #991b1b; padding: 2px 4px; border-radius: 3px; font-weight: 600;">Red</span> highlights indicate pasted text. <span style="background: #dcfce7; color: #166534; padding: 2px 4px; border-radius: 3px; font-weight: 600;">Green</span> indicates human-typed content. <span style="color: #2563eb; font-weight: 600;">Blue</span> indicates references or quotes.
+          </p>
+          <div class="trace-audit-content" style="font-family: monospace; font-size: 0.85rem; line-height: 1.6; color: #166534; background: #f0fdf4; padding: 1.5rem; border-radius: 6px;">
+            ${tempDiv.innerHTML}
+          </div>
+          <div style="margin-top: 1.5rem; border-top: 1px solid #e2e8f0; padding-top: 1rem; font-size: 0.8rem; color: #94a3b8; display: flex; gap: 1rem;">
+            <span><i class="fa-regular fa-keyboard"></i> ${traceSession.keystrokes} Keystrokes</span>
+            <span><i class="fa-solid fa-delete-left"></i> ${traceSession.backspaces} Corrections</span>
+            <span><i class="fa-solid fa-paste"></i> ${traceSession.pastes.length} Pastes</span>
+            <span><i class="fa-regular fa-clock"></i> ${Math.round((Date.now() - traceSession.startTime) / 60000)} min elapsed</span>
+          </div>
+        </div>
+      </div>
+    `;
+    
+    const finalContentVal = contentVal + traceAuditHtml;
+
     // Create New Post Object
     const newPost = {
       slug: finalSlug,
@@ -829,7 +928,7 @@ function initWriterCMS() {
       publishedAt: new Date().toISOString().split("T")[0],
       readingTime: readingTimeStr,
       featured: isFeatured,
-      content: contentVal
+      content: finalContentVal
     };
 
     // Save permanently to local storage

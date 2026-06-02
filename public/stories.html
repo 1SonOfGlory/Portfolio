@@ -273,15 +273,21 @@
               <div class="toolbar-separator"></div>
               
               <!-- Font Selection Toggler -->
-              <div class="font-selector-wrapper">
+              <div class="font-selector-wrapper" style="display: flex; gap: 0.5rem; align-items: center;">
                 <button class="font-select-trigger" id="font-family-toggle" title="Change Writing Typography">
                   <i class="fa-solid fa-font"></i> <span id="active-font-name">Editorial Serif</span>
                 </button>
+                <select id="font-size-select" class="font-select-trigger" style="background: transparent; border: 1px solid rgba(0,0,0,0.1); border-radius: 4px; padding: 2px 5px; cursor: pointer; font-size: 0.8rem; color: var(--text-muted); outline: none;" title="Font Size">
+                  <option value="1">Small</option>
+                  <option value="3" selected>Normal</option>
+                  <option value="5">Large</option>
+                  <option value="7">Huge</option>
+                </select>
               </div>
             </div>
 
             <!-- WYSIWYG Editable Document Area -->
-            <div class="editor-textarea font-serif" id="edit-content" contenteditable="true" placeholder="Start typing your long-form essay here...">
+            <div class="editor-textarea font-serif" id="edit-content" contenteditable="true" spellcheck="true" lang="en" placeholder="Start typing your long-form essay here...">
               <p>Start typing your long-form essay here...</p>
             </div>
           </div>
