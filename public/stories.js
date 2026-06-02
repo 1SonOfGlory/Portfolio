@@ -57,6 +57,7 @@ function loadAndMergeStories() {
   if (localStoriesRaw) {
     try {
       localStories = JSON.parse(localStoriesRaw);
+      if (!Array.isArray(localStories)) localStories = [];
     } catch (e) {
       console.error("Error parsing local stories:", e);
       localStories = [];
@@ -908,6 +909,7 @@ function initWriterCMS() {
     if (localStoriesRaw) {
       try {
         localStories = JSON.parse(localStoriesRaw);
+        if (!Array.isArray(localStories)) localStories = [];
       } catch (e) {
         localStories = [];
       }
