@@ -850,73 +850,79 @@ function initWriterCMS() {
     const finalSlug = editingSlug || generatedSlug;
 
     // Trace AI Audit Generation
-    const tempDiv = document.createElement('div');
-    tempDiv.innerHTML = contentVal;
-    
-    let pastedChars = 0;
-    
-    traceSession.pastes.forEach(pasteStr => {
-      if (!pasteStr || pasteStr.trim().length < 5) return;
-      pastedChars += pasteStr.length;
+    let traceAuditHtml = "";
+    try {
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = contentVal;
       
-      const walker = document.createTreeWalker(tempDiv, NodeFilter.SHOW_TEXT, null, false);
-      const nodesToReplace = [];
-      while (walker.nextNode()) {
-        if (walker.currentNode.nodeValue.includes(pasteStr)) {
-          nodesToReplace.push(walker.currentNode);
-        }
-      }
+      let pastedChars = 0;
       
-      nodesToReplace.forEach(node => {
-        const parts = node.nodeValue.split(pasteStr);
-        const fragment = document.createDocumentFragment();
-        parts.forEach((part, i) => {
-          fragment.appendChild(document.createTextNode(part));
-          if (i < parts.length - 1) {
-            const span = document.createElement('span');
-            span.style.cssText = "background: #fecaca; color: #991b1b; padding: 2px 4px; border-radius: 3px;";
-            span.textContent = pasteStr;
-            fragment.appendChild(span);
+      traceSession.pastes.forEach(pasteStr => {
+        if (!pasteStr || pasteStr.trim().length < 5) return;
+        pastedChars += pasteStr.length;
+        
+        const walker = document.createTreeWalker(tempDiv, NodeFilter.SHOW_TEXT, null, false);
+        const nodesToReplace = [];
+        while (walker.nextNode()) {
+          if (walker.currentNode.nodeValue.includes(pasteStr)) {
+            nodesToReplace.push(walker.currentNode);
           }
+        }
+        
+        nodesToReplace.forEach(node => {
+          const parts = node.nodeValue.split(pasteStr);
+          const fragment = document.createDocumentFragment();
+          parts.forEach((part, i) => {
+            fragment.appendChild(document.createTextNode(part));
+            if (i < parts.length - 1) {
+              const span = document.createElement('span');
+              span.style.cssText = "background: #fecaca; color: #991b1b; padding: 2px 4px; border-radius: 3px;";
+              span.textContent = pasteStr;
+              fragment.appendChild(span);
+            }
+          });
+          node.parentNode.replaceChild(fragment, node);
         });
-        node.parentNode.replaceChild(fragment, node);
       });
-    });
-    
-    const totalCharsText = tempDiv.textContent.length || 1;
-    const aiPercentage = Math.min(100, Math.round((pastedChars / totalCharsText) * 100));
-    
-    tempDiv.querySelectorAll('blockquote, a').forEach(el => {
-      el.style.cssText += "color: #2563eb; border-left-color: #2563eb; background: #eff6ff;";
-    });
+      
+      const totalCharsText = tempDiv.textContent.length || 1;
+      const aiPercentage = Math.min(100, Math.round((pastedChars / totalCharsText) * 100));
+      
+      tempDiv.querySelectorAll('blockquote, a').forEach(el => {
+        el.style.cssText += "color: #2563eb; border-left-color: #2563eb; background: #eff6ff;";
+      });
 
-    const traceAuditHtml = `
-      <div style="margin-top: 4rem; text-align: center;">
-        <button onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'block' ? 'none' : 'block';" class="stories-btn secondary" style="font-family: var(--font-mono); font-size: 0.8rem; background: #f8fafc; color: #475569; border: 1px solid #cbd5e1;">
-          <i class="fa-solid fa-microscope"></i> Inspect Authenticity
-        </button>
-        <div class="trace-audit-container" style="display: none; text-align: left; margin-top: 1.5rem; padding: 2rem; background: #fafafa; border-radius: 8px; border: 1px solid #e2e8f0;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-            <h3 style="margin: 0; font-family: var(--font-heading); color: #0f172a;"><i class="fa-solid fa-shield-halved" style="color: #3b82f6;"></i> Trace AI Audit</h3>
-            <span style="background: ${aiPercentage > 50 ? '#fee2e2' : '#dcfce7'}; color: ${aiPercentage > 50 ? '#991b1b' : '#166534'}; padding: 4px 10px; border-radius: 20px; font-weight: 600; font-size: 0.85rem;">
-              ${aiPercentage}% AI/Copied
-            </span>
-          </div>
-          <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1.5rem;">
-            This report visualizes the writing behavior of the author. <span style="background: #fecaca; color: #991b1b; padding: 2px 4px; border-radius: 3px; font-weight: 600;">Red</span> highlights indicate pasted text. <span style="background: #dcfce7; color: #166534; padding: 2px 4px; border-radius: 3px; font-weight: 600;">Green</span> indicates human-typed content. <span style="color: #2563eb; font-weight: 600;">Blue</span> indicates references or quotes.
-          </p>
-          <div class="trace-audit-content" style="font-family: monospace; font-size: 0.85rem; line-height: 1.6; color: #166534; background: #f0fdf4; padding: 1.5rem; border-radius: 6px;">
-            ${tempDiv.innerHTML}
-          </div>
-          <div style="margin-top: 1.5rem; border-top: 1px solid #e2e8f0; padding-top: 1rem; font-size: 0.8rem; color: #94a3b8; display: flex; gap: 1rem;">
-            <span><i class="fa-regular fa-keyboard"></i> ${traceSession.keystrokes} Keystrokes</span>
-            <span><i class="fa-solid fa-delete-left"></i> ${traceSession.backspaces} Corrections</span>
-            <span><i class="fa-solid fa-paste"></i> ${traceSession.pastes.length} Pastes</span>
-            <span><i class="fa-regular fa-clock"></i> ${Math.round((Date.now() - traceSession.startTime) / 60000)} min elapsed</span>
+      traceAuditHtml = `
+        <div style="margin-top: 4rem; text-align: center;">
+          <button onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'block' ? 'none' : 'block';" class="stories-btn secondary" style="font-family: var(--font-mono); font-size: 0.8rem; background: #f8fafc; color: #475569; border: 1px solid #cbd5e1;">
+            <i class="fa-solid fa-microscope"></i> Inspect Authenticity
+          </button>
+          <div class="trace-audit-container" style="display: none; text-align: left; margin-top: 1.5rem; padding: 2rem; background: #fafafa; border-radius: 8px; border: 1px solid #e2e8f0;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+              <h3 style="margin: 0; font-family: var(--font-heading); color: #0f172a;"><i class="fa-solid fa-shield-halved" style="color: #3b82f6;"></i> Trace AI Audit</h3>
+              <span style="background: ${aiPercentage > 50 ? '#fee2e2' : '#dcfce7'}; color: ${aiPercentage > 50 ? '#991b1b' : '#166534'}; padding: 4px 10px; border-radius: 20px; font-weight: 600; font-size: 0.85rem;">
+                ${aiPercentage || 0}% AI/Copied
+              </span>
+            </div>
+            <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1.5rem;">
+              This report visualizes the writing behavior of the author. <span style="background: #fecaca; color: #991b1b; padding: 2px 4px; border-radius: 3px; font-weight: 600;">Red</span> highlights indicate pasted text. <span style="background: #dcfce7; color: #166534; padding: 2px 4px; border-radius: 3px; font-weight: 600;">Green</span> indicates human-typed content. <span style="color: #2563eb; font-weight: 600;">Blue</span> indicates references or quotes.
+            </p>
+            <div class="trace-audit-content" style="font-family: monospace; font-size: 0.85rem; line-height: 1.6; color: #166534; background: #f0fdf4; padding: 1.5rem; border-radius: 6px;">
+              ${tempDiv.innerHTML}
+            </div>
+            <div style="margin-top: 1.5rem; border-top: 1px solid #e2e8f0; padding-top: 1rem; font-size: 0.8rem; color: #94a3b8; display: flex; gap: 1rem;">
+              <span><i class="fa-regular fa-keyboard"></i> ${traceSession.keystrokes} Keystrokes</span>
+              <span><i class="fa-solid fa-delete-left"></i> ${traceSession.backspaces} Corrections</span>
+              <span><i class="fa-solid fa-paste"></i> ${traceSession.pastes.length} Pastes</span>
+              <span><i class="fa-regular fa-clock"></i> ${Math.max(1, Math.round((Date.now() - traceSession.startTime) / 60000))} min elapsed</span>
+            </div>
           </div>
         </div>
-      </div>
-    `;
+      `;
+    } catch (err) {
+      console.error("Trace AI Failed:", err);
+      traceAuditHtml = `<!-- Trace AI generation failed for this article -->`;
+    }
     
     const finalContentVal = contentVal + traceAuditHtml;
 
