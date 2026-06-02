@@ -855,29 +855,31 @@ function initWriterCMS() {
     
     let pastedChars = 0;
     
-    const walker = document.createTreeWalker(tempDiv, NodeFilter.SHOW_TEXT, null, false);
-    const textNodes = [];
-    while (walker.nextNode()) textNodes.push(walker.currentNode);
-    
     traceSession.pastes.forEach(pasteStr => {
       if (!pasteStr || pasteStr.trim().length < 5) return;
       pastedChars += pasteStr.length;
       
-      textNodes.forEach(node => {
-        if (node.nodeValue.includes(pasteStr)) {
-          const parts = node.nodeValue.split(pasteStr);
-          const fragment = document.createDocumentFragment();
-          parts.forEach((part, i) => {
-            fragment.appendChild(document.createTextNode(part));
-            if (i < parts.length - 1) {
-              const span = document.createElement('span');
-              span.style.cssText = "background: #fecaca; color: #991b1b; padding: 2px 4px; border-radius: 3px;";
-              span.textContent = pasteStr;
-              fragment.appendChild(span);
-            }
-          });
-          node.parentNode.replaceChild(fragment, node);
+      const walker = document.createTreeWalker(tempDiv, NodeFilter.SHOW_TEXT, null, false);
+      const nodesToReplace = [];
+      while (walker.nextNode()) {
+        if (walker.currentNode.nodeValue.includes(pasteStr)) {
+          nodesToReplace.push(walker.currentNode);
         }
+      }
+      
+      nodesToReplace.forEach(node => {
+        const parts = node.nodeValue.split(pasteStr);
+        const fragment = document.createDocumentFragment();
+        parts.forEach((part, i) => {
+          fragment.appendChild(document.createTextNode(part));
+          if (i < parts.length - 1) {
+            const span = document.createElement('span');
+            span.style.cssText = "background: #fecaca; color: #991b1b; padding: 2px 4px; border-radius: 3px;";
+            span.textContent = pasteStr;
+            fragment.appendChild(span);
+          }
+        });
+        node.parentNode.replaceChild(fragment, node);
       });
     });
     
