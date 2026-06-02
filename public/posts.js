@@ -2,7 +2,7 @@
 // To add new articles, simply append objects to the bottom of this array.
 const POSTS = [
   {
-    slug: "the-ai-safety-problem-is-not-technical-its-institutional",
+    slug: "the-ai-safety-problem-is-not-technical-its-institutional-v2",
     title: "The AI Safety Problem Is Not Technical. It’s Institutional.",
     excerpt: "Why alignment is primarily a crisis of human coordination, institutional design, and regulatory capture rather than a mathematical or algorithmic bottleneck.",
     tags: ["AI Safety", "Governance", "Policy"],
@@ -46,7 +46,7 @@ const POSTS = [
     `
   },
   {
-    slug: "the-african-algorithmic-accountability-imperative",
+    slug: "the-african-algorithmic-accountability-imperative-v2",
     title: "The African Algorithmic Accountability Imperative",
     excerpt: "Exploring why Western-centric algorithmic fairness audits fail in emerging economies, and the urgent necessity of explainability, native dialect representation, and actionable recourse.",
     tags: ["Governance", "Policy", "Ethics"],
@@ -90,7 +90,7 @@ const POSTS = [
     `
   },
   {
-    slug: "electoral-integrity-in-the-age-of-generative-disinformation",
+    slug: "electoral-integrity-in-the-age-of-generative-disinformation-v2",
     title: "Electoral Integrity in the Age of Generative Disinformation",
     excerpt: "Analyzing how multi-dialect deepfakes and rapid-fire social streams challenge traditional trust structures, and how real-time NLP pipelines safeguard democratic processes.",
     tags: ["AI Safety", "Ethics", "Case Studies"],
