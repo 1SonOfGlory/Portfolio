@@ -507,8 +507,7 @@ function renderArticle(post) {
     }
   }, 100);
 
-  // Scan content headings and inject anchor ids to build Table of Contents (ToC)
-  setupHeadingsAndToC(bodyEl);
+  // Table of Contents has been removed in the new Editorial Design
 
   // Hook into Share Link Button inside Sidebar dynamically to copy absolute shareable URL
   const shareLinkBtn = document.querySelector(".reader-sidebar a.social-icon[onclick]");
@@ -531,76 +530,6 @@ function renderArticle(post) {
 
   // Set up Previous/Next Article bottom navigation cards
   renderPagination(post);
-}
-
-/**
- * Scans generated elements in the article, injects anchor ids, and builds
- * an interactive dynamic Table of Contents sidebar.
- */
-function setupHeadingsAndToC(bodyEl) {
-  const headings = bodyEl.querySelectorAll("h2, h3");
-  const tocListEl = document.getElementById("reader-toc-list");
-  tocListEl.innerHTML = "";
-
-  if (headings.length === 0) {
-    document.querySelector(".sidebar-widget").style.display = "none";
-    return;
-  }
-  document.querySelector(".sidebar-widget").style.display = "block";
-
-  headings.forEach((heading, index) => {
-    // Generate clean id
-    const cleanId = `heading-anchor-${index}`;
-    heading.setAttribute("id", cleanId);
-
-    // Create sidebar link
-    const li = document.createElement("li");
-    const link = document.createElement("a");
-    link.href = `#${cleanId}`;
-    link.className = `toc-link ${heading.tagName === "H3" ? 'sub-heading' : ''}`;
-    link.style.paddingLeft = heading.tagName === "H3" ? "12px" : "0px";
-    link.style.fontSize = heading.tagName === "H3" ? "0.8rem" : "0.85rem";
-    link.textContent = heading.textContent;
-    
-    // Smooth scroll event
-    link.addEventListener("click", (e) => {
-      e.preventDefault();
-      heading.scrollIntoView({ behavior: "smooth", block: "center" });
-    });
-
-    li.appendChild(link);
-    tocListEl.appendChild(li);
-  });
-
-  // Setup Scroll Observer for active heading highlight
-  setupToCScrollObserver(headings);
-}
-
-/**
- * Highlights ToC items dynamically as their related headings are scrolled into view.
- */
-function setupToCScrollObserver(headings) {
-  const observerOptions = {
-    root: null,
-    rootMargin: "-10% 0px -65% 0px", // Focus highlight center viewport
-    threshold: 0
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.getAttribute("id");
-        document.querySelectorAll(".toc-link").forEach(link => {
-          link.classList.remove("active");
-          if (link.getAttribute("href") === `#${id}`) {
-            link.classList.add("active");
-          }
-        });
-      }
-    });
-  }, observerOptions);
-
-  headings.forEach(h => observer.observe(h));
 }
 
 /**
