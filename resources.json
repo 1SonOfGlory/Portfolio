@@ -1,0 +1,112 @@
+[
+  {
+    "url": "https://www.youtube.com/watch?v=B6lBtiQZSho",
+    "kind": "talk",
+    "title": "Why Specializing Early Doesn't Always Mean Career Success"
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=EcMKLwVlpJk",
+    "kind": "talk",
+    "title": "Outliers: Why Some People Succeed and Some Don't"
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=UF8uR6Z6KLc",
+    "kind": "talk",
+    "title": "Steve Jobs' 2005 Stanford Commencement Address"
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=0FGlsuTnt_U",
+    "kind": "talk",
+    "title": "Mark Rober's Address to MIT Class of 2023"
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=6PuAoPrh-jc",
+    "kind": "talk",
+    "title": "Ashesi Commencement 2025 Address"
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=W-ONEAcBeTk",
+    "kind": "talk",
+    "title": "Grit: The Power of Passion and Perseverance"
+  },
+  {
+    "url": "https://books.google.com.gh/books/about/Fundamental_Research_Statistics_for_the.html?id=Fe8vAAAAMAAJ",
+    "kind": "paper",
+    "title": "Fundamental Research Statistics for the Behavioural Sciences"
+  },
+  {
+    "url": "https://link.springer.com/book/10.1007/978-3-662-49349-6",
+    "kind": "paper",
+    "title": "Statistics for Non-Statisticians"
+  },
+  {
+    "url": "https://arxiv.org/pdf/1903.10075",
+    "kind": "paper",
+    "title": "Machine Learning Methods Economists Should Know"
+  },
+  {
+    "url": "https://maxkasy.github.io/home/files/papers/fairness_equality_power.pdf",
+    "kind": "paper",
+    "title": "Fairness, Equality, and Power in Algorithmic Decision-Making"
+  },
+  {
+    "url": "https://dash.harvard.edu/server/api/core/bitstreams/db500414-5822-4228-bd0a-f559a30fcf3c/content",
+    "kind": "paper",
+    "title": "Undergraduate Fundamentals of Machine Learning"
+  },
+  {
+    "url": "https://fairmlbook.org/",
+    "kind": "paper",
+    "title": "Fairness and Machine Learning: Limitations and Opportunities"
+  },
+  {
+    "url": "https://arxiv.org/pdf/2005.06540",
+    "kind": "paper",
+    "title": "Deep Learning for Political Science"
+  },
+  {
+    "url": "https://developers.google.com/machine-learning/crash-course",
+    "kind": "course",
+    "title": "Google ML Crash Course"
+  },
+  {
+    "url": "https://www.skills.google/collections/deepmind",
+    "kind": "course",
+    "title": "AI Research Foundation"
+  },
+  {
+    "url": "https://ml4publicpolicy.com/",
+    "kind": "course",
+    "title": "Machine Learning for Public Policy"
+  },
+  {
+    "url": "https://r4ds.hadley.nz/",
+    "kind": "course",
+    "title": "R for Data Science"
+  },
+  {
+    "url": "https://openintro.org/",
+    "kind": "course",
+    "title": "Statistics & Mathematics"
+  },
+  {
+    "url": "https://www.turing.ac.uk/courses",
+    "kind": "course",
+    "title": "Data Science and AI"
+  },
+  {
+    "url": "https://hades.mech.northwestern.edu/index.php/Modern_Robotics",
+    "kind": "course",
+    "title": "Modern Robotics"
+  },
+  {
+    "url": "https://rl.uni-freiburg.de/teaching/ss24/mobile-robotics",
+    "kind": "course",
+    "title": "Mobile Robotics"
+  },
+  {
+    "url": "https://github.com/Nyandwi/machine_learning_complete/",
+    "kind": "course",
+    "title": "Machine Learning Complete"
+  }
+]
