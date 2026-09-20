@@ -1,6 +1,8 @@
+node_modules/
+.npm-cache/
+dist/
 .env
-__pycache__/
-*.db
-.venv/
-uploads/
-static_audio/
+.env.local
+data/
+private-backup/
+*.log

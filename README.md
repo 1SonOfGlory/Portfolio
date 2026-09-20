@@ -1,86 +1,38 @@
-# Agentic AI Portfolio: The Sovereign CX Agent
+# Jabess Omane — research portfolio and journal
 
-![Status](https://img.shields.io/badge/Status-Beta-purple) ![Language](https://img.shields.io/badge/Language-Python-blue) ![AI](https://img.shields.io/badge/AI-OpenAI%20GPT--4o-green)
+Academic work leads the homepage. The site includes project case studies, school-project galleries, a course history, an animated resource library, professional credentials, achievements and a separate journal.
 
-## Executive Summary
-**Bridging the Digital Divide with Intelligent Infrastructure.**
+## Run locally
 
-As part of the **Griot Labs** mission, this Agentic AI Portfolio demonstrates a specialized, bilingual customer experience agent designed for the African context. While global models often overlook local dialects and offline accessibility, this system—developed under the **Digital Griot** alias—integrates high-end LLM reasoning with USSD-bridged accessibility. It solves the core problem of providing 24/7, high-quality, dialect-fluent support to customers who may lack consistent internet access or high-end smartphones.
+Use Node 24 or later. Run `npm ci`, then `npm run dev`. Open http://127.0.0.1:5530. The local studio saves to `data/journal.sqlite`; it is bound to this computer and is not a public production server. `npm run build` builds the deployable Vite site. `npm test` checks local durability and the cloud schema using an isolated PostgreSQL engine.
 
----
+## Writing
 
-## 🚀 Core Features
+Open `/studio`. New pieces autosave privately. Add a cover, category, excerpt, and source links with optional thumbnails. Preview before publishing. Publishing creates a snapshot: further draft edits stay private. A future release becomes visible when the server clock reaches its scheduled time, without a paid scheduling service. Cancel a schedule or unpublish without deleting the private draft.
 
--   **Bilingual Intelligence**: Native fluency in both **English** and **Twi (Akan)**. The agent automatically detects the user's language and responds with cultural and linguistic precision.
--   **Multi-Modal Interface**: 
-    -   **Voice AI**: Integrated with OpenAI Whisper for transcription and OpenAI TTS for human-like vocal responses.
-    -   **USSD Bridge**: A simulated offline workflow ensuring support is accessible via standard telephony, requiring zero data.
--   **Enterprise RAG Guardrails**: Implements **Retrieval-Augmented Generation (RAG)** to ensure responses are grounded strictly in company policy documents, eliminating hallucinations.
--   **Autonomous Task Routing**: Capable of identifying complex or high-emotion queries (e.g., "angry" customers) and automatically initiating a semantic handoff to human supervisors.
--   **Audit-Ready Logging**: Comprehensive SQLite-backed transaction and conversation logging for business intelligence and quality assurance.
+Seven-minute drills have a timer, focus mode and a private original-session copy. Revision history can restore an earlier version into a new revision. Export backups regularly; import supports the exported drafts. A Milestone appears on About when published and is excluded from the journal feed.
 
----
+Five earlier pieces were imported into local private drafts. `private-backup/cloud-drafts.json` is the private migration backup. It is excluded from Git, deployment uploads and the Vite output. The labelled studio walkthrough draft is test content and should not be published. Academic documents are available by email request, not through a document portal.
 
-## 🛠 Tech Stack
+## Cloud setup
 
--   **Core Engine**: Python 3.10+
--   **LLM Orchestration**: OpenAI GPT-4o
--   **Voice Processing**: OpenAI Whisper (Speech-to-Text) & OpenAI TTS (Text-to-Speech)
--   **API Framework**: FastAPI
--   **Environment Management**: `python-dotenv` for secure secret management.
--   **Database**: SQLite for persistent session memory and logs.
+Supabase Free project: `uvdvykjgiftwmbonaarc` (Jabess Journal). The schema in `supabase/schema.sql` was applied successfully through the dashboard. Tables are in a private schema with RLS enabled and no anonymous table access. Only owner UUIDs in `journal_private.owners` may call `journal_admin`. `journal_feed` returns due publication snapshots and strips private drill originals.
 
----
+1. Invite the owner email through Authentication > Users. Add that user's UUID to `journal_private.owners` using the statement at the bottom of `schema.sql`.
+2. Configure the site URL and allowed redirect URLs to the final `/studio` URL and the local preview `/studio` URL.
+3. Copy the project URL and **publishable/anon** key into `.env.local` using `.env.example`. Never use a service-role key in `VITE_*` variables.
+4. Sign in through the studio, then import the private drafts backup. Check anonymous feed access and owner draft access before deploying.
 
-## 📐 Technical Architecture
+The Free plan has quotas and can pause after low activity. It is not unlimited storage or an uptime guarantee. No paid add-ons or subscriptions are needed for this implementation. See https://supabase.com/pricing and https://supabase.com/docs/guides/platform/free-project-pausing (checked 19 September 2026).
 
-The system operates on an **Agentic Feedback Loop**:
+## Content provenance
 
-1.  **Ingestion**: Audio or Text is received via FastAPI endpoints.
-2.  **Contextual Retrieval**: The `KnowledgeBase` is queried to find relevant policy snippets (RAG).
-3.  **Reasoning**: The `CustomerSupportAgent` processes the input, RAG context, and session history through GPT-4o.
-4.  **Action/Synthesis**: The agent decides whether to resolve the query, perform a simulated transaction (e.g., refund), or escalate.
-5.  **Output**: Responses are converted to speech or sent as text back to the client.
+Project descriptions and seven training entries come from the corrected research CV and project source notes in `graduate-application-pack`. The 22 library entries and two school projects were restored from the previous portfolio. Study is not labelled as certification. DecisionLens uses a proxy outcome and assumed causal scenarios; no unverified accuracy, fairness or real-world recourse results are claimed. Spider Publishing and Thinking About Thinking roles were confirmed by the user.
 
----
+Photos are from the existing portfolio. `journal-still-life.png` is an AI-assisted editorial illustration; it is identified as such in its caption. Linked videos use thumbnail previews and open at their source, with no full playback on this site.
 
-## ⚙️ Installation & Setup
+## Deployment
 
-### 1. Clone the Laboratory
-```bash
-git clone https://github.com/1SonOfGlory/Portfolio.git
-cd Portfolio
-```
+The existing GitHub repository is `1SonOfGlory/Portfolio`, linked by the user to Vercel. The currently authenticated Vercel CLI account is Free Hands Creative Media and does not contain this portfolio. Use the existing repository's linked deployment rather than creating a replacement project in that account. An isolated clone is staged in `../portfolio-release`.
 
-### 2. Environment Configuration
-Create a `.env` file in the root directory and populate it with your credentials:
-```bash
-cp .env.example .env
-```
-Update `.env` with:
-- `OPENAI_API_KEY`: Your OpenAI Secret Key.
-
-### 3. Install Dependencies
-```bash
-pip install -r requirements.txt
-```
-
-### 4. Initialize the Brain
-```bash
-# Seed the knowledge base and initialize the logs
-python database.py
-python knowledge_base.py
-```
-
-### 5. Launch the Agent
-```bash
-uvicorn server:app --reload
-```
-Navigate to `http://localhost:8000` to interact with the web interface.
-
----
-
-## 🎯 The Vision
-This project is more than a chatbot; it is a prototype for **Sovereign AI Infrastructure**. By ensuring AI can speak the languages of our communities and operate without the "data tax," we are building toward a future where technology catalyzes inclusive macroeconomic growth.
-
-**Built by Jabess Omane | CTO @ Griot Labs**
+The redesign is not live until that repository is updated and Vercel reports a successful production deployment. Never copy `data`, `.env.local`, `.npm-cache`, or `private-backup` into public assets. Build output was checked for private PDF, DOCX, SQLite and SQL files.

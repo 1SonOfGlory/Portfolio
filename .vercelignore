@@ -1,4 +1,6 @@
-__pycache__/
-*.pyc
-.env
-agent_memory.db
+private-backup
+data
+tests
+node_modules
+.npm-cache
+.env*
