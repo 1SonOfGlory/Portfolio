@@ -1,0 +1,78 @@
+{
+  "https://books.google.com.gh/books/about/Fundamental_Research_Statistics_for_the.html?id=Fe8vAAAAMAAJ": {
+    "source": "https://books.google.com.gh/books/about/Fundamental_Research_Statistics_for_the.html?id=Fe8vAAAAMAAJ",
+    "image": "/assets/previews/0-image.jpg"
+  },
+  "https://link.springer.com/book/10.1007/978-3-662-49349-6": {
+    "source": "https://link.springer.com/book/10.1007/978-3-662-49349-6",
+    "image": "/assets/previews/1-image.jpg",
+    "logo": "/assets/previews/1-logo.png"
+  },
+  "https://arxiv.org/pdf/1903.10075": {
+    "image": "/assets/previews/2.jpg",
+    "source": "https://arxiv.org/pdf/1903.10075"
+  },
+  "https://maxkasy.github.io/home/files/papers/fairness_equality_power.pdf": {
+    "image": "/assets/previews/3.jpg",
+    "source": "https://maxkasy.github.io/home/files/papers/fairness_equality_power.pdf"
+  },
+  "https://dash.harvard.edu/server/api/core/bitstreams/db500414-5822-4228-bd0a-f559a30fcf3c/content": {
+    "image": "/assets/previews/4.jpg",
+    "source": "https://dash.harvard.edu/server/api/core/bitstreams/db500414-5822-4228-bd0a-f559a30fcf3c/content"
+  },
+  "https://fairmlbook.org/": {
+    "source": "https://fairmlbook.org/"
+  },
+  "https://arxiv.org/pdf/2005.06540": {},
+  "https://developers.google.com/machine-learning/crash-course": {
+    "source": "https://developers.google.com/machine-learning/crash-course",
+    "logo": "/assets/previews/7-logo.png"
+  },
+  "https://www.skills.google/collections/deepmind": {
+    "logo": "/assets/previews/deepmind.png"
+  },
+  "https://ml4publicpolicy.com/": {
+    "source": "https://ml4publicpolicy.com/",
+    "logo": "/assets/previews/9-logo.png"
+  },
+  "https://r4ds.hadley.nz/": {
+    "source": "https://r4ds.hadley.nz/",
+    "logo": "/assets/previews/10-logo.jpg"
+  },
+  "https://openintro.org/": {},
+  "https://www.turing.ac.uk/courses": {
+    "logo": "/assets/previews/turing.png"
+  },
+  "https://hades.mech.northwestern.edu/index.php/Modern_Robotics": {
+    "source": "https://hades.mech.northwestern.edu/index.php/Modern_Robotics"
+  },
+  "https://rl.uni-freiburg.de/teaching/ss24/mobile-robotics": {
+    "source": "https://rl.uni-freiburg.de/teaching/ss24/mobile-robotics",
+    "logo": "/assets/previews/14-logo.png"
+  },
+  "https://github.com/Nyandwi/machine_learning_complete/": {
+    "source": "https://github.com/Nyandwi/machine_learning_complete/",
+    "image": "/assets/previews/15-image.png",
+    "logo": "/assets/previews/15-logo.png"
+  },
+  "https://unu.edu/merit/course/introduction-agent-based-models": {
+    "source": "https://unu.edu/merit/course/introduction-agent-based-models",
+    "image": "/assets/previews/16-image.svg",
+    "logo": "/assets/previews/16-logo.ico"
+  },
+  "https://www.arena.education/faqs": {
+    "source": "https://www.arena.education/faqs",
+    "logo": "/assets/previews/17-logo.png"
+  },
+  "https://course.mlsafety.org/": {
+    "source": "https://course.mlsafety.org/",
+    "image": "/assets/previews/18-image.jpg",
+    "logo": "/assets/previews/18-logo.ico"
+  },
+  "https://www.turing.ac.uk/courses/mathematics-machine-learning-summer-school": {
+    "logo": "/assets/previews/turing.png"
+  },
+  "https://www.turing.ac.uk/courses/assessing-and-mitigating-bias-and-discrimination-ai": {
+    "logo": "/assets/previews/turing.png"
+  }
+}
