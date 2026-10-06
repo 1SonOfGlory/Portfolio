@@ -1,0 +1,42 @@
+{
+  "version": "2026-10-06-demo",
+  "notice": "Fictional demonstration policies, not the policies of MTN or any other operator. Language samples require native-speaker review before production.",
+  "documents": [
+    {
+      "id": "KB-001", "title": "Data connection troubleshooting", "section": "Connectivity / 1.1",
+      "terms": ["data", "internet", "bundle", "network", "connection", "intanɛt", "intanet", "yanar", "gizo"],
+      "answer": {
+        "en": "Switch mobile data off and on, then restart your phone. If it still does not connect, a support agent can help check your service. You do not need to buy another bundle to try these steps.",
+        "twi": "Dum wo fon no data, na sɔ no bio. Afei dum wo fon no na sɔ no bio. Sɛ ɛnnyɛ adwuma a, yɛn adwumayɛni bɛboa wo.",
+        "hausa": "Kashe data na wayarka, sannan ka kunna shi. Sake kunna wayarka. Idan har yanzu ba ya aiki, ma'aikacinmu zai taimaka maka.",
+        "pidgin": "Off your phone data, then on am again. Restart your phone too. If e still no work, our support person go help you check am. You no need buy another bundle to try this one."
+      }
+    },
+    {
+      "id": "KB-002", "title": "Airtime balance support", "section": "Account help / 2.1",
+      "terms": ["airtime", "balance", "credit", "sika", "kudi", "kuɗi"],
+      "answer": {
+        "en": "A support agent can help you check your airtime balance after account verification. This demo cannot access your account or confirm a real balance. Never share your PIN or one-time code.",
+        "twi": "Yɛn adwumayɛni bɛboa wo ahwɛ wo airtime. Saa nhwɛso yi ntumi nhwɛ wo akawn mu. Mma obiara wo PIN.",
+        "hausa": "Ma'aikacinmu zai taimaka maka duba ragowar airtime bayan tabbatar da asusunka. Wannan misali ba ya shiga asusunka. Kada ka ba kowa PIN dinka.",
+        "pidgin": "Our support person fit help check your airtime after dem verify your account. This demo no fit see your real balance. No give anybody your PIN or one-time code."
+      }
+    },
+    {
+      "id": "KB-003", "title": "Human support and complaints", "section": "Escalation / 3.1", "handoff": true,
+      "terms": ["agent", "human", "person", "complaint", "complain", "refund", "charged", "adwumayɛni", "mutum", "ma'aikaci", "ma’aikaci", "ma'aikacinmu"],
+      "answer": {
+        "en": "This needs a support agent. With your permission, the conversation summary can go with your request so you do not have to explain everything again. A real transfer depends on the organisation's staffing and phone integration.",
+        "twi": "Yɛn adwumayɛni bɛboa wo. Sɛ wopene so a, yɛbɛka wo asɛm no akyerɛ no na ɛho renhia sɛ woka ne nyinaa bio.",
+        "hausa": "Ma'aikacinmu zai taimaka maka. Da izininka, za mu tura masa taƙaitaccen bayanin matsalarka don kada ka sake bayyana komai.",
+        "pidgin": "Make our support person help you with this one. If you agree, we go send the summary so you no need explain everything again. Real transfer go depend on the support team availability."
+      }
+    }
+  ],
+  "fallback": {
+    "en": "I do not have an approved answer to that question. Please speak with a support agent. I will not guess.",
+    "twi": "Minni wo asɛmmisa no ho mmuae a wɔapene so. Mepa wo kyɛw, wo ne yɛn adwumayɛni nkasa.",
+    "hausa": "Ba ni da amsar da aka amince da ita ga wannan tambayar. Don Allah ka yi magana da ma'aikacinmu.",
+    "pidgin": "I no get approved answer for this question. Make our support person help you. I no go guess."
+  }
+}
