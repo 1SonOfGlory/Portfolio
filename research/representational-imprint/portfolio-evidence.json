@@ -1,0 +1,206 @@
+{
+  "title": "The Representational Imprint",
+  "status": "Exploratory research in progress",
+  "measurementDate": "2026-10-07",
+  "model": "EleutherAI/pythia-410m",
+  "revision": "9879c9b5f8bea9051dcb0e68dff21493d67e9d4f",
+  "archiveSha256": "bb20da696444fb85fee871074fdd50bc3278873ea7db95eed61ef07471caa86e",
+  "seeds": [
+    {
+      "seed": 2026,
+      "spreadReduction": 57.267280135556796,
+      "perplexityChange": 0.22382890658503296,
+      "beforePerplexity": 29.691571458271074,
+      "afterPerplexity": 29.758029778014038,
+      "patternStrength": 0.4271549247499969,
+      "rankCorrelation": 0.9588235294117647,
+      "beforeControlCorrect": 20,
+      "afterControlCorrect": 19,
+      "controlTotal": 20,
+      "occupations": [
+        {
+          "name": "receptionist",
+          "before": -1.3882526303641498,
+          "after": -0.5280186077579856
+        },
+        {
+          "name": "librarian",
+          "before": -1.300727992784232,
+          "after": -0.5506842276081443
+        },
+        {
+          "name": "cashier",
+          "before": -1.250574394594878,
+          "after": -0.47973622288554907
+        },
+        {
+          "name": "secretary",
+          "before": -0.28758861077949405,
+          "after": -0.028953208588063717
+        },
+        {
+          "name": "doctor",
+          "before": -0.2445540721528232,
+          "after": -0.15499986615031958
+        },
+        {
+          "name": "artist",
+          "before": -0.10177853656932712,
+          "after": -0.08478847052901983
+        },
+        {
+          "name": "bartender",
+          "before": 0.014844626653939486,
+          "after": -0.10574437584728003
+        },
+        {
+          "name": "photographer",
+          "before": 0.09347060369327664,
+          "after": 0.001065836288034916
+        },
+        {
+          "name": "surgeon",
+          "before": 0.16236516879871488,
+          "after": 0.09818956349045038
+        },
+        {
+          "name": "manager",
+          "before": 0.304630592931062,
+          "after": 0.15491484198719263
+        },
+        {
+          "name": "driver",
+          "before": 0.34877631114795804,
+          "after": 0.1332505652680993
+        },
+        {
+          "name": "firefighter",
+          "before": 0.478238329757005,
+          "after": 0.2006227681413293
+        },
+        {
+          "name": "electrician",
+          "before": 0.5234368746168911,
+          "after": 0.14670144114643335
+        },
+        {
+          "name": "painter",
+          "before": 0.7680568252690136,
+          "after": 0.41915705893188715
+        },
+        {
+          "name": "plumber",
+          "before": 0.7805858408100903,
+          "after": 0.29622984025627375
+        },
+        {
+          "name": "farmer",
+          "before": 1.099071063566953,
+          "after": 0.4827930638566613
+        }
+      ]
+    },
+    {
+      "seed": 2027,
+      "spreadReduction": 59.89670537082639,
+      "perplexityChange": 0.35111182182083756,
+      "beforePerplexity": 29.691571458271074,
+      "afterPerplexity": 29.795822075745445,
+      "patternStrength": 0.400119209755247,
+      "rankCorrelation": 0.9588235294117647,
+      "beforeControlCorrect": 20,
+      "afterControlCorrect": 19,
+      "controlTotal": 20,
+      "occupations": [
+        {
+          "name": "receptionist",
+          "before": -1.3882526303641498,
+          "after": -0.49138645362108946
+        },
+        {
+          "name": "librarian",
+          "before": -1.300727992784232,
+          "after": -0.5084285093471408
+        },
+        {
+          "name": "cashier",
+          "before": -1.250574394594878,
+          "after": -0.43293684255331755
+        },
+        {
+          "name": "secretary",
+          "before": -0.28758861077949405,
+          "after": -0.03437166940420866
+        },
+        {
+          "name": "doctor",
+          "before": -0.2445540721528232,
+          "after": -0.15718346368521452
+        },
+        {
+          "name": "artist",
+          "before": -0.10177853656932712,
+          "after": -0.08211034070700407
+        },
+        {
+          "name": "bartender",
+          "before": 0.014844626653939486,
+          "after": -0.10380738507956266
+        },
+        {
+          "name": "photographer",
+          "before": 0.09347060369327664,
+          "after": -0.012829686515033245
+        },
+        {
+          "name": "surgeon",
+          "before": 0.16236516879871488,
+          "after": 0.07619867194443941
+        },
+        {
+          "name": "manager",
+          "before": 0.304630592931062,
+          "after": 0.1556797819212079
+        },
+        {
+          "name": "driver",
+          "before": 0.34877631114795804,
+          "after": 0.1349842892959714
+        },
+        {
+          "name": "firefighter",
+          "before": 0.478238329757005,
+          "after": 0.18887500930577517
+        },
+        {
+          "name": "electrician",
+          "before": 0.5234368746168911,
+          "after": 0.13682848680764437
+        },
+        {
+          "name": "painter",
+          "before": 0.7680568252690136,
+          "after": 0.38550419081002474
+        },
+        {
+          "name": "plumber",
+          "before": 0.7805858408100903,
+          "after": 0.2772356914356351
+        },
+        {
+          "name": "farmer",
+          "before": 1.099071063566953,
+          "after": 0.4677482293918729
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Two development seeds on one model, not independent confirmation.",
+    "Pronoun-score spread is not a comprehensive fairness measure.",
+    "Perplexity covers 128 fixed paragraphs and 14858 predicted tokens.",
+    "Explicit-pronoun accuracy fell from 20/20 to 19/20 in both runs.",
+    "Further-training recovery has not been measured.",
+    "No internal representation or erasure claim is supported."
+  ]
+}
