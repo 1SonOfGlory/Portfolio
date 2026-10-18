@@ -1,1 +1,67 @@
-{"buildCommand":"npm run build","outputDirectory":"dist","framework":"vite","rewrites":[{"source":"/(.*)","destination":"/index.html"}],"headers":[{"source":"/(.*)","headers":[{"key":"X-Content-Type-Options","value":"nosniff"},{"key":"Referrer-Policy","value":"strict-origin-when-cross-origin"},{"key":"X-Frame-Options","value":"DENY"}]}]}
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "framework": "vite",
+  "rewrites": [
+    {
+      "source": "/about",
+      "destination": "/about/index.html"
+    },
+    {
+      "source": "/research",
+      "destination": "/research/index.html"
+    },
+    {
+      "source": "/research/representational-imprint",
+      "destination": "/research/representational-imprint/index.html"
+    },
+    {
+      "source": "/products/kasa-ai",
+      "destination": "/products/kasa-ai/index.html"
+    },
+    {
+      "source": "/research/hexai",
+      "destination": "/research/hexai/index.html"
+    },
+    {
+      "source": "/research/decisionlens",
+      "destination": "/research/decisionlens/index.html"
+    },
+    {
+      "source": "/research/fairscore",
+      "destination": "/research/fairscore/index.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        }
+      ]
+    },
+    {
+      "source": "/studio",
+      "headers": [
+        {
+          "value": "noindex, nofollow",
+          "key": "X-Robots-Tag"
+        }
+      ]
+    }
+  ]
+}
