@@ -1,10 +1,10 @@
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {pages,siteUrl,pageSchema} from '../src/seo.js';
-import {sourceRepositories,repositoryUrl} from '../src/source-repositories.js';
+import {repositoryGroups,sourceRepositories,repositoryUrl} from '../src/source-repositories.js';
 
 const escape=s=>String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
 const template=await readFile('dist/index.html','utf8');
-const nav=Object.entries(pages).map(([path,p])=>`<a href="${path}">${escape(p.heading)}</a>`).join(' · ');
+const nav=Object.entries(pages).map(([path,p])=>`<a href="${path}">${escape(p.heading)}</a>`).join(' Â· ');
 for(const [path,page] of Object.entries(pages)){
   const metadata=`<link rel="canonical" href="${siteUrl+path}"/>
 <meta name="robots" content="index,follow,max-image-preview:large"/>
@@ -12,8 +12,8 @@ for(const [path,page] of Object.entries(pages)){
 <meta property="og:description" content="${escape(page.description)}"/><meta property="og:url" content="${siteUrl+path}"/>
 <meta property="og:image" content="${siteUrl}/assets/portrait.png"/><meta name="twitter:card" content="summary"/>
 <script id="profile-schema" type="application/ld+json">${JSON.stringify(pageSchema(path)).replaceAll('<','\\u003c')}</script>`;
-  const sources=path==='/research'?`<h2>Source code</h2><ul>${sourceRepositories.map(p=>`<li><a href="${repositoryUrl(p.repo)}">${escape(p.name)}</a>: ${escape(p.scope)}</li>`).join('')}</ul>`:'';
-  const content=`<main style="max-width:76ch;margin:3rem auto;padding:1rem;font-family:system-ui;line-height:1.6"><nav>${nav}</nav><h1>${escape(page.heading)}</h1>${page.paragraphs.map(p=>`<p>${escape(p)}</p>`).join('')}${sources}<p>Contact: <a href="mailto:omanijabess47@gmail.com">omanijabess47@gmail.com</a></p><p><a href="https://github.com/1SonOfGlory">GitHub</a> · <a href="https://www.linkedin.com/in/jabess-omane-75919b225/">LinkedIn</a></p></main>`;
+  const sources=path==='/research'?`<h2>Source code</h2>${repositoryGroups.map(group=>`<h3>${escape(group.title)}</h3><p>${escape(group.description)}</p><ul>${sourceRepositories.filter(p=>p.group===group.id).map(p=>`<li><a href="${repositoryUrl(p.repo)}">${escape(p.name)}</a>: ${escape(p.scope)}</li>`).join('')}</ul>`).join('')}`:'';
+  const content=`<main style="max-width:76ch;margin:3rem auto;padding:1rem;font-family:system-ui;line-height:1.6"><nav>${nav}</nav><h1>${escape(page.heading)}</h1>${page.paragraphs.map(p=>`<p>${escape(p)}</p>`).join('')}${sources}<p>Contact: <a href="mailto:omanijabess47@gmail.com">omanijabess47@gmail.com</a></p><p><a href="https://github.com/1SonOfGlory">GitHub</a> Â· <a href="https://www.linkedin.com/in/jabess-omane-75919b225/">LinkedIn</a></p></main>`;
   const html=template.replace(/<title>.*?<\/title>/,`<title>${escape(page.title)}</title>`).replace(/<meta name="description"[^>]*>/,`<meta name="description" content="${escape(page.description)}"/>`).replace('</head>',metadata+'</head>').replace('<div id="root"></div>',`<div id="root">${content}</div>`);
   const directory=path==='/'?'dist':'dist'+path;
   await mkdir(directory,{recursive:true});
