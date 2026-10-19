@@ -11,6 +11,7 @@ Source repositories for Jabess Omane’s portfolio. Repository READMEs distingui
 - [Articulate: earlier prototype](https://github.com/1SonOfGlory/Articulate_ai): Earlier React and TypeScript version from AI Studio.
 - [Customer-support prototype](https://github.com/1SonOfGlory/Customer-Support-Prototype): FastAPI, keyword retrieval, session storage, and optional text and speech services.
 - [Soil report prototype](https://github.com/1SonOfGlory/Soil-Report-Prototype): Workbook rules, measurement classification, and document generation. No agronomic validation is claimed.
+- [Vesto](https://github.com/1SonOfGlory/Vesto): Apparel storefront and local demonstration-order handling.
 - [Kwans Concepts](https://github.com/1SonOfGlory/Kwans-Concepts): Website source with deployment setup documented separately.
 - [Tee Shop](https://github.com/1SonOfGlory/Tee-Shop): Storefront source; payment and hosting services require configuration.
 - [Creative Hands Media](https://github.com/1SonOfGlory/Creative-Hands-Media): Static website and booking interface; private media and customer records are excluded.

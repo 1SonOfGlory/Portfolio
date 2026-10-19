@@ -8,6 +8,7 @@ export const sourceRepositories = [
   {name: 'Articulate: earlier prototype', repo: 'Articulate_ai', scope: 'Earlier React and TypeScript version from AI Studio.', group: 'archive'},
   {name: 'Customer-support prototype', repo: 'Customer-Support-Prototype', scope: 'FastAPI, keyword retrieval, session storage, and optional text and speech services.', group: 'archive'},
   {name: 'Soil report prototype', repo: 'Soil-Report-Prototype', scope: 'Workbook rules, measurement classification, and document generation. No agronomic validation is claimed.', group: 'archive'},
+  {name: 'Vesto', repo: 'Vesto', scope: 'Apparel storefront and local demonstration-order handling.', group: 'archive'},
   {name: 'Kwans Concepts', repo: 'Kwans-Concepts', scope: 'Website source with deployment setup documented separately.', group: 'archive'},
   {name: 'Tee Shop', repo: 'Tee-Shop', scope: 'Storefront source; payment and hosting services require configuration.', group: 'archive'},
   {name: 'Creative Hands Media', repo: 'Creative-Hands-Media', scope: 'Static website and booking interface; private media and customer records are excluded.', group: 'archive'},
