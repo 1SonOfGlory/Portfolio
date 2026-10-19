@@ -36,3 +36,8 @@ Photos are from the existing portfolio. `journal-still-life.png` is an AI-assist
 The existing GitHub repository is `1SonOfGlory/Portfolio`, linked by the user to Vercel. The currently authenticated Vercel CLI account is Free Hands Creative Media and does not contain this portfolio. Use the existing repository's linked deployment rather than creating a replacement project in that account. An isolated clone is staged in `../portfolio-release`.
 
 The redesign is not live until that repository is updated and Vercel reports a successful production deployment. Never copy `data`, `.env.local`, `.npm-cache`, or `private-backup` into public assets. Build output was checked for private PDF, DOCX, SQLite and SQL files.
+
+## Project source
+
+See [the project source index](PROJECTS.md) for repositories, implementation scope, and validation notes. These links also appear on the portfolio’s Work & Research page.
+

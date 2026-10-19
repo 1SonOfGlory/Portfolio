@@ -1,0 +1,9 @@
+.source-repositories { margin: 5rem 0; padding-top: 2rem; border-top: 1px solid currentColor; }
+.source-repositories > p { max-width: 65ch; line-height: 1.7; }
+.source-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem 3rem; list-style: none; padding: 0; margin: 2rem 0; }
+.source-list li { border-bottom: 1px solid #9996; padding-bottom: 1.25rem; }
+.source-list h3 { font-size: 1.2rem; margin: 0 0 .6rem; }
+.source-list a { color: inherit; text-decoration: underline; text-underline-offset: .2em; }
+.source-list p { margin: 0; line-height: 1.7; }
+.source-repositories summary { cursor: pointer; padding: 1rem 0; font-weight: 600; }
+@media (max-width: 650px) { .source-list { grid-template-columns: 1fr; } }
