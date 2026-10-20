@@ -20,10 +20,6 @@
       "destination": "/products/kasa-ai/index.html"
     },
     {
-      "source": "/research/hexai",
-      "destination": "/research/hexai/index.html"
-    },
-    {
       "source": "/research/decisionlens",
       "destination": "/research/decisionlens/index.html"
     },
@@ -62,6 +58,13 @@
           "key": "X-Robots-Tag"
         }
       ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/research/hexai",
+      "destination": "/research",
+      "permanent": true
     }
   ]
 }
